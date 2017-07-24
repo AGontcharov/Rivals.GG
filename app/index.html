@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+	<head>
+		<title>Toxic</title>
+
+		<!-- Angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+		<script src="app.js"></script>
+
+		<!-- Controllers -->
+		<script src="formCtrl.js"></script>
+
+		<!-- Stylesheets -->
+		<link href="app.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<h1> Clown Fiesta</h1>
+		<form ng-controller="formCtrl">
+			Summoner name: <input type="text" ng-model="summonerName"><br>
+			Region: 
+			<select ng-model="region">
+				<option value="na1">NA
+				<option value="euw1">EUW
+			</select>
+			<br><br>
+			<button ng-click="search()">Submit</button>
+		</form>
+	</body>
+
+	<footer>
+	</footer>
+</html>

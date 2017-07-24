@@ -1,0 +1,19 @@
+{
+  "name": "League",
+  "version": "1.0.0",
+  "description": "A small league app using Riot Games APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/server.js"
+  },
+  "keywords": [],
+  "author": "Alexander Gontcharov",
+  "license": "ISC",
+  "repository": {},
+  "dependencies": {
+    "express": "^4.15.3",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {}
+}
