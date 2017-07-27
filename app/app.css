@@ -1,9 +1,76 @@
 body {
 	background: white;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+p, a {
+	font-size: 16px;
 }
 
 p {
-	font-size: 16px;
-	font-family: Arial, Helvetica, sans-serif;
 	color: #555555;
+}
+
+h1 {
+	text-align: center;
+}
+
+/* Navbar */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #333;
+}
+
+.navbar li {
+	float: left;
+}
+
+.navbar li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 20px 25px;
+	text-decoration: none;
+}
+
+.navbar li a:hover {
+	background-color: #111;
+}
+
+.navbar li a:active {
+	background-color: #4CAF50;
+}
+
+/* Other */
+.wrapper {
+	text-align: center;
+}
+
+.summoner-lookup {
+	/*background: pink;*/
+	display: inline-block;
+}
+
+.summoner-lookup input {
+	height: 20px;
+	width: 300px;
+}
+
+.summoner-lookup a {
+	color: black;
+	text-decoration: none;
+}
+
+form p {
+	display: inline;
+	font-size: 20px;
+}
+
+.account p {
+	text-align: left;
+	padding: 0;
+	margin: 0;
 }
