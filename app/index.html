@@ -37,69 +37,78 @@
 		<!-- /.Navbar -->
 
 		<h1>Clown Fiesta</h1>
-		<div class="wrapper">
-			<div class="summoner-lookup" ng-model="result" ng-controller="formCtrl">
-				<form>
-					<p>Summoner name: </p>
-					<input type="text" ng-model="name">
-					<a href ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 
-					<p>Region:</p>
-					<select ng-model="region">
-						<option value="na1">NA
-						<option value="euw1">EUW
-					</select><br>
-				</form>
+		<div class="container" ng-controller="formCtrl">
+			<div class="row center">
+				<div class="summoner-lookup">	
+					<form>
+						<p>Summoner name: </p>
+						<input type="text" ng-model="name">
+						<a href ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 
-				<div ng-switch="result">
-					<div ng-switch-when="found" class="account">
-						<h3>Profile</h3>
+						<p>Region:</p>
+						<select ng-model="region">
+							<option value="na1">NA
+							<option value="euw1">EUW
+						</select><br>
+					</form>
+				</div>
+			</div>
+
+			<div class="row" ng-switch="result" style="background: pink;">
+				<div class="col-xs-4 center" ng-switch-when="found">
+					<h3>Profile</h3>
+					<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{profileIcon}}.png" alt="Profile icon"><br>
+					<div class="profile">
 						<p><b>Summoner name:</b> {{summonerName}}</p>
 						<p><b>Level:</b> {{summonerLevel}}</p>
 						<p><b>Last online:</b> {{lastActivity | date:'yyyy-MMM-dd'}}</p>
-
-						<div ng-switch="soloActive">
-							<h3>Ranked Solo</h3>
-							<div ng-switch-when="true" class="ranked-solo">
-								<p><b>League:</b> {{soloLeagueName}}</p>
-								<p><b>Tier:</b> {{soloTier}}</p>
-								<p><b>Division:</b> {{soloDivision}}</p>
-								<p><b>League Points:</b> {{soloLP}}</p>
-								<p><b>Wins:</b> {{soloWins}}</p>
-								<p><b>Losses:</b> {{soloLosses}}</p>
-							</div>
-
-							<div ng-switch-when="false">
-								<p><b>League:</b> Unranked</p>
-							</div>
+					</div>
+				</div>
+				
+				<div class="col-xs-4" ng-switch-when="found" style="background: cyan;">
+					<div class="center" ng-switch="soloActive">
+						<h3>Ranked Solo</h3>
+						<img src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png" alt="Ranked icon">
+						<div class="ranked-solo" ng-switch-when="true">
+							<p><b>League:</b> {{soloLeagueName}}</p>
+							<p><b>Tier:</b> {{soloTier}}</p>
+							<p><b>Division:</b> {{soloDivision}}</p>
+							<p><b>League Points:</b> {{soloLP}}</p>
+							<p><b>Wins:</b> {{soloWins}}</p>
+							<p><b>Losses:</b> {{soloLosses}}</p>
 						</div>
 
-						<div ng-switch="flexActive">
-							<h3>Ranked Flex</h3>
-							<div ng-switch-when="true" class="ranked-flex">
-								<p><b>League:</b> {{flexLeagueName}}</p>
-								<p><b>Tier:</b> {{flexTier}}</p>
-								<p><b>Division:</b> {{flexDivision}}</p>
-								<p><b>League Points:</b> {{flexLP}}</p>
-								<p><b>Wins:</b> {{flexWins}}</p>
-								<p><b>Losses:</b> {{flexLosses}}</p>
-							</div>
-
-							<div ng-switch-when="false">
-								<p><b>League:</b> Unranked</p>
-							</div>
+						<div ng-switch-when="false">
+							<p><b>League:</b> Unranked</p>
 						</div>
 					</div>
+				</div>
 
-					<div ng-switch-when="missing" class="not-found">
-						<p>An error occured or summoner not found</p>
+				<div class="col-xs-4" ng-switch-when="found" style="background: green;">
+					<div class="center" ng-switch="flexActive">
+						<h3>Ranked Flex</h3>
+						<img src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png" alt="Ranked icon">
+						<div class="ranked-flex" ng-switch-when="true">
+							<p><b>League:</b> {{flexLeagueName}}</p>
+							<p><b>Tier:</b> {{flexTier}}</p>
+							<p><b>Division:</b> {{flexDivision}}</p>
+							<p><b>League Points:</b> {{flexLP}}</p>
+							<p><b>Wins:</b> {{flexWins}}</p>
+							<p><b>Losses:</b> {{flexLosses}}</p>
+						</div>
+
+						<div ng-switch-when="false">
+							<p><b>League:</b> Unranked</p>
+						</div>
 					</div>
+				</div>
+
+				<div class="col-xs-12 not-found" ng-switch-when="missing">
+					<p>An error occured or summoner not found</p>
 				</div>
 			</div>
 		</div>
-
-		<!-- News Feed -->
-
 
 	</body>
 

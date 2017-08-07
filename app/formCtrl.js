@@ -19,7 +19,9 @@ angular
 
 				summonerId = response.data.id;
 				console.log(summonerId);
+				console.log(response.data.profileiconid);
 
+				$scope.profileIcon = response.data.profileIconId;
 				$scope.summonerName = response.data.name;
 				$scope.summonerLevel = response.data.summonerLevel;
 				$scope.lastActivity = response.data.revisionDate;

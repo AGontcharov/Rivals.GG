@@ -17,8 +17,6 @@ app.get('/', function(req, res) {
 		console.log('error:', error);
 		console.log('statusCode:', response && response.statusCode);
 		console.log('body:', body); 
-
-		/* Check Riot Games status code here. */
 		
 		// 404 Not found
 		if (response.statusCode == 404) {
