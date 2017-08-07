@@ -1,7 +1,7 @@
 var express = require('express');
 var request = require('request');
 var app = express();
-var API_KEY = '?api_key=RGAPI-f91402b7-4f94-42fb-9b3a-c89cc86bd77f';
+var API_KEY = 'RGAPI-386e5352-b75d-43e1-9575-e0945894635a';
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -13,12 +13,19 @@ app.get('/', function(req, res) {
 	// console.log(req.originalUrl);
 	console.log('param:', req.query.url);
 
-	request('https://' + req.query.url + API_KEY, function (error, response, body) {
-		console.log('error:', error); // Print the error if one occurred 
-		console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-		console.log('body:', body); // Print the HTML for the API call. 
+	request('https://' + req.query.url + '?api_key=' + API_KEY, function (error, response, body) {
+		console.log('error:', error);
+		console.log('statusCode:', response && response.statusCode);
+		console.log('body:', body); 
 
-		res.send(body);
+		/* Check Riot Games status code here. */
+		
+		// 404 Not found
+		if (response.statusCode == 404) {
+			res.sendStatus(404);
+		}
+		// 200 Okay
+		else res.send(body);
 		res.end();
 	});
 });
@@ -26,3 +33,4 @@ app.get('/', function(req, res) {
 app.listen(5000, function() {
 	console.log('Node.js web server listening on port 5000');
 });
+

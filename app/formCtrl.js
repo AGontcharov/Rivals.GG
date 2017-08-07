@@ -13,10 +13,9 @@ angular
 				url: 'http://127.0.0.1:5000',
 				params: { "url": requestURL }
 			}).then(function successCallback(response) {
-				console.log('Sucess!');
+				// This callback will be called asynchronously when the response is available			
+				console.log(response.status);
 				console.log(response.data);
-
-				// Check status code here
 
 				summonerId = response.data.id;
 				console.log(summonerId);
@@ -24,15 +23,15 @@ angular
 				$scope.summonerName = response.data.name;
 				$scope.summonerLevel = response.data.summonerLevel;
 				$scope.lastActivity = response.data.revisionDate;
-				// This callback will be called asynchronously when the response is available
-
 				ranked(summonerId);
-				$scope.result = "found";
+				$scope.result = 'found';
 
 			}, function errorCallback(response) {
 				// Called asynchronously if an error occurs or server returns response with an error status.
-				console.log('Error!');
-				console.log(response);
+				console.log(response.status);
+				console.log(response.data);
+				$scope.result = 'missing';
+
 			});
 		}
 
@@ -44,26 +43,35 @@ angular
 				url: 'http://127.0.0.1:5000',
 				params: { "url": requestURL }
 			}).then(function successCallback(response) {
-				console.log('Queue success');
+				console.log('Queue:', response.status);
 				console.log(response.data);
 
-				$scope.soloLeagueName = response.data[0].leagueName;
-				$scope.soloTier = response.data[0].tier;
-				$scope.soloDivision = response.data[0].rank;
-				$scope.soloLP = response.data[0].leaguePoints;
-				$scope.soloWins = response.data[0].wins;
-				$scope.soloLosses = response.data[0].losses;
+				if (0 < response.data.length) {
+					$scope.soloLeagueName = response.data[0].leagueName;
+					$scope.soloTier = response.data[0].tier;
+					$scope.soloDivision = response.data[0].rank;
+					$scope.soloLP = response.data[0].leaguePoints;
+					$scope.soloWins = response.data[0].wins;
+					$scope.soloLosses = response.data[0].losses;
+					$scope.soloActive = 'true';
+				}
+				else $scope.soloActive = 'false';
 
-				$scope.flexLeagueName = response.data[1].leagueName;
-				$scope.flexTier = response.data[1].tier;
-				$scope.flexDivision = response.data[1].rank;
-				$scope.flexLP = response.data[1].leaguePoints;
-				$scope.flexWins = response.data[1].wins;
-				$scope.flexLosses = response.data[1].losses;
+				if (1 < response.data.length) {
+
+					$scope.flexLeagueName = response.data[1].leagueName;
+					$scope.flexTier = response.data[1].tier;
+					$scope.flexDivision = response.data[1].rank;
+					$scope.flexLP = response.data[1].leaguePoints;
+					$scope.flexWins = response.data[1].wins;
+					$scope.flexLosses = response.data[1].losses;
+					$scope.flexActive = 'true';
+				}
+				else $scope.flexActive = 'false';
 
 			}, function errorCallback(response) {
-				console.log('Queue Error!');
-				console.log(response);
+				console.log('Queue:', response.status);
+				console.log(response.data);
 			});
 		}
 }]);

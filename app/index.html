@@ -7,6 +7,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
 		<script src="app.js"></script>
 
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 		<!-- Controllers -->
 		<script src="formCtrl.js"></script>
 
@@ -51,24 +58,36 @@
 						<p><b>Level:</b> {{summonerLevel}}</p>
 						<p><b>Last online:</b> {{lastActivity | date:'yyyy-MMM-dd'}}</p>
 
-						<div class="ranked-solo">
+						<div ng-switch="soloActive">
 							<h3>Ranked Solo</h3>
-							<p><b>League:</b> {{soloLeagueName}}</p>
-							<p><b>Tier:</b> {{soloTier}}</p>
-							<p><b>Division:</b> {{soloDivision}}</p>
-							<p><b>League Points:</b> {{soloLP}}</p>
-							<p><b>Wins:</b> {{soloWins}}</p>
-							<p><b>Losses:</b> {{soloLosses}}</p>
+							<div ng-switch-when="true" class="ranked-solo">
+								<p><b>League:</b> {{soloLeagueName}}</p>
+								<p><b>Tier:</b> {{soloTier}}</p>
+								<p><b>Division:</b> {{soloDivision}}</p>
+								<p><b>League Points:</b> {{soloLP}}</p>
+								<p><b>Wins:</b> {{soloWins}}</p>
+								<p><b>Losses:</b> {{soloLosses}}</p>
+							</div>
+
+							<div ng-switch-when="false">
+								<p><b>League:</b> Unranked</p>
+							</div>
 						</div>
 
-						<div class="ranked-flex">
+						<div ng-switch="flexActive">
 							<h3>Ranked Flex</h3>
-							<p><b>League:</b> {{flexLeagueName}}</p>
-							<p><b>Tier:</b> {{flexTier}}</p>
-							<p><b>Division:</b> {{flexDivision}}</p>
-							<p><b>League Points:</b> {{flexLP}}</p>
-							<p><b>Wins:</b> {{flexWins}}</p>
-							<p><b>Losses:</b> {{flexLosses}}</p>
+							<div ng-switch-when="true" class="ranked-flex">
+								<p><b>League:</b> {{flexLeagueName}}</p>
+								<p><b>Tier:</b> {{flexTier}}</p>
+								<p><b>Division:</b> {{flexDivision}}</p>
+								<p><b>League Points:</b> {{flexLP}}</p>
+								<p><b>Wins:</b> {{flexWins}}</p>
+								<p><b>Losses:</b> {{flexLosses}}</p>
+							</div>
+
+							<div ng-switch-when="false">
+								<p><b>League:</b> Unranked</p>
+							</div>
 						</div>
 					</div>
 
@@ -78,6 +97,9 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- News Feed -->
+
 
 	</body>
 
