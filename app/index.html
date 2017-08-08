@@ -31,46 +31,49 @@
 			<ul>
 				<li><a href="#">Home</a></li>
 				<li><a href="#">Friends</a></li>
+				<li><a href="#">Leaderboard</a></li>
 				<li><a href="#">About</a></li>
+				<li><a href="#">Sign in</a></li>
+				<li><a href="#">Create Account</a></li>
 			</ul>
 		</div>
 		<!-- /.Navbar -->
 
-		<h1>Clown Fiesta</h1>
+		<div ng-controller="formCtrl">
+			<div class="container">
+				<h1>Clown Fiesta</h1>
+				<div class="row center">
+					<div class="summoner-lookup">	
+						<form>
+							<p>Summoner name: </p>
+							<input type="text" ng-model="name">
+							<a href ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 
-		<div class="container" ng-controller="formCtrl">
-			<div class="row center">
-				<div class="summoner-lookup">	
-					<form>
-						<p>Summoner name: </p>
-						<input type="text" ng-model="name">
-						<a href ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
-
-						<p>Region:</p>
-						<select ng-model="region">
-							<option value="na1">NA
-							<option value="euw1">EUW
-						</select><br>
-					</form>
+							<p>Region:</p>
+							<select ng-model="region">
+								<option value="na1">NA
+								<option value="euw1">EUW
+							</select><br>
+						</form>
+					</div>
 				</div>
 			</div>
 
-			<div class="row" ng-switch="result" style="background: pink;">
-				<div class="col-xs-4 center" ng-switch-when="found">
-					<h3>Profile</h3>
-					<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{profileIcon}}.png" alt="Profile icon"><br>
-					<div class="profile">
-						<p><b>Summoner name:</b> {{summonerName}}</p>
-						<p><b>Level:</b> {{summonerLevel}}</p>
-						<p><b>Last online:</b> {{lastActivity | date:'yyyy-MMM-dd'}}</p>
+			<div class="container" ng-switch="result">
+				<div class="row portfolio" ng-switch-when="found">
+					<div class="col-xs-4 center">
+						<h3>{{summonerName}}</h3>
+						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{profileIcon}}.png" alt="Profile icon"><br>
+						<div class="profile">
+							<p><b>Level:</b> {{summonerLevel}}</p>
+							<p><b>Last online:</b> {{lastActivity | date:'yyyy-MMM-dd'}}</p>
+						</div>
 					</div>
-				</div>
-				
-				<div class="col-xs-4" ng-switch-when="found" style="background: cyan;">
-					<div class="center" ng-switch="soloActive">
+					
+					<div class="col-xs-4 center" ng-switch="soloActive">
 						<h3>Ranked Solo</h3>
-						<img ng-src="/assets/images/tier-icons/{{soloTierIcon | lowercase}}.png" alt="Ranked solo icon">
-						<div class="ranked-solo" ng-switch-when="true">
+						<img ng-src="/assets/images/tier-icons/{{soloTierIcon | lowercase}}.png" alt="Ranked solo icon"><br>
+						<div class="ranked-stats" ng-switch-when="true">
 							<p><b>League:</b> {{soloLeagueName}}</p>
 							<p><b>Tier:</b> {{soloTier}}</p>
 							<p><b>Division:</b> {{soloDivision}}</p>
@@ -83,13 +86,11 @@
 							<p><b>League:</b> Unranked</p>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-xs-4" ng-switch-when="found" style="background: green;">
-					<div class="center" ng-switch="flexActive">
+					<div class="col-xs-4 center" ng-switch="flexActive">
 						<h3>Ranked Flex</h3>
-						<img ng-src="/assets/images/tier-icons/{{flexTierIcon | lowercase}}.png" alt="Ranked flex icon">
-						<div class="ranked-flex" ng-switch-when="true">
+						<img ng-src="/assets/images/tier-icons/{{flexTierIcon | lowercase}}.png" alt="Ranked flex icon"><br>
+						<div class="ranked-stats" ng-switch-when="true">
 							<p><b>League:</b> {{flexLeagueName}}</p>
 							<p><b>Tier:</b> {{flexTier}}</p>
 							<p><b>Division:</b> {{flexDivision}}</p>
@@ -103,9 +104,8 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-xs-12 not-found" ng-switch-when="missing">
-					<p>An error occured or summoner not found</p>
+						<p>An error occured or summoner not found</p>
 				</div>
 			</div>
 		</div>

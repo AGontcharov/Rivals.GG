@@ -5,6 +5,11 @@ angular
 		var summonerId;
 
 		$scope.search = function() {
+
+			var string = $scope.name;
+			var res = string.split(',');
+			console.log(res);
+
 			requestURL = $scope.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + $scope.name
 			console.log(requestURL);
 
