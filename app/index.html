@@ -69,7 +69,7 @@
 				<div class="col-xs-4" ng-switch-when="found" style="background: cyan;">
 					<div class="center" ng-switch="soloActive">
 						<h3>Ranked Solo</h3>
-						<img src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png" alt="Ranked icon">
+						<img ng-src="/assets/images/tier-icons/{{soloTierIcon | lowercase}}.png" alt="Ranked solo icon">
 						<div class="ranked-solo" ng-switch-when="true">
 							<p><b>League:</b> {{soloLeagueName}}</p>
 							<p><b>Tier:</b> {{soloTier}}</p>
@@ -88,7 +88,7 @@
 				<div class="col-xs-4" ng-switch-when="found" style="background: green;">
 					<div class="center" ng-switch="flexActive">
 						<h3>Ranked Flex</h3>
-						<img src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png" alt="Ranked icon">
+						<img ng-src="/assets/images/tier-icons/{{flexTierIcon | lowercase}}.png" alt="Ranked flex icon">
 						<div class="ranked-flex" ng-switch-when="true">
 							<p><b>League:</b> {{flexLeagueName}}</p>
 							<p><b>Tier:</b> {{flexTier}}</p>

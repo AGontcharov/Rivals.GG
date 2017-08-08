@@ -49,6 +49,9 @@ angular
 				console.log(response.data);
 
 				if (0 < response.data.length) {
+
+					$scope.soloTierIcon = '/tier-icons/' + response.data[0].tier + '_' + response.data[0].rank;
+
 					$scope.soloLeagueName = response.data[0].leagueName;
 					$scope.soloTier = response.data[0].tier;
 					$scope.soloDivision = response.data[0].rank;
@@ -57,9 +60,13 @@ angular
 					$scope.soloLosses = response.data[0].losses;
 					$scope.soloActive = 'true';
 				}
-				else $scope.soloActive = 'false';
+				else {
+					$scope.soloActive = 'false';
+					$scope.soloTierIcon = 'base-icons/provisional';
+				}
 
 				if (1 < response.data.length) {
+					$scope.flexTierIcon = '/tier-icons/' + response.data[1].tier + '_' + response.data[1].rank;
 
 					$scope.flexLeagueName = response.data[1].leagueName;
 					$scope.flexTier = response.data[1].tier;
@@ -69,7 +76,10 @@ angular
 					$scope.flexLosses = response.data[1].losses;
 					$scope.flexActive = 'true';
 				}
-				else $scope.flexActive = 'false';
+				else {
+					$scope.flexActive = 'false';
+					$scope.flexTierIcon = 'base-icons/provisional';
+				}
 
 			}, function errorCallback(response) {
 				console.log('Queue:', response.status);
