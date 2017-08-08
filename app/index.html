@@ -41,8 +41,8 @@
 
 		<div ng-controller="formCtrl">
 			<div class="container">
-				<h1>Clown Fiesta</h1>
 				<div class="row center">
+				<h1>Clown Fiesta</h1>
 					<div class="summoner-lookup">	
 						<form>
 							<p>Summoner name: </p>
@@ -57,56 +57,59 @@
 						</form>
 					</div>
 				</div>
+				<div class="row not-found" ng-show="missing">
+					<p>An error occured or summoner not found</p>
+				</div>
 			</div>
 
-			<div class="container" ng-switch="result" ng-repeat="x in records">
-				<div class="row portfolio" ng-switch-when="found">
+			<div class="container" ng-repeat="x in records">
+				<div class="row portfolio" ng-show="x.result">
 					<div class="col-xs-4 center">
-						<h3>{{summonerName}}</h3>
-						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{profileIcon}}.png" alt="Profile icon"><br>
+						<h3>{{x.summonerName}}</h3>
+						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{x.profileIcon}}.png" alt="Profile icon"><br>
 						<div class="profile">
-							<p><b>Level:</b> {{summonerLevel}}</p>
-							<p><b>Last online:</b> {{lastActivity | date:'yyyy-MMM-dd'}}</p>
+							<p><b>Level:</b> {{x.summonerLevel}}</p>
+							<p><b>Last online:</b> {{x.lastActivity | date:'yyyy-MMM-dd'}}</p>
 						</div>
 					</div>
 					
-					<div class="col-xs-4 center" ng-switch="soloActive">
+					<div class="col-xs-4 center">
 						<h3>Ranked Solo</h3>
-						<img ng-src="/assets/images/tier-icons/{{soloTierIcon | lowercase}}.png" alt="Ranked solo icon"><br>
-						<div class="ranked-stats" ng-switch-when="true">
-							<p><b>League:</b> {{soloLeagueName}}</p>
-							<p><b>Tier:</b> {{soloTier}}</p>
-							<p><b>Division:</b> {{soloDivision}}</p>
-							<p><b>League Points:</b> {{soloLP}}</p>
-							<p><b>Wins:</b> {{soloWins}}</p>
-							<p><b>Losses:</b> {{soloLosses}}</p>
+						<img ng-src="/assets/images/tier-icons/{{x.soloIcon | lowercase}}.png" alt="Ranked solo icon"><br>
+						<div class="ranked-stats" ng-show="x.soloActive">
+							<p><b>League:</b> {{x.soloLeagueName}}</p>
+							<p><b>Tier:</b> {{x.soloTier}}</p>
+							<p><b>Division:</b> {{x.soloDivision}}</p>
+							<p><b>League Points:</b> {{x.soloLP}}</p>
+							<p><b>Wins:</b> {{x.soloWins}}</p>
+							<p><b>Losses:</b> {{x.soloLosses}}</p>
 						</div>
 
-						<div ng-switch-when="false">
+						<div ng-show="!x.soloActive">
 							<p><b>League:</b> Unranked</p>
 						</div>
 					</div>
 
-					<div class="col-xs-4 center" ng-switch="flexActive">
+					<div class="col-xs-4 center">
 						<h3>Ranked Flex</h3>
-						<img ng-src="/assets/images/tier-icons/{{flexTierIcon | lowercase}}.png" alt="Ranked flex icon"><br>
-						<div class="ranked-stats" ng-switch-when="true">
-							<p><b>League:</b> {{flexLeagueName}}</p>
-							<p><b>Tier:</b> {{flexTier}}</p>
-							<p><b>Division:</b> {{flexDivision}}</p>
-							<p><b>League Points:</b> {{flexLP}}</p>
-							<p><b>Wins:</b> {{flexWins}}</p>
-							<p><b>Losses:</b> {{flexLosses}}</p>
+						<img ng-src="/assets/images/tier-icons/{{x.flexIcon | lowercase}}.png" alt="Ranked flex icon"><br>
+						<div class="ranked-stats" ng-show="x.flexActive">
+							<p><b>League:</b> {{x.flexLeagueName}}</p>
+							<p><b>Tier:</b> {{x.flexTier}}</p>
+							<p><b>Division:</b> {{x.flexDivision}}</p>
+							<p><b>League Points:</b> {{x.flexLP}}</p>
+							<p><b>Wins:</b> {{x.flexWins}}</p>
+							<p><b>Losses:</b> {{x.flexLosses}}</p>
 						</div>
 
-						<div ng-switch-when="false">
+						<div ng-show="!x.flexActive">
 							<p><b>League:</b> Unranked</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 not-found" ng-switch-when="missing">
+				<!-- <div class="col-xs-12 not-found" ng-switch-when="missing">
 						<p>An error occured or summoner not found</p>
-				</div>
+				</div> -->
 			</div>
 		</div>
 

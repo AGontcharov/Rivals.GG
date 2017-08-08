@@ -6,13 +6,12 @@ angular
 		var records = [];
 
 		$scope.search = function() {
-
 			var string = $scope.name;
 			var res = string.split(',');
 			console.log(res);
+			$scope.missing = false;
 
 			for (s of res) {
-				// requestURL = $scope.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + $scope.name
 				requestURL = $scope.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s;
 				console.log(requestURL);
 
@@ -29,6 +28,7 @@ angular
 
 					var entry =
 					{
+						result : true,
 						profileIcon : response.data.profileIconId,
 						summonerName : response.data.name,
 						summonerLevel : response.data.summonerLevel,
@@ -36,13 +36,11 @@ angular
 					}
 					ranked(summonerId, entry);
 					records.push(entry);
-					$scope.result = 'found';
 
 				}, function errorCallback(response) {
 					console.log(response.status);
 					console.log(response.data);
-					$scope.result = 'missing';
-
+					$scope.missing = true;
 				});
 			}
 			console.log(records);
@@ -58,9 +56,9 @@ angular
 				params: { "url": requestURL }
 			}).then(function successCallback(response) {
 				console.log('Queue:', response.status);
-				// console.log(response.data);
 
 				if (0 < response.data.length) {
+					obj.soloActive = true;
 					obj.soloIcon = '/tier-icons/' + response.data[0].tier + '_' + response.data[0].rank;
 					obj.soloLeagueName = response.data[0].leagueName;
 					obj.soloTier = response.data[0].tier;
@@ -68,14 +66,14 @@ angular
 					obj.soloLP = response.data[0].leaguePoints;
 					obj.soloWins = response.data[0].wins;
 					obj.soloLosses = response.data[0].losses;
-					$scope.soloActive = 'true';
 				}
 				else {
-					$scope.soloActive = 'false';
-					$scope.soloTierIcon = 'base-icons/provisional';
+					obj.soloIcon = 'base-icons/provisional';
+					obj.soloActive = false;
 				}
 
 				if (1 < response.data.length) {
+					obj.flexActive = true;
 					obj.flexIcon = '/tier-icons/' + response.data[1].tier + '_' + response.data[1].rank;
 					obj.flexLeagueName = response.data[1].leagueName;
 					obj.flexTier = response.data[1].tier;
@@ -83,11 +81,10 @@ angular
 					obj.flexLP = response.data[1].leaguePoints;
 					obj.flexWins = response.data[1].wins;
 					obj.flexLosses = response.data[1].losses;
-					$scope.flexActive = 'true';
 				}
 				else {
-					$scope.flexActive = 'false';
-					$scope.flexTierIcon = 'base-icons/provisional';
+					obj.flexIcon = 'base-icons/provisional';
+					obj.flexActive = false;
 				}
 
 			}, function errorCallback(response) {
