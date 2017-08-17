@@ -6,15 +6,17 @@ angular
 		var records = [];
 
 		console.log($routeParams);
+		search();
+		console.log("FINISHED");
 
-		$scope.search = function() {
-			var string = $scope.name;
-			var res = string.split(',');
+		function search() {
+			var string = $routeParams.name;
+			var res = string.split('+');
 			console.log(res);
 			$scope.missing = false;
 
 			for (s of res) {
-				requestURL = $scope.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s;
+				requestURL = $routeParams.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s;
 				console.log(requestURL);
 
 				$http({
@@ -22,9 +24,6 @@ angular
 					url: 'http://127.0.0.1:5000',
 					params: { "url": requestURL }
 				}).then(function successCallback(response) {
-					console.log(response.status);
-					// console.log(response.data);
-
 					summonerId = response.data.id;
 					console.log(summonerId);
 
@@ -50,14 +49,13 @@ angular
 		}
 
 		function ranked(id, obj) {
-			requestURL = $scope.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + id;
+			requestURL = $routeParams.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + id;
 
 			$http({
 				method: 'GET',
 				url: 'http://127.0.0.1:5000',
 				params: { "url": requestURL }
 			}).then(function successCallback(response) {
-				console.log('Queue:', response.status);
 
 				if (0 < response.data.length) {
 					obj.soloActive = true;
@@ -90,8 +88,7 @@ angular
 				}
 
 			}, function errorCallback(response) {
-				console.log('Queue:', response.status);
-				console.log(response.data);
+				console.log("Queue error");
 			});
 		}
 }]);
