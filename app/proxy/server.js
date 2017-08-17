@@ -1,7 +1,7 @@
 var express = require('express');
 var request = require('request');
 var app = express();
-var API_KEY = 'RGAPI-386e5352-b75d-43e1-9575-e0945894635a';
+var API_KEY = 'RGAPI-c56ece47-4847-4675-a66d-d4b7c04f1b46';
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
