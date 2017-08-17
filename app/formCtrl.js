@@ -1,9 +1,11 @@
 angular
 	.module('myApp')
-	.controller('formCtrl', ['$scope', '$http', function($scope, $http) {
+	.controller('formCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 		var requestURL;
 		var summonerId;
 		var records = [];
+
+		console.log($routeParams);
 
 		$scope.search = function() {
 			var string = $scope.name;

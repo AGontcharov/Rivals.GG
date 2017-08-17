@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 	<head>
+		<base href="/">
 		<title>Toxic</title>
 
 		<!-- Angular -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.js"></script>
 		<script src="app.js"></script>
 
 		<!-- jQuery library -->
@@ -16,6 +18,7 @@
 
 		<!-- Controllers -->
 		<script src="formCtrl.js"></script>
+		<script src="testCtrl.js"></script>
 
 		<!-- Stylesheets -->
 		<link href="app.css" rel="stylesheet" type="text/css">
@@ -29,8 +32,8 @@
 		<!-- Navbar -->
 		<div class="navbar">
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Friends</a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="summoner">Friends</a></li>
 				<li><a href="#">Leaderboard</a></li>
 				<li><a href="#">About</a></li>
 				<li><a href="#">Sign in</a></li>
@@ -39,80 +42,31 @@
 		</div>
 		<!-- /.Navbar -->
 
-		<div ng-view>
-			
-		</div>
+		<!-- Search bar -->
+		<div class="container">
+			<div class="row center">
+			<h1>Clown Fiesta</h1>
+				<div class="summoner-lookup" ng-controller="testCtrl">	
+					<form>
+						<p>Summoner name: </p>
+						<input type="text" ng-model="name">
+						<a href ng-click="filter()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 
-		<div ng-controller="formCtrl">
-			<div class="container">
-				<div class="row center">
-				<h1>Clown Fiesta</h1>
-					<div class="summoner-lookup">	
-						<form>
-							<p>Summoner name: </p>
-							<input type="text" ng-model="name">
-							<a href ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
-
-							<p>Region:</p>
-							<select ng-model="region">
-								<option value="na1">NA
-								<option value="euw1">EUW
-							</select><br>
-						</form>
-					</div>
-				</div>
-				<div class="row not-found" ng-show="missing">
-					<p>An error occured or summoner not found</p>
+						<p>Region:</p>
+						<select ng-model="region">
+							<option value="na1">NA
+							<option value="euw1">EUW
+						</select><br>
+					</form>
 				</div>
 			</div>
-
-			<div class="container" ng-repeat="x in records">
-				<div class="row portfolio" ng-show="x.result">
-					<div class="col-xs-4 center">
-						<h3>{{x.summonerName}}</h3>
-						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{x.profileIcon}}.png" alt="Profile icon"><br>
-						<div class="profile">
-							<p><b>Level:</b> {{x.summonerLevel}}</p>
-							<p><b>Last online:</b> {{x.lastActivity | date:'yyyy-MMM-dd'}}</p>
-						</div>
-					</div>
-					
-					<div class="col-xs-4 center">
-						<h3>Ranked Solo</h3>
-						<img ng-src="/assets/images/tier-icons/{{x.soloIcon | lowercase}}.png" alt="Ranked solo icon"><br>
-						<div class="ranked-stats" ng-show="x.soloActive">
-							<p><b>League:</b> {{x.soloLeagueName}}</p>
-							<p><b>Tier:</b> {{x.soloTier}}</p>
-							<p><b>Division:</b> {{x.soloDivision}}</p>
-							<p><b>League Points:</b> {{x.soloLP}}</p>
-							<p><b>Wins:</b> {{x.soloWins}}</p>
-							<p><b>Losses:</b> {{x.soloLosses}}</p>
-						</div>
-
-						<div ng-show="!x.soloActive">
-							<p><b>League:</b> Unranked</p>
-						</div>
-					</div>
-
-					<div class="col-xs-4 center">
-						<h3>Ranked Flex</h3>
-						<img ng-src="/assets/images/tier-icons/{{x.flexIcon | lowercase}}.png" alt="Ranked flex icon"><br>
-						<div class="ranked-stats" ng-show="x.flexActive">
-							<p><b>League:</b> {{x.flexLeagueName}}</p>
-							<p><b>Tier:</b> {{x.flexTier}}</p>
-							<p><b>Division:</b> {{x.flexDivision}}</p>
-							<p><b>League Points:</b> {{x.flexLP}}</p>
-							<p><b>Wins:</b> {{x.flexWins}}</p>
-							<p><b>Losses:</b> {{x.flexLosses}}</p>
-						</div>
-
-						<div ng-show="!x.flexActive">
-							<p><b>League:</b> Unranked</p>
-						</div>
-					</div>
-				</div>
+			<div class="row not-found" ng-show="missing">
+				<p>An error occured or summoner not found</p>
 			</div>
 		</div>
+		<!-- /.Search bar -->
+
+		<div ng-view></div>
 
 	</body>
 
