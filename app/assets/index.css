@@ -73,39 +73,11 @@ form p {
 	font-size: 20px;
 }
 
-.not-found p {
-	color: red;
-	text-align: center;
-}
-
-.profile, .ranked-stats {
-	padding-top: 15px;
-}
-
-.portfolio {
-	max-width: 900px;
-	border: solid 2px black;
-	background: #99ddff;
-	margin: 0 auto;
-}
-
-.portfolio img {
-	max-width: 128px;
-}
-
-.profile, .ranked-stats {
-	display: inline-block;
-	text-align: left;
-	padding-bottom: 10px;
-}
-
-.profile p, .ranked-stats p {
-	margin: 0;
-	padding: 0;
-}
-
-
 /* Custom ccs style. */
 .center {
 	text-align: center;
+}
+
+.circle-radius {
+	border-radius: 50%;
 }

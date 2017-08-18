@@ -17,11 +17,12 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 		<!-- Controllers -->
-		<script src="formCtrl.js"></script>
-		<script src="testCtrl.js"></script>
+		<script src="/controllers/formCtrl.js"></script>
+		<script src="/controllers/filterCtrl.js"></script>
 
 		<!-- Stylesheets -->
-		<link href="app.css" rel="stylesheet" type="text/css">
+		<link href="/assets/index.css" rel="stylesheet" type="text/css">
+		<link href="/assets/summoner.css" rel="stylesheet" type="text/css">
 
 		<!-- Fonts -->
 		<script src="https://use.fontawesome.com/43737f61d4.js"></script>
@@ -66,11 +67,11 @@
 		<div class="container">
 			<div class="row center">
 			<h1>Clown Fiesta</h1>
-				<div class="summoner-lookup" ng-controller="testCtrl">	
+				<div class="summoner-lookup" ng-controller="filterCtrl">	
 					<form>
 						<p>Summoner name: </p>
-						<input type="text" ng-model="name">
-						<a href ng-click="filter()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+						<input type="text" placeholder="summoner1, summoner2, summoner3, ..." ng-model="name" ng-keydown="submitForm($event)">
+						<a id="submit "href ng-click="filter()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 
 						<p>Region:</p>
 						<select ng-model="region">
