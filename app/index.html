@@ -30,59 +30,25 @@
 
 	<body>
 
-		<!-- Navbar -->
-		<div class="navbar">
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="#">Friends</a></li>
-				<li><a href="#">Leaderboard</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#" >Sign in</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#createAccount">Create Account</a></li>
-			</ul>
+		<h1>Rivals.GG</h1>
+
+		<div class="form">
+			<form name="register" method="post">
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" ng-model="username">
+
+				<label for="pass">Password</label>
+				<input type="password" id="pass" name="password" ng-model="password">
+
+				<label for="confirmPass">Confirm password</label>
+				<input type="password" id="confirmPass" name="confirmPassword" ng-model="confirmPassword">
+
+				<label for="email">Email</label>
+				<input type="text" id="email" name="email" ng-model="email">
+
+				<input type="submit" value="Create account">
+			</form>
 		</div>
-		<!-- /.Navbar -->
-
-		<!-- Create Account -->
-		<!-- <div id="createAccount" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Modal Header</h4>
-					</div>
-					<div class="modal-body">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- /.Create Account -->
-
-
-		<!-- Search bar -->
-		<div class="container">
-			<div class="row center">
-			<h1>Clown Fiesta</h1>
-				<div class="summoner-lookup" ng-controller="filterCtrl">	
-					<form>
-						<p>Summoner name: </p>
-						<input type="text" placeholder="summoner1, summoner2, summoner3, ..." ng-model="name" ng-keydown="submitForm($event)">
-						<a id="submit "href ng-click="filter()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
-
-						<p>Region:</p>
-						<select ng-model="region">
-							<option value="na1">NA
-							<option value="euw1">EUW
-						</select><br>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- /.Search bar -->
 
 		<div ng-view></div>
 
