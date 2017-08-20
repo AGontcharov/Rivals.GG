@@ -15,4 +15,18 @@ app.config(function($routeProvider, $locationProvider) {
 	// });
 
 	$locationProvider.html5Mode(true);
+})
+
+app.constant('USER_ROLES', {
+	all: '*',
+	admin: 'admin',
+	editor: 'editor',
+	guest: 'guest'
+}).constant('AUTH_EVENTS', {
+	loginSuccess: 'auth-login-sucess',
+	loginFailed: 'auth-login-failed',
+	logoutSucess: 'auth-logout-sucess',
+	sessionTimeout: 'auth-session-timeout',
+	notAuthenticated: 'auth-not-authenticated',
+	notAuthorized: 'auth-not-authorized'
 });

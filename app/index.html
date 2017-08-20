@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
 	<head>
 		<base href="/">
-		<title>Toxic</title>
+		<title>Rivals.GG</title>
 
 		<!-- Angular -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
@@ -19,6 +19,7 @@
 		<!-- Controllers -->
 		<script src="/controllers/formCtrl.js"></script>
 		<script src="/controllers/filterCtrl.js"></script>
+		<script src="/controllers/registerCtrl.js"></script>
 
 		<!-- Stylesheets -->
 		<link href="/assets/index.css" rel="stylesheet" type="text/css">
@@ -32,23 +33,40 @@
 
 		<h1>Rivals.GG</h1>
 
-		<div class="form">
-			<form name="register" method="post">
+		<div class="form" ng-controller="registerCtrl" ng-switch="form">
+
+			<!-- Register/Sign Up form -->
+			<form name="signUp" method="post" ng-submit="register()" novalidate ng-switch-when="register">
 				<label for="username">Username</label>
-				<input type="text" id="username" name="username" ng-model="username">
+				<input type="text" id="username" name="username" ng-model="$parent.username">
 
-				<label for="pass">Password</label>
-				<input type="password" id="pass" name="password" ng-model="password">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" ng-model="$parent.password">
 
-				<label for="confirmPass">Confirm password</label>
-				<input type="password" id="confirmPass" name="confirmPassword" ng-model="confirmPassword">
+				<label for="confirmPassword">Confirm password</label>
+				<input type="password" id="confirmPassword" name="confirmPassword" ng-model="$parent.confirmPassword">
 
 				<label for="email">Email</label>
-				<input type="text" id="email" name="email" ng-model="email">
+				<input type="text" id="email" name="email" ng-model="$parent.email">
 
-				<div class="createAcc">
+				<div class="submit">
 					<input type="submit" value="Create account">
 				</div>
+				<p>Already have an account? <a href="#" ng-click="switchForms('login')">Log in</a></p>
+			</form>
+
+			<!-- Login form -->
+			<form name="signIn" method="get" ng-submit="login()" novalidate ng-switch-when="login">
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" ng-model="$parent.loginUsername">
+
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" ng-model="$parent.loginPassword">
+
+				<div class="submit">
+					<input type="submit" value="Log in">
+				</div>
+				<p>Don't have an account? <a href="#" ng-click="switchForms('register')">Register</a></p>
 			</form>
 		</div>
 

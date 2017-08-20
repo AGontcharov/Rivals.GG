@@ -47,8 +47,8 @@ input[type=submit] {
 	margin: 0 auto;
 }
 
-.createAcc {
-	padding-top: 15px;
+.submit {
+	padding: 15px 0;
 }
 
 
