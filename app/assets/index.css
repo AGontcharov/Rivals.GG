@@ -28,15 +28,23 @@ div.form {
 
 	display: block;
 	margin: 0 auto;
+
+	text-align: center;
 }
 
 div.form input, div.form label {
 	display: block;
+	text-align: left;
 }
 
 div.form input[type=text], div.form input[type=password] {
 	background: white;
 	/*border: solid orange 1px;*/
+}
+
+div.form p, div.form a {
+	font-family: inherit;
+	font-size: inherit;
 }
 
 input[type=text], input[type=password] {
