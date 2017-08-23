@@ -16,11 +16,6 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-		<!-- Controllers -->
-		<script src="/controllers/formCtrl.js"></script>
-		<script src="/controllers/filterCtrl.js"></script>
-		<script src="/controllers/registerCtrl.js"></script>
-
 		<!-- Stylesheets -->
 		<link href="/assets/index.css" rel="stylesheet" type="text/css">
 		<link href="/assets/summoner.css" rel="stylesheet" type="text/css">
@@ -56,12 +51,12 @@
 			</form>
 
 			<!-- Login form -->
-			<form name="signIn" method="get" ng-submit="login()" novalidate ng-switch-when="login">
+			<form name="signIn" method="post" ng-submit="login(credentials)" novalidate ng-switch-when="login">
 				<label for="username">Username</label>
-				<input type="text" id="username" name="username" ng-model="$parent.loginUsername">
+				<input type="text" id="username" name="username" ng-model="credentials.username">
 
 				<label for="password">Password</label>
-				<input type="password" id="password" name="password" ng-model="$parent.loginPassword">
+				<input type="password" id="password" name="password" ng-model="credentials.password">
 
 				<div class="submit">
 					<input type="submit" value="Log in">
@@ -71,6 +66,15 @@
 		</div>
 
 		<div ng-view></div>
+
+		<!-- Controllers -->
+		<script src="/controllers/formCtrl.js"></script>
+		<script src="/controllers/filterCtrl.js"></script>
+		<script src="/controllers/registerCtrl.js"></script>
+
+		<!-- Services -->
+		<script src="/services/authentication.service.js"></script>
+		<script src="/services/session.service.js"></script>
 
 	</body>
 
