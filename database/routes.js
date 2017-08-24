@@ -16,7 +16,6 @@ module.exports = function(app, dirname, db) {
 	});
 
 	app.post('/login', function(req, res) {
-		// console.log(req.body);
 		console.log(req.body.username);
 		db.query("SELECT * FROM users WHERE username='" + req.body.username + "'", function(err, result, fields) {
 			if (err) throw err;

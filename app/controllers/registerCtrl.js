@@ -11,7 +11,11 @@ angular
 			console.log(account);
 		}
 
-		$scope.login = function(user) {
-			authentication.login(user);
+		$scope.login = function(credentials) {
+			authentication.login(credentials, function(user) {
+				console.log('Login controller authentication sucess');
+			}, function(err) {
+				console.log('Login Controller authentication failed');
+			});
 		}
 }]);
