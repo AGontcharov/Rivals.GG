@@ -5,23 +5,23 @@ angular
 		/* Create a service object. */
 		var authService = {};
 
-		authService.login = function(user) {
+		authService.login = function(user, success, error) {
 			console.log('Authenticating ' + user.username + ': ' + user.password);
 			
-			$http.post('/login', user).then(function success(response) {
+			$http.post('/login', user).then(function successCallBack(response) {
 				console.log(response.data);
 
 				if (user.username == response.data[0].username && user.password == response.data[0].password) {
-					console.log('SUCCESS LOGGING IN');
 
 					/* Create user session */
 					$cookies.put('user', user.username);
+					success(user);
 				}
 				else {
-				
+					error();
 				}
 
-			}, function error(response) {
+			}, function errorCallBack(response) {
 				console.log(response.status);
 				console.log(response.data);
 			});

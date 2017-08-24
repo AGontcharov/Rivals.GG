@@ -3,9 +3,15 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
 app.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	
-	// .when('/', { 
-	// 	templateUrl: 'home.html'
-	// })
+	.when('/register') {
+		templateUrl: 'view/register.html'
+	}
+	.when('/login') {
+		templateUrl: 'view/login.html'
+	}
+	.when('/home', { 
+		templateUrl: '/view/home.html'
+	})
 	.when('/summoner/:region/:name', { 
 		templateUrl: '/view/summoner.html',
 		controller: 'formCtrl'

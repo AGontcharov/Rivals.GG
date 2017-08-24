@@ -4,12 +4,12 @@ module.exports = function(app, dirname, db) {
 		res.sendFile(dirname + '/index.html');
 	});
 
-	app.get('/test', function(req, res) {
-		db.query("SELECT * FROM users", function(err, result, fields) {
-			if (err) throw err;
-			res.send(JSON.stringify(result));
-		});
-	});
+	// app.get('/test', function(req, res) {
+	// 	db.query("SELECT * FROM users", function(err, result, fields) {
+	// 		if (err) throw err;
+	// 		res.send(JSON.stringify(result));
+	// 	});
+	// });
 
 	app.post('/createAccount', function(req, res) {
 		console.log(req.body);

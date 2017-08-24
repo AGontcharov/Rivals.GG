@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.controller('registerCtrl', ['$scope', 'authentication', function($scope, authentication) {
+	.controller('registerCtrl', ['$scope', '$location', 'authentication', function($scope, $location, authentication) {
 		$scope.form = 'register';
 		
 		$scope.switchForms = function(form) {
@@ -12,8 +12,9 @@ angular
 		}
 
 		$scope.login = function(credentials) {
-			authentication.login(credentials, function(user) {
+			authentication.login(credentials, function(win) {
 				console.log('Login controller authentication sucess');
+				$location.url('/home');
 			}, function(err) {
 				console.log('Login Controller authentication failed');
 			});
