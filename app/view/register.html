@@ -1,0 +1,23 @@
+<h1>Rivals.GG</h1>
+
+<div class="form">
+	<!-- Register/Sign Up form -->
+	<form name="signUp" method="post" ng-submit="register(account)" novalidate>
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" ng-model="account.username">
+
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" ng-model="account.password">
+
+		<label for="confirmPassword">Confirm password</label>
+		<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword">
+
+		<label for="email">Email</label>
+		<input type="text" id="email" name="email" ng-model="account.email">
+
+		<div class="submit">
+			<input type="submit" value="Create account">
+		</div>
+		<p>Already have an account? <a href="/login">Log in</a></p>
+	</form>
+</div>

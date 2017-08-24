@@ -75,7 +75,7 @@ input[type=submit] {
 	float: left;
 }
 
-.navbar li:nth-last-child(-n+2) {
+.navbar li:last-child {
 	float: right;
 }
 

@@ -27,51 +27,13 @@
 
 	<body>
 
-		<h1>Rivals.GG</h1>
-
-		<div class="form" ng-controller="registerCtrl" ng-switch="form">
-
-			<!-- Register/Sign Up form -->
-			<form name="signUp" method="post" ng-submit="register(account)" novalidate ng-switch-when="register">
-				<label for="username">Username</label>
-				<input type="text" id="username" name="username" ng-model="account.username">
-
-				<label for="password">Password</label>
-				<input type="password" id="password" name="password" ng-model="account.password">
-
-				<label for="confirmPassword">Confirm password</label>
-				<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword">
-
-				<label for="email">Email</label>
-				<input type="text" id="email" name="email" ng-model="account.email">
-
-				<div class="submit">
-					<input type="submit" value="Create account">
-				</div>
-				<p>Already have an account? <a href="#" ng-click="switchForms('login')">Log in</a></p>
-			</form>
-
-			<!-- Login form -->
-			<form name="signIn" method="post" ng-submit="login(credentials)" novalidate ng-switch-when="login">
-				<label for="username">Username</label>
-				<input type="text" id="username" name="username" ng-model="credentials.username">
-
-				<label for="password">Password</label>
-				<input type="password" id="password" name="password" ng-model="credentials.password">
-
-				<div class="submit">
-					<input type="submit" value="Log in">
-				</div>
-				<p>Don't have an account? <a href="#" ng-click="switchForms('register')">Register</a></p>
-			</form>
-		</div>
-
 		<div ng-view></div>
 
 		<!-- Controllers -->
 		<script src="/controllers/formCtrl.js"></script>
 		<script src="/controllers/filterCtrl.js"></script>
 		<script src="/controllers/registerCtrl.js"></script>
+		<script src="/controllers/loginCtrl.js"></script>
 
 		<!-- Services -->
 		<script src="/services/authentication.service.js"></script>

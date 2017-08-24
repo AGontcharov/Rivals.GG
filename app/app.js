@@ -3,12 +3,14 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
 app.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	
-	.when('/register') {
-		templateUrl: 'view/register.html'
-	}
-	.when('/login') {
-		templateUrl: 'view/login.html'
-	}
+	.when('/', {
+		templateUrl: 'view/register.html',
+		controller: 'registerCtrl'
+	})
+	.when('/login', {
+		templateUrl: 'view/login.html',
+		controller: 'loginCtrl'
+	})
 	.when('/home', { 
 		templateUrl: '/view/home.html'
 	})
@@ -18,7 +20,20 @@ app.config(function($routeProvider, $locationProvider) {
 	});
 
 	$locationProvider.html5Mode(true);
-})
+});
+
+/*app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, $authentication) {
+	$rootScope.$on('$routeChangeStart', function(event) {
+		if (!$authentication.isAuthenticated()) {
+			console.log('DENY : Redirecting to register');
+			event.preventDefault();
+			$location.path('/register');
+		}
+		else {
+			console.log('ALLOW');
+		}
+	});
+}]);*/
 
 app.constant('USER_ROLES', {
 	all: '*',

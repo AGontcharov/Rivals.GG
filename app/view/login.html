@@ -1,0 +1,17 @@
+<h1>Rivals.GG</h1>
+
+<div class="form">
+	<!-- Login form -->
+	<form name="signIn" method="post" ng-submit="login(credentials)" novalidate>
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" ng-model="credentials.username">
+
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" ng-model="credentials.password">
+
+		<div class="submit">
+			<input type="submit" value="Log in">
+		</div>
+		<p>Don't have an account? <a href="/">Register</a></p>
+	</form>
+</div>

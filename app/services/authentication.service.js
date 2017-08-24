@@ -15,6 +15,9 @@ angular
 
 					/* Create user session */
 					$cookies.put('user', user.username);
+					delete user.password;
+					console.log(user);
+					session.create(user);
 					success(user);
 				}
 				else {
@@ -28,7 +31,8 @@ angular
 		};
 
 		authService.isAuthenticated = function() {
-
+			console.log(!!session.user);
+			return !!session.user;
 		};
 
 		authService.isAuthorized = function() {
@@ -36,7 +40,8 @@ angular
 		};
 
 		authService.logout = function() {
-
+			session.destroy();
+			$cookies.remove('user');
 		};
 
 		return authService;
