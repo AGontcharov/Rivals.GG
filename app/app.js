@@ -10,9 +10,6 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: '/view/summoner.html',
 		controller: 'formCtrl'
 	});
-	// .otherwise({
-	// 	redirectTo: '/404'
-	// });
 
 	$locationProvider.html5Mode(true);
 })

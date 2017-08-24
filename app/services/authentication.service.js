@@ -7,7 +7,25 @@ angular
 
 		authService.login = function(user) {
 			console.log('Authenticating');
-			$http.post('/login', user);
+			console.log(user);
+			$http.post('/login', user).then(function successCallBack(response) {
+				console.log(response.data);
+				console.log(response.data[0].username);
+				console.log(response.data[0].password);
+
+				if (user.username == response.data[0].username && user.password == response.data[0].password) {
+					console.log('SUCCESS LOGGING IN');
+
+					/* More auth logic here. */
+				}
+				else {
+					console.log('ERROR LOGGING IN');
+				}
+
+			}, function errorCallBack(response) {
+				console.log(response.status);
+				console.log(response.data);
+			});
 		};
 
 		authService.isAuthenticated = function() {

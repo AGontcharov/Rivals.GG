@@ -8,11 +8,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
 	if (err) throw err;
-	console.log('Connected!');
-
-	// var sql = "CREATE TABLE users (id int auto_increment primary key, email varchar(255), username varchar(255), password varchar(255))";
-	// connection.query(sql, function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log("Table created");
-	// });
+	console.log('Database Connected!');
 });
+
+module.exports = connection;
