@@ -2,8 +2,8 @@ angular
 	.module('myApp')
 	.controller('loginCtrl', ['$scope', '$location', 'authentication', function($scope, $location, authentication) {
 
-		$scope.login = function(credentials) {
-			authentication.login(credentials, function(win) {
+		$scope.login = function() {
+			authentication.login($scope.credentials, function(user) {
 				console.log('Login controller authentication sucess');
 				$location.url('/home');
 			}, function(err) {

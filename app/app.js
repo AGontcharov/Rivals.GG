@@ -22,18 +22,21 @@ app.config(function($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 });
 
-/*app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, $authentication) {
-	$rootScope.$on('$routeChangeStart', function(event) {
-		if (!$authentication.isAuthenticated()) {
-			console.log('DENY : Redirecting to register');
-			event.preventDefault();
-			$location.path('/register');
-		}
-		else {
-			console.log('ALLOW');
-		}
+app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, $authentication) {
+	$rootScope.$on('$routeChangeStart', function(event, next, current) {
+
+		console.log('triggered');
+		console.log($location.path());
+		$authentication.getCookie();
+
+		if ($location.path() != '/' && $location.path() != '/login')
+			if (!$authentication.isAuthenticated()) {
+				console.log('DENY : Redirecting to login page');
+				event.preventDefault();
+			 	$location.path('/login');
+			}
 	});
-}]);*/
+}]);
 
 app.constant('USER_ROLES', {
 	all: '*',

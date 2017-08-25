@@ -30,6 +30,15 @@ angular
 			});
 		};
 
+		authService.getCookie = function() {
+			if ($cookies.get('user')) {
+				console.log($cookies.get('user'));
+				
+				var user = { username: $cookies.get('user')};
+				session.create(user);
+			}
+		}
+
 		authService.isAuthenticated = function() {
 			console.log(!!session.user);
 			return !!session.user;

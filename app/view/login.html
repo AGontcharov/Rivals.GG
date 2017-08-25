@@ -2,12 +2,14 @@
 
 <div class="form">
 	<!-- Login form -->
-	<form name="signIn" method="post" ng-submit="login(credentials)" novalidate>
+	<form name="loginForm" method="post" ng-submit="login()">
 		<label for="username">Username</label>
-		<input type="text" id="username" name="username" ng-model="credentials.username">
+		<input type="text" id="username" name="username" ng-model="credentials.username" required>
+		<span ng-show="loginForm.username.$dirty && loginForm.username.$invalid">Username is required</span>
 
 		<label for="password">Password</label>
-		<input type="password" id="password" name="password" ng-model="credentials.password">
+		<input type="password" id="password" name="password" ng-model="credentials.password" required>
+		<span ng-show="loginForm.password.$dirty && loginForm.password.$invalid">Password is required</span>
 
 		<div class="submit">
 			<input type="submit" value="Log in">
