@@ -16,7 +16,7 @@ app.config(function($routeProvider, $locationProvider) {
 	})
 	.when('/summoner/:region/:name', { 
 		templateUrl: '/view/summoner.html',
-		controller: 'formCtrl'
+		// controller: 'formCtrl'
 	});
 
 	$locationProvider.html5Mode(true);

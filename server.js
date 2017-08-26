@@ -5,7 +5,6 @@ var app = express();
 
 app.use('/', express.static(__dirname + '/app'));
 app.use(bodyParser.json());
-// app.use(bodyParser.text());
 
 var routes = require('./database/routes')(app, __dirname, db);
 
