@@ -12,9 +12,11 @@
   "license": "ISC",
   "repository": {},
   "dependencies": {
+    "async": "^2.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mysql": "^2.14.1",
+    "q": "^1.5.0",
     "request": "^2.81.0"
   },
   "devDependencies": {}

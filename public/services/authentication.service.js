@@ -2,18 +2,18 @@ angular
 	.module('myApp')
 	.factory('authentication', ['$http', '$rootScope', '$cookies', 'session', 'AUTH_EVENTS', function($http, $rootScope, $cookies, session, AUTH_EVENTS) {
 
-		/* Create a service object. */
+		// Create a service object. 
 		var authService = {};
 
 		authService.login = function(user, success, error) {
 			console.log('Authenticating ' + user.username + ': ' + user.password);
-			
-			$http.post('/login', user).then(function successCallBack(response) {
+
+			$http.post('/api/login', user).then(function successCallBack(response) {
 				console.log(response.data);
 
 				if (user.username == response.data[0].username && user.password == response.data[0].password) {
 
-					/* Create user session */
+					// Create user session
 					$cookies.put('user', user.username);
 					delete user.password;
 					console.log(user);
@@ -32,8 +32,7 @@ angular
 
 		authService.getCookie = function() {
 			if ($cookies.get('user')) {
-				console.log($cookies.get('user'));
-				
+				console.log('Cookie:', $cookies.get('user'));
 				var user = { username: $cookies.get('user')};
 				session.create(user);
 			}
@@ -53,6 +52,5 @@ angular
 			$cookies.remove('user');
 		};
 
-		return authService;
-		
+		return authService;	
 }]);

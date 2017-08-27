@@ -16,7 +16,7 @@ app.config(function($routeProvider, $locationProvider) {
 	})
 	.when('/summoner/:region/:name', { 
 		templateUrl: '/view/summoner.html',
-		// controller: 'formCtrl'
+		controller: 'summonerCtrl'
 	});
 
 	$locationProvider.html5Mode(true);
@@ -25,8 +25,7 @@ app.config(function($routeProvider, $locationProvider) {
 app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, $authentication) {
 	$rootScope.$on('$routeChangeStart', function(event, next, current) {
 
-		console.log('triggered');
-		console.log($location.path());
+		console.log('triggered', $location.path());
 		$authentication.getCookie();
 
 		if ($location.path() != '/' && $location.path() != '/login')

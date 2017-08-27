@@ -14,11 +14,11 @@
 <div class="container">
 	<div class="row center">
 	<h1>Clown Fiesta</h1>
-		<div class="summoner-lookup" ng-controller="filterCtrl">	
+		<div class="summoner-lookup" ng-controller="searchCtrl">	
 			<form>
 				<p>Summoner name: </p>
 				<input type="text" placeholder="summoner1, summoner2, summoner3, ..." ng-model="searchQuery" ng-keydown="submitForm($event)">
-				<a id="submit "href ng-click="filter()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+				<a id="submit "href ng-click="find()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 
 				<p>Region:</p>
 				<select ng-model="region">
