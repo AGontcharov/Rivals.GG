@@ -1,0 +1,22 @@
+<div class="navbar" ng-controller="navbarCtrl">
+	<ul>
+		<li>
+			<div class="search-bar">
+				<input type="text" placeholder="summoner1, summoner2, summoner3, ..." ng-model="searchQuery" ng-keydown="submitForm($event)">
+				<a href ng-click="find()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+			</div>
+		</li>
+		<li>
+			<div class="region-select">
+				<select ng-model="region">
+					<option value="na1">NA</option>
+					<option value="euw1">EUW</option>
+				</select>
+			</div>
+		</li>
+		<li class="nav-links"><a ng-class="{active: isActive('/home')}" href="/home">Home</a></li>
+		<li class="nav-links"><a href="#">Friends</a></li>
+		<li class="nav-links"><a href="#">Leaderboard</a></li>
+		<li class="nav-links"><a href ng-click="logout()">Sign out</a></li>
+	</ul>
+</div>

@@ -1,6 +1,6 @@
 module.exports = function(app, dirname, db) {
 
-	app.get('/api/search/:region/:summoners', require('./middleware.js'));
+	app.get('/api/search/:region/:summoners', require('./resources/summoner.js'));
 
 	app.get('*', function(req, res) {
 		res.sendFile(dirname + '/public/index.html');

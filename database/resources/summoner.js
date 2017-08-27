@@ -23,7 +23,6 @@ module.exports = function (req, res) {
 
 	function accountInfo(name, callback) {
 		var requestURL = req.params.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name;
-		var entry;
 		console.log(requestURL);
 
 		request('https://' + requestURL + '?api_key=' + API_KEY, function(error, response, body) {
@@ -35,7 +34,7 @@ module.exports = function (req, res) {
 			else {
 				var apiResponse = JSON.parse(body);
 
-				entry = {
+				var entry = {
 					result : true,
 					summonerId: apiResponse.id,
 					profileIcon: apiResponse.profileIconId,
