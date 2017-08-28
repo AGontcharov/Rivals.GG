@@ -3,7 +3,7 @@
 	text-align: center;
 }
 
-.profile, .ranked-stats {
+.summoner-profile, .ranked-stats {
 	padding-top: 15px;
 }
 
@@ -18,13 +18,13 @@
 	max-width: 128px;
 }
 
-.profile, .ranked-stats {
+.summoner-profile, .ranked-stats {
 	display: inline-block;
 	text-align: left;
 	padding-bottom: 10px;
 }
 
-.profile p, .ranked-stats p {
+.summoner-profile p, .ranked-stats p {
 	margin: 0;
 	padding: 0;
 }

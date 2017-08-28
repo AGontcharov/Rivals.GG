@@ -33,8 +33,7 @@ angular
 		authService.getCookie = function() {
 			if ($cookies.get('user')) {
 				console.log('Cookie:', $cookies.get('user'));
-				var user = { username: $cookies.get('user')};
-				session.create(user);
+				session.create({username: $cookies.get('user')});
 			}
 		}
 

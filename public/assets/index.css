@@ -1,6 +1,4 @@
 body {
-	/*background: white;*/
-	/*background: #f2f2f2;*/
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -12,71 +10,26 @@ p {
 	color: #555555;
 }
 
-h1 {
+h1, h2, h3 {
 	text-align: center;
 }
 
 
-/* ================== */
-
-div.form {
-	width: 400px;
-	background: #f2f2f2;
-	/*background-color: rgb(238, 238, 238);*/
-	padding: 15px 20px;
-	border: solid black 1px;
-
-	display: block;
-	margin: 0 auto;
-
-	text-align: center;
-}
-
-div.form input, div.form label {
-	display: block;
-	text-align: left;
-}
-
-div.form input[type=text], div.form input[type=password] {
-	background: white;
-	/*border: solid orange 1px;*/
-}
-
-div.form p, div.form a {
-	font-family: inherit;
-	font-size: inherit;
-}
-
-input[type=text], input[type=password] {
-	width: 100%;
-}
-
-input[type=submit] {
-	margin: 0 auto;
-}
-
-.submit {
-	padding: 15px 0;
-}
-
-
-/* ================== */
-
+/* Bootstrap. *
+ * -----------*/
 
 .container {
 	background: white;
 }
 
-form p {
-	display: inline;
-	font-size: 20px;
-}
+/* Custom ccs style. *
+ * ------------------*/
 
-/* Custom ccs style. */
 .center {
 	text-align: center;
 }
 
+/*using this in summoner.html*/
 .circle-radius {
 	border-radius: 50%;
 }

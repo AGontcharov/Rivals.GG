@@ -1,18 +1,30 @@
 <h1>Rivals.GG</h1>
 
+<!-- Login form -->
 <div class="form">
-	<!-- Login form -->
-	<form name="loginForm" method="post" ng-submit="login()">
+	<form name="loginForm" method="post" ng-submit="submit()" novalidate>
+
+		<!-- Username -->
 		<label for="username">Username</label>
 		<input type="text" id="username" name="username" ng-model="credentials.username" required>
-		<span ng-show="loginForm.username.$dirty && loginForm.username.$invalid">Username is required</span>
+		<div class="form-error" ng-show="(loginForm.$submitted || loginForm.username.$dirty) && loginForm.username.$invalid">
+			<span ng-show="loginForm.username.$error">Username is required</span>
+		</div>
 
+		<!-- Password -->
 		<label for="password">Password</label>
 		<input type="password" id="password" name="password" ng-model="credentials.password" required>
-		<span ng-show="loginForm.password.$dirty && loginForm.password.$invalid">Password is required</span>
+		<div ng-show="(loginForm.$submitted || loginForm.password.$dirty) && loginForm.password.$invalid">
+			<span ng-show="loginForm.password.$error">Password is required</span>
+		</div>
 
-		<div class="submit">
+		<!-- Submit Button -->
+		<div class="submit-input">
 			<input type="submit" value="Log in">
+		</div>
+
+		<div class="error" ng-show="error">
+			<span>Username or password is incorrect</span>
 		</div>
 		<p>Don't have an account? <a href="/">Register</a></p>
 	</form>

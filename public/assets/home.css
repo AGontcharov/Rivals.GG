@@ -1,0 +1,60 @@
+.summary {
+	background: #e6e6e6;
+	width: 350px;
+	padding: 0;
+}
+
+.home-nav ul {
+	list-style-type: none;
+	background: #cccccc;
+	margin: 0;
+    padding: 0;
+    overflow: hidden;
+	border-bottom: solid black 1px;
+}
+
+.home-nav li {
+	float: left;
+}
+
+.home-nav a {
+	display: block;
+	padding: 10px 13px;
+	text-decoration: none;
+	color: white;
+}
+
+.home-nav a:hover {
+	background: #e6e6e6;
+}
+
+.profile {
+	width: inherit;
+	padding: 10px 0;
+	background: pink;
+}
+
+.profile img {
+	max-width: 200px;
+	border-radius: 50%;
+	display: block;
+	margin: 0 auto;
+}
+
+.profile ul {
+	list-style-type: none;
+}
+
+.profile p {
+	margin: 0;
+}
+
+.profile button {
+	display: block;
+	margin: 0 auto;
+}
+
+.newsfeed {
+	height: 800px;
+	background: cyan;
+}

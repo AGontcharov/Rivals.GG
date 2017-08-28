@@ -12,7 +12,8 @@ app.config(function($routeProvider, $locationProvider) {
 		controller: 'loginCtrl'
 	})
 	.when('/home', { 
-		templateUrl: '/view/home.html'
+		templateUrl: '/view/home.html',
+		controller: 'homeCtrl'
 	})
 	.when('/summoner/:region/:name', { 
 		templateUrl: '/view/summoner.html',

@@ -1,7 +1,6 @@
 angular
 	.module('myApp')
 	.controller('navbarCtrl', ['$scope', '$location', 'searchQuery', 'authentication', function($scope, $location, searchQuery, authentication) {
-		// $scope.region = 'na1';
 
 		$scope.isActive = function (viewLocation) { 
 			console.log(viewLocation);

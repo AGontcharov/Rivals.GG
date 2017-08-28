@@ -1,1 +1,40 @@
 <div ng-include src="'view/navbar.html'"></div>
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-xs-4 summary">
+
+			<!-- home sub navigation -->
+			<div class="home-nav">
+				<ul>
+					<li><a href ng-click>Profile</a></li>
+					<li><a href ng-click>League</a></li>
+					<li><a href ng-click>Champion</a></li>
+				</ul>
+			</div>
+
+			<!-- profile -->
+			<div class="profile">
+				<img src="http://www.technologytell.com/gadgets/files/2012/02/google-chrome-browser-logo-250x250.jpg" alt="Profile image">
+				<h2>{{username}}</h2>
+
+				<ul>
+					<li><p>Summoner: {{summonerName}}</p></li>
+					<li><p>Last online: {{lastOnline}}</p></li>
+					<li><p>Level: {{SummonerLvl}}</p></li>
+				</ul>
+				<button type="button">Edit Profile</button>
+
+			</div>
+			
+			<!-- Friends -->
+			<h3>Friends online</h3>
+		</div>
+
+		<!-- Newsfeed -->
+		<div class="col-xs-8 newsfeed">
+			<h1>Welcome {{username}}!</h1>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+div.form {
+	width: 400px;
+	background: #f2f2f2;
+	/*background-color: rgb(238, 238, 238);*/
+	padding: 15px 20px;
+	border: solid black 1px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.form input, div.form label {
+	display: block;
+	text-align: left;
+}
+
+div.form input[type=text], div.form input[type=password] {
+	background: white;
+	width: 100%;
+}
+
+div.form p, div.form a {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+div.form input[type=submit] {
+	margin: 0 auto;
+}
+
+.submit-input {
+	padding: 15px 0;
+}
