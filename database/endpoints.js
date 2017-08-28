@@ -1,12 +1,26 @@
 module.exports = function(app, dirname, db) {
+	var express = require('express');
+	var apiRouter = express.Router();
 
-	app.get('/api/search/:region/:summoners', require('./resources/summoner.js'));
 
-	app.get('*', function(req, res) {
-		res.sendFile(dirname + '/public/index.html');
+	/* Router middleware for every request. */
+	apiRouter.use(function(req, res, next) {
+		console.log(req.method, req.url);
+		next();
 	});
 
-	app.post('/api/users', function(req, res) {
+	app.get('/api/users/:username', function(req, res) {
+		console.log('Am I here?');
+		console.log(req.body);
+		console.log(req.param.username);
+		db.query("SELECT * FROM users WHERE username='" + req.param.username + "'", function(err, result, fields) {
+			if (err) throw err;
+			res.send(result);
+		});
+	});
+
+
+	apiRouter.post('/users', function(req, res) {
 		console.log(req.body);
 		db.query("SELECT * FROM users WHERE username='" + req.body.username + "'", function(err, result, fields) {
 			if (err) throw err;
@@ -16,7 +30,6 @@ module.exports = function(app, dirname, db) {
 				console.log("user doesn't yet");
 
 				// authentication here?
-				// console.log("INSERT INTO users VALUES('" + req.body.email + "', '" + req.body.username + "', '" + req.body.password + "'')");
 
 				db.query("INSERT INTO users (email, username, password) VALUES('" + req.body.email + "', '" + req.body.username + "', '" + req.body.password + "')", function (err, result, fields) {
 					if (err) throw err;
@@ -27,11 +40,20 @@ module.exports = function(app, dirname, db) {
 		})
 	});
 
-	app.post('/api/login', function(req, res) {
+	apiRouter.get('/users/:username', function(req, res) {
 		console.log(req.body);
-		db.query("SELECT * FROM users WHERE username='" + req.body.username + "'", function(err, result, fields) {
+		db.query("SELECT * FROM users WHERE username='" + req.param.username + "'", function(err, result, fields) {
 			if (err) throw err;
 			res.send(result);
 		});
 	});
+
+	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
+
+	app.get('*', function(req, res) {
+		res.sendFile(dirname + '/public/index.html');
+	});
+
+	// Use the api router
+	app.use('/api', apiRouter);
 }

@@ -14,9 +14,10 @@ div.form input, div.form label {
 	text-align: left;
 }
 
-div.form input[type=text], div.form input[type=password] {
+div.form input[type=text], div.form input[type=password], div.form input[type=email] {
 	background: white;
 	width: 100%;
+	margin-bottom: 5px;
 }
 
 div.form p, div.form a {
@@ -31,3 +32,11 @@ div.form input[type=submit] {
 .submit-input {
 	padding: 15px 0;
 }
+
+/* Form validation. *
+ * -----------------*/
+
+ .form-error {
+ 	padding-top: 3px;
+ 	color: #ff3333;
+ }

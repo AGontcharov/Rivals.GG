@@ -6,31 +6,36 @@ angular
 		var userService = {};
 
 		userService.create = function(user) {
-			$http.post(baseURL + '/users', user).then(handleSucess, handleError('Error creating user'));
+			return $http.post(baseURL + '/users', user).then(handleSuccess, handleError('Error creating user'));
 		}
 
-		userService.getbyUsername = function(username) {
-			$http.get(baseURL + '/users/' + username).then(handleSucess, handleError('Error getting user by username'));
+		userService.getByUsername = function(username) {
+			console.log('Inside getByUsername');
+			return $http.get(baseURL + '/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
 		}
 
 		// To update
 		userService.getBySummoner = function() {
-			$http.get(baseURL + '/search/:region/:summoners').then(handleSucess, handleError('Error getting summoner(s) by name'));
+			return $http.get(baseURL + '/search/:region/:summoners').then(handleSuccess, handleError('Error getting summoner(s) by name'));
 		}
 
 		userService.update = function(user) {
-			$http.put(baseURL + '/users/' + user.id, user).then(handleSucess, handleError('Error updating user'));
+			return $http.put(baseURL + '/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
 		}
 
 		userService.delete = function(id) {
-			$http.delete(baseURL + '/users/' + id).then(handleSucess, handleError('Error deleting user'));
+			return $http.delete(baseURL + '/users/' + id).then(handleSuccess, handleError('Error deleting user'));
 		}
 
-		function handleSucess(res) {
+		function handleSuccess(res) {
+			console.log('In handle success');
+			console.log(res);
 			return res.data;
 		}
 
 		function handleError(err) {
+			console.log('In handle error');
+			console.log(err);
 			return {sucess: false, message: err};
 		}
 

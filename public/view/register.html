@@ -2,19 +2,38 @@
 
 <div class="form">
 	<!-- Register/Sign Up form -->
-	<form name="signUp" method="post" ng-submit="register()" novalidate>
+	<form name="registerForm" method="post" ng-submit="submit()" novalidate>
+
+		<!-- Username -->
 		<label for="username">Username</label>
-		<input type="text" id="username" name="username" ng-model="account.username">
+		<input type="text" id="username" name="username" ng-model="account.username" autofocus required>
+		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
+			<span ng-show="registerForm.username.$error">Username is required</span>
+		</div>
 
+		<!-- Password -->
 		<label for="password">Password</label>
-		<input type="password" id="password" name="password" ng-model="account.password">
+		<input type="password" id="password" name="password" ng-model="account.password" required>
+		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.password.$dirty) && registerForm.password.$invalid">
+			<span ng-show="registerForm.password.$error">Password is required</span>
+		</div>
 
+		<!-- Confirm password -->
 		<label for="confirmPassword">Confirm password</label>
-		<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword">
+		<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword" required>
+		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.confirmPassword.$dirty) && registerForm.confirmPassword.$invalid">
+			<span ng-show="registerForm.confirmPassword.$error">Confirm Password is required</span>
+		</div>
 
+		<!-- Email -->
 		<label for="email">Email</label>
-		<input type="text" id="email" name="email" ng-model="account.email">
+		<input type="email" id="email" name="email" ng-model="account.email" ng-model-options="{ updateOn: 'blur' }" required>
+		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.email.$dirty) && registerForm.email.$invalid">
+			<span ng-show="registerForm.email.$error.required">Email is required</span>
+			<span ng-show="registerForm.email.$error.email">Enter a valid email</span>
+		</div>
 
+		<!-- Submit button -->
 		<div class="submit-input">
 			<input type="submit" value="Create account">
 		</div>
