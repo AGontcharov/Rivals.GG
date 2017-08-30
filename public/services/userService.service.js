@@ -9,8 +9,11 @@ angular
 			return $http.post(baseURL + '/users', user).then(handleSuccess, handleError('Error creating user'));
 		}
 
+		userService.login = function(user) {
+			return $http.post(baseURL + '/users/login', user).then(handleSuccess, handleError('Error login user'));
+		}
+
 		userService.getByUsername = function(username) {
-			console.log('Inside getByUsername');
 			return $http.get(baseURL + '/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
 		}
 

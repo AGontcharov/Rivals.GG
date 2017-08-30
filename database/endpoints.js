@@ -1,7 +1,12 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 
 module.exports = function(db) {
 	var apiRouter = express.Router();
+
+	// Parses JSON content type
+	apiRouter.use(bodyParser.json());
 
 	/* Router middleware for every request. */
 	apiRouter.use(function(req, res, next) {
@@ -9,44 +14,32 @@ module.exports = function(db) {
 		next();
 	});
 
-	apiRouter.get('/users/:username', function(req, res) {
+	apiRouter.post('/users', require('./resources/user'));
 
-		db.query("SELECT * FROM users WHERE username='" + req.params.username + "'", function(err, result, fields) {
-			if (err) throw err;
-			console.log(result);
-
-			if (!result.length) {
-				res.status(401).send('Username or password is incorrect');
-			}
-
-			// Set cookie here?
-			else {
-				res.send(result);
-			}
-		});
-	});
-
-	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
-
-	apiRouter.post('/users', function(req, res) {
+	apiRouter.post('/users/login', function(req, res) {
 		console.log(req.body);
+
 		db.query("SELECT * FROM users WHERE username='" + req.body.username + "'", function(err, result, fields) {
 			if (err) throw err;
 			console.log(result);
 
 			if (!result.length) {
-				console.log("user doesn't yet");
+				return res.status(401).send('Username or password is incorrect');
+			}
 
-				// authentication here?
-
-				db.query("INSERT INTO users (email, username, password) VALUES('" + req.body.email + "', '" + req.body.username + "', '" + req.body.password + "')", function (err, result, fields) {
-					if (err) throw err;
-					console.log(result);
-				});
-			}	
-			else res.status(409).send('Account already exists');
-		})
+			if (req.body.username == result[0].username && req.body.password == result[0].password) {
+				console.log('Credentials match');
+				var token = jwt.sign({username: result[0].username}, 'test', {expiresIn: '2m'});
+				console.log(token);
+				res.send(token);
+			}
+			else {
+				res.status(401).send('Username or password is incorrect');
+			}
+		});
 	});
+
+	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
 
 	return apiRouter;
 }

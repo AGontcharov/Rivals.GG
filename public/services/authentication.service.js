@@ -2,62 +2,57 @@ angular
 	.module('myApp')
 	.factory('authentication', ['$http', '$rootScope', '$cookies', 'userService', 'session', 'AUTH_EVENTS', function($http, $rootScope, $cookies, userService, session, AUTH_EVENTS) {
 
-		// Create a service object. 
-		var authService = {};
+	// Create a service object. 
+	var authService = {};
 
-		authService.login = function(user, success, error) {
-			console.log('Authenticating ' + user.username + ': ' + user.password);
-			console.log(user);
+	authService.login = function(user, success, error) {
+		console.log('Authenticating ' + user.username + ': ' + user.password);
+		console.log(user);
 
-			// userService.getByUsername(user.username);
+		userService.login(user).then(function(response) {
+			if (response) {
+				delete user.password;
 
-			// userService.getByUsername(user.username).then(function(user) {
-			// 	console.log('user', user);
-			// });
+				var cookie = {
+					username: user.username,
+					role: 'guest',
+					token: response };
 
-
-			$http.get('/api/users/' + user.username).then(function successCallBack(response) {
-				console.log(response.data);
-
-				if (user.username == response.data[0].username && user.password == response.data[0].password) {
-
-					// Create user session
-					$cookies.put('user', user.username);
-					delete user.password;
-					console.log(user);
-					session.create(user);
-					success(user);
-				}
-				else {
-					error();
-				}
-
-			}, function errorCallBack(response) {
-				console.log(response.status);
-				console.log(response.data);
-			});
-		}
-
-		authService.getCookie = function() {
-			if ($cookies.get('user')) {
-				console.log('Cookie:', $cookies.get('user'));
-				session.create({username: $cookies.get('user')});
+				// Create user session
+				$cookies.put('user', JSON.stringify(cookie));
+				session.create(cookie.username, cookie.role, cookie.token);
+				success(user);
 			}
+			else {
+				error();
+			}
+
+		}, function errorCallBack(response) {
+			error();
+		});
+	}
+
+	authService.getCookie = function() {
+		if ($cookies.get('user')) {
+			var cookie = JSON.parse($cookies.get('user'));
+			console.log(cookie);
+			session.create(cookie.username, cookie.role, cookie.token);
 		}
+	}
 
-		authService.isAuthenticated = function() {
-			console.log(!!session.user);
-			return !!session.user;
-		};
+	authService.isAuthenticated = function() {
+		console.log(!!session.user);
+		return !!session.user;
+	};
 
-		authService.isAuthorized = function() {
+	authService.isAuthorized = function() {
 
-		};
+	};
 
-		authService.logout = function() {
-			session.destroy();
-			$cookies.remove('user');
-		};
+	authService.logout = function() {
+		session.destroy();
+		$cookies.remove('user');
+	};
 
-		return authService;	
+	return authService;	
 }]);

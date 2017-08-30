@@ -3,9 +3,9 @@ angular
 	.controller('navbarCtrl', ['$scope', '$location', 'searchQuery', 'authentication', function($scope, $location, searchQuery, authentication) {
 
 		$scope.isActive = function (viewLocation) { 
-			console.log(viewLocation);
-			console.log($location.path());
-			console.log(viewLocation === $location.path());
+			// console.log(viewLocation);
+			// console.log($location.path());
+			// console.log(viewLocation === $location.path());
         	return viewLocation === $location.path();
     	};
 

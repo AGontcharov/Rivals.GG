@@ -1,7 +1,8 @@
+var request = require('request');
+var async = require('async');
+
 module.exports = function (req, res) {
-	var request = require('request');
-	var async = require('async');
-	var API_KEY = 'RGAPI-4af5e1f1-76de-4b3f-8734-23a70e181019';
+	var API_KEY = 'RGAPI-1b40f245-7b47-4aab-80ae-f60c056dd9bc';
 	
 	start();
 

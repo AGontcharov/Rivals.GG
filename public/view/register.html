@@ -24,6 +24,7 @@
 		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.confirmPassword.$dirty) && registerForm.confirmPassword.$invalid">
 			<span ng-show="registerForm.confirmPassword.$error">Confirm Password is required</span>
 		</div>
+		<span class="form-error" ng-show="passwordMismatch">Passwords do not match</span>
 
 		<!-- Email -->
 		<label for="email">Email</label>
