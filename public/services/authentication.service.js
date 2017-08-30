@@ -9,9 +9,14 @@ angular
 			console.log('Authenticating ' + user.username + ': ' + user.password);
 			console.log(user);
 
-			userService.getByUsername(user.username);
+			// userService.getByUsername(user.username);
 
-			/*$http.post('/api/login', user).then(function successCallBack(response) {
+			// userService.getByUsername(user.username).then(function(user) {
+			// 	console.log('user', user);
+			// });
+
+
+			$http.get('/api/users/' + user.username).then(function successCallBack(response) {
 				console.log(response.data);
 
 				if (user.username == response.data[0].username && user.password == response.data[0].password) {
@@ -30,7 +35,7 @@ angular
 			}, function errorCallBack(response) {
 				console.log(response.status);
 				console.log(response.data);
-			});*/
+			});
 		}
 
 		authService.getCookie = function() {

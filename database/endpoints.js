@@ -1,7 +1,7 @@
-module.exports = function(app, dirname, db) {
-	var express = require('express');
-	var apiRouter = express.Router();
+var express = require('express');
 
+module.exports = function(db) {
+	var apiRouter = express.Router();
 
 	/* Router middleware for every request. */
 	apiRouter.use(function(req, res, next) {
@@ -9,16 +9,24 @@ module.exports = function(app, dirname, db) {
 		next();
 	});
 
-	app.get('/api/users/:username', function(req, res) {
-		console.log('Am I here?');
-		console.log(req.body);
-		console.log(req.param.username);
-		db.query("SELECT * FROM users WHERE username='" + req.param.username + "'", function(err, result, fields) {
+	apiRouter.get('/users/:username', function(req, res) {
+
+		db.query("SELECT * FROM users WHERE username='" + req.params.username + "'", function(err, result, fields) {
 			if (err) throw err;
-			res.send(result);
+			console.log(result);
+
+			if (!result.length) {
+				res.status(401).send('Username or password is incorrect');
+			}
+
+			// Set cookie here?
+			else {
+				res.send(result);
+			}
 		});
 	});
 
+	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
 
 	apiRouter.post('/users', function(req, res) {
 		console.log(req.body);
@@ -40,20 +48,5 @@ module.exports = function(app, dirname, db) {
 		})
 	});
 
-	apiRouter.get('/users/:username', function(req, res) {
-		console.log(req.body);
-		db.query("SELECT * FROM users WHERE username='" + req.param.username + "'", function(err, result, fields) {
-			if (err) throw err;
-			res.send(result);
-		});
-	});
-
-	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
-
-	app.get('*', function(req, res) {
-		res.sendFile(dirname + '/public/index.html');
-	});
-
-	// Use the api router
-	app.use('/api', apiRouter);
+	return apiRouter;
 }
