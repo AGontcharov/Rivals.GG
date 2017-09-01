@@ -10,7 +10,7 @@
 				<ul>
 					<li><a href ng-click>Profile</a></li>
 					<li><a href ng-click>League</a></li>
-					<li><a href ng-click>Champion</a></li>
+					<li><a href ng-click>Champions</a></li>
 				</ul>
 			</div>
 
@@ -19,22 +19,44 @@
 				<img src="http://www.technologytell.com/gadgets/files/2012/02/google-chrome-browser-logo-250x250.jpg" alt="Profile image">
 				<h2>{{username}}</h2>
 
-				<ul>
+				<div class="no-summoner-account">
+					<p>No summoner found</p>
+
+					<!-- Trigger/open modal -->
+					<button type="button" ng-click="addSummoner()">Add Summoner</button>
+				</div>
+
+				<!-- <ul>
 					<li><p>Summoner: {{summonerName}}</p></li>
 					<li><p>Last online: {{lastOnline}}</p></li>
 					<li><p>Level: {{SummonerLvl}}</p></li>
-				</ul>
-				<button type="button">Edit Profile</button>
+				</ul> -->
+				<!-- <button type="button">Edit Profile</button> -->
 
 			</div>
-			
-			<!-- Friends -->
-			<h3>Friends online</h3>
+
+			<!-- League -->
+			<div class="league">
+			</div>
+
+			<!-- Champions -->
+			<div class="champions">
+			</div>
 		</div>
 
 		<!-- Newsfeed -->
 		<div class="col-xs-8 newsfeed">
 			<h1>Welcome {{username}}!</h1>
 		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal">
+
+	<!-- Modal Content -->
+	<div class="modal-content">
+		<span class="close">&times</span>
+		<p>Some text...</p>
 	</div>
 </div>

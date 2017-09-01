@@ -22,7 +22,7 @@ module.exports = {
 					console.log(rows);
 
 					var token = jwt.sign({username: req.body.username}, 'test', {expiresIn: '2m'});
-					console.log(token);
+					console.log('Token:', token);
 					res.send(token);
 				});
 			}	
@@ -44,7 +44,7 @@ module.exports = {
 			if (req.body.username == rows[0].Username && req.body.password == rows[0].Password) {
 				console.log('Credentials match');
 				var token = jwt.sign({username: rows[0].username}, 'test', {expiresIn: '2m'});
-				console.log(token);
+				console.log('Token:', token);
 				res.send(token);
 			}
 			else {

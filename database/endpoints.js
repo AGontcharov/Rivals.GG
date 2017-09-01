@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
 var users = require('./resources/users');
 
 module.exports = function(db) {
