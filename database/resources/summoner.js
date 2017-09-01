@@ -1,8 +1,9 @@
 var request = require('request');
 var async = require('async');
+var config = require('../../config.json');
 
 module.exports = function (req, res) {
-	var API_KEY = 'RGAPI-1b40f245-7b47-4aab-80ae-f60c056dd9bc';
+	var API_KEY = config.apiKey;
 	
 	start();
 
