@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
 	host: '127.0.0.1',
 	user: 'rivals.gg',
 	password: '',
-	database: ''
+	database: 'rivals_gg'
 });
 
 // Connect to the database
