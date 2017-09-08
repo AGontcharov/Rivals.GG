@@ -19,20 +19,25 @@
 				<img src="http://www.technologytell.com/gadgets/files/2012/02/google-chrome-browser-logo-250x250.jpg" alt="Profile image">
 				<h2>{{username}}</h2>
 
-				<div class="no-summoner-account">
-					<p>No summoner found</p>
-
-					<!-- Trigger/open modal -->
-					<button type="button" ng-click="addSummoner()">Add Summoner</button>
-				</div>
-
-				<!-- <ul>
+				<ul>
 					<li><p>Summoner: {{summonerName}}</p></li>
 					<li><p>Last online: {{lastOnline}}</p></li>
 					<li><p>Level: {{SummonerLvl}}</p></li>
-				</ul> -->
-				<!-- <button type="button">Edit Profile</button> -->
+				</ul>
 
+				<div class="no-summoner-account">
+					<p>Add your summoner account!</p>
+						<input type="text" id="summonerName" name="summonerName" ng-model="accountName" placeholder="Summoner name"autofocus>
+						<select ng-model="accountRegion">
+							<option value="na1">NA</option>
+							<option value="euw1">EUW</option>
+						</select>
+						<a href ng-click="findAccount()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+				</div>
+
+				<div class="accountResults">
+					
+				</div>
 			</div>
 
 			<!-- League -->
@@ -48,15 +53,5 @@
 		<div class="col-xs-8 newsfeed">
 			<h1>Welcome {{username}}!</h1>
 		</div>
-	</div>
-</div>
-
-<!-- Modal -->
-<div class="modal">
-
-	<!-- Modal Content -->
-	<div class="modal-content">
-		<span class="close">&times</span>
-		<p>Some text...</p>
 	</div>
 </div>

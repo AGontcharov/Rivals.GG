@@ -4,7 +4,11 @@ angular
 
 	$scope.username = session.user;
 
-	$scope.addSummoner = function() {
-		console.log('In addSummoner');
+	$scope.findAccount = function() {
+		console.log('In findAccount');
+		console.log($scope.accountName);
+
+		
 	}
+
 }]);
