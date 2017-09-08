@@ -45,7 +45,13 @@
 }
 
 .profile ul {
+	padding-top: 15px;
 	list-style-type: none;
+}
+
+.profile button {
+	display: block;
+	margin: 0 auto;
 }
 
 .profile p {
@@ -91,6 +97,11 @@
 	z-index: 1;		/*Left border dissapears on screen resize*/
 }
 
+
+/* Found summoner account */
+.account-result {
+	padding: 10px 0;
+}
 
 
 

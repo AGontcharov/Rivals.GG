@@ -16,27 +16,27 @@
 
 			<!-- profile -->
 			<div class="profile">
-				<img src="http://www.technologytell.com/gadgets/files/2012/02/google-chrome-browser-logo-250x250.jpg" alt="Profile image">
 				<h2>{{username}}</h2>
 
-				<ul>
-					<li><p>Summoner: {{summonerName}}</p></li>
-					<li><p>Last online: {{lastOnline}}</p></li>
-					<li><p>Level: {{SummonerLvl}}</p></li>
-				</ul>
+				<div ng-show="accountResults" class="account-result">
+					<img class="circle-radius" ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
+					<ul>
+						<li><p>Summoner: {{result.summonerName}}</p></li>
+						<li><p>Last online: {{result.lastActivity | date:'yyyy-MMM-dd'}}</p></li>
+						<li><p>Level: {{result.summonerLevel}}</p></li>
+					</ul>
+					<button type="button">Add account</button>
+				</div>
 
+				<!-- Add league of legends account -->
 				<div class="no-summoner-account">
-					<p>Add your summoner account!</p>
+					<p>Find your summoner account!</p>
 						<input type="text" id="summonerName" name="summonerName" ng-model="accountName" placeholder="Summoner name"autofocus>
 						<select ng-model="accountRegion">
 							<option value="na1">NA</option>
 							<option value="euw1">EUW</option>
 						</select>
 						<a href ng-click="findAccount()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
-				</div>
-
-				<div class="accountResults">
-					
 				</div>
 			</div>
 
