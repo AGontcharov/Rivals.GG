@@ -52,12 +52,6 @@
 	margin: 0;
 }
 
-.profile button {
-	display: block;
-	margin: 0 auto;
-}
-
-
 
 
 /* No summoner account found */
@@ -74,11 +68,14 @@
 
 .no-summoner-account a {
 	position: absolute;
-	left: 225px;
+	left: 222px;
 	bottom: 1px;
-
-	padding: 3px 8px;
+	padding: 3px 9px;
 	background: white;
+}
+
+.no-summoner-account a:hover {
+	color: #4da6ff;
 }
 
 .no-summoner-account input {

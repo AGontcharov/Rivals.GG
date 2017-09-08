@@ -28,12 +28,13 @@ module.exports = function (req, res) {
 		console.log(requestURL);
 
 		request('https://' + requestURL + '?api_key=' + API_KEY, function(error, response, body) {
-			console.log('statusCode:', response && response.statusCode);
 
-			if (response.statusCode == 404 ) {
-				res.send(error);
+			// Better message to send later?
+			if (error) {
+				return res.status(404).send(error);
 			}
 			else {
+				console.log('statusCode:', response && response.statusCode);
 				var apiResponse = JSON.parse(body);
 
 				var entry = {
@@ -54,12 +55,14 @@ module.exports = function (req, res) {
 		console.log(requestURL);
 
 		request('https://' + requestURL + '?api_key=' + API_KEY, function (error, response, body) {
-			console.log('statusCode:', response && response.statusCode);
 
-			if (response.statusCode == 404) {
-				res.send(error);
+			// Better message to send later?
+			if (error) {
+				return res.status(404).send(error);
 			}
+
 			else {
+				console.log('statusCode:', response && response.statusCode);
 				var apiResponse = JSON.parse(body);
 
 				if (0 < apiResponse.length) {

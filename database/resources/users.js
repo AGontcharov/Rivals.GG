@@ -15,6 +15,7 @@ module.exports = {
 			if (!rows.length) {
 				console.log("User not created yet");
 
+				// Was testing something ealier
 				return res.end();
 
 				db.query("INSERT INTO users (Email, Username, Password) VALUES(?,?,?)", [req.body.email, req.body.username, req.body.password], function (err, rows, fields) {
