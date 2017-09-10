@@ -31,6 +31,8 @@
 	background: #e6e6e6;
 }
 
+
+/* RENAME to something relevent to profile, league and champions */
 .summary-border {
 	border: solid black 1px;
 }
@@ -49,6 +51,7 @@
 	margin: 0 auto;
 }
 
+
 /* Profile page */
 .profile img, .league img {
 	max-width: 200px;
@@ -57,9 +60,49 @@
 	margin: 0 auto;
 }
 
+
+.league-nav-wrapper {
+	text-align: center;
+	border-bottom: solid black 1px;
+}
+
 /* League page */
+.league-nav {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.league-nav ul {
+	display: inline-block;	
+	padding: 0;
+	margin: 0;
+	overflow: hidden;	/*Causes weird behavior on nav without*/
+	background: #e6e6e6;
+	/*background: #cccccc;*/
+}
+
+.league-nav li {
+	float: left;
+	padding: 8px 10px 0 10px;
+}
+
+.league-nav a {
+	display: block;
+	/*font-size: 15px;*/
+	text-decoration: none;
+	color: black;
+	border-bottom: solid #e6e6e6 2px;
+	/*border-bottom: solid #cccccc 2px;*/
+}
+
+.league-nav a:hover {
+	border-bottom: solid #ffa31a 2px;
+	color: #ffa31a;
+}
+
 
 /* Champions page */
+
 
 /* No summoner account found */
 .no-summoner-account {

@@ -14,11 +14,11 @@
 				</ul>
 			</div>
 
-			<div class= "summary-border">
-				<h2>{{username}}</h2>
+			<div class= "summary-border">				
 
 				<!-- profile -->
 				<div ng-show="profile" class="profile">
+					<h2>{{username}}</h2>
 
 					<div ng-show="accountResults" class="account-result">
 						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
@@ -33,22 +33,46 @@
 
 				<!-- League -->
 				<div ng-show="league" class="league">
+					
+					<div class="league-nav-wrapper">
+						<div class="league-nav">
+							<ul>
+								<li><a href ng-click="switchLeague('solo')">Ranked Solo</a></li>
+								<li><a href ng-click="switchLeague('flex')">Ranked Flex</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<h2>{{username}}</h2>
 
 					<!-- Ranked Solo -->
-					<h3>Ranked Solo</h3>
-					<img ng-src="/assets/images/tier-icons/{{result.soloIcon | lowercase}}.png" alt="Ranked solo icon">
-					<ul>
-						<li><p>League: {{result.soloLeagueName}}</p></li>
-						<li><p>Tier: {{result.soloTier}}</p></li>
-						<li><p>Division: {{result.soloDivision}}</p></li>
-						<li><p>League Points: {{result.soloLP}}</p></li>
-						<li><p>Wins: {{result.soloWins}}</p></li>
-						<li><p>Losses: {{result.soloLosses}}</p></li>
-					</ul>
-					<button type="button">Add account</button>
+					<div ng-show="rankedSolo && accountResults">
+						<img ng-src="/assets/images/tier-icons/{{result.soloIcon | lowercase}}.png" alt="Ranked solo icon">
+						<ul>
+							<li><p>League: {{result.soloLeagueName}}</p></li>
+							<li><p>Tier: {{result.soloTier}}</p></li>
+							<li><p>Division: {{result.soloDivision}}</p></li>
+							<li><p>League Points: {{result.soloLP}}</p></li>
+							<li><p>Wins: {{result.soloWins}}</p></li>
+							<li><p>Losses: {{result.soloLosses}}</p></li>
+						</ul>
+					</div>
 
 
 					<!-- Ranked Flex -->
+					<div ng-show="rankedFlex">
+						<img ng-src="/assets/images/tier-icons/{{result.flexIcon | lowercase}}.png" alt="Ranked flex icon">
+						<ul>
+							<li><p>League: {{result.flexLeagueName}}</p></li>
+							<li><p>Tier: {{result.flexTier}}</p></li>
+							<li><p>Division: {{result.flexDivision}}</p></li>
+							<li><p>League Points: {{result.flexLP}}</p></li>
+							<li><p>Wins: {{result.flexWins}}</p></li>
+							<li><p>Losses: {{result.flexLosses}}</p></li>
+						</ul>
+					</div>
+					<button ng-show="accountResults" type="button">Add account</button>
+
 				</div>
 
 				<!-- Champions -->

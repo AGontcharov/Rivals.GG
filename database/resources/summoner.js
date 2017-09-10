@@ -64,35 +64,36 @@ module.exports = function (req, res) {
 			else {
 				console.log('statusCode:', response && response.statusCode);
 				var apiResponse = JSON.parse(body);
+				console.log(apiResponse);
 
 				if (0 < apiResponse.length) {
-					obj.soloActive = true;
-					obj.soloIcon = '/tier-icons/' + apiResponse[0].tier + '_' + apiResponse[0].rank;
-					obj.soloLeagueName = apiResponse[0].leagueName;
-					obj.soloTier = apiResponse[0].tier;
-					obj.soloDivision = apiResponse[0].rank;
-					obj.soloLP = apiResponse[0].leaguePoints;
-					obj.soloWins = apiResponse[0].wins;
-					obj.soloLosses = apiResponse[0].losses;
-				}
-				else {
-					obj.soloIcon = 'base-icons/provisional';
-					obj.soloActive = false;
-				}
-
-				if (1 < apiResponse.length) {
 					obj.flexActive = true;
-					obj.flexIcon = '/tier-icons/' + apiResponse[1].tier + '_' + apiResponse[1].rank;
-					obj.flexLeagueName = apiResponse[1].leagueName;
-					obj.flexTier = apiResponse[1].tier;
-					obj.flexDivision = apiResponse[1].rank;
-					obj.flexLP = apiResponse[1].leaguePoints;
-					obj.flexWins = apiResponse[1].wins;
-					obj.flexLosses = apiResponse[1].losses;
+					obj.flexIcon = '/tier-icons/' + apiResponse[0].tier + '_' + apiResponse[0].rank;
+					obj.flexLeagueName = apiResponse[0].leagueName;
+					obj.flexTier = apiResponse[0].tier;
+					obj.flexDivision = apiResponse[0].rank;
+					obj.flexLP = apiResponse[0].leaguePoints;
+					obj.flexWins = apiResponse[0].wins;
+					obj.flexLosses = apiResponse[0].losses;
 				}
 				else {
 					obj.flexIcon = 'base-icons/provisional';
 					obj.flexActive = false;
+				}
+
+				if (1 < apiResponse.length) {
+					obj.soloActive = true;
+					obj.soloIcon = '/tier-icons/' + apiResponse[1].tier + '_' + apiResponse[1].rank;
+					obj.soloLeagueName = apiResponse[1].leagueName;
+					obj.soloTier = apiResponse[1].tier;
+					obj.soloDivision = apiResponse[1].rank;
+					obj.soloLP = apiResponse[1].leaguePoints;
+					obj.soloWins = apiResponse[1].wins;
+					obj.soloLosses = apiResponse[1].losses;
+				}
+				else {
+					obj.soloIcon = 'base-icons/provisional';
+					obj.soloActive = false;
 				}
 			}
 			callback(null, obj);

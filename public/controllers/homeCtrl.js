@@ -4,6 +4,8 @@ angular
 
 	$scope.username = session.user;
 	$scope.profile =true;
+	$scope.rankedSolo = true;
+	$scope.rankedFlex = false;
 	$scope.accountResults = false;
 
 	$scope.change = function(location) {
@@ -13,6 +15,17 @@ angular
 
 		console.log(location);
 		$scope[location] = true;
+	}
+
+	$scope.switchLeague = function(league) {
+		if (league === 'flex') {
+			$scope.rankedSolo = false;
+			$scope.rankedFlex = true;
+		}
+		else {
+			$scope.rankedFlex = false;
+			$scope.rankedSolo = true;
+		}
 	}
 
 	$scope.findAccount = function() {
