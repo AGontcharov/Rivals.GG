@@ -9,13 +9,11 @@ module.exports = {
 		db.query("SELECT * FROM users WHERE Username=?", req.body.username, function(err, rows, fields) {
 			if (err) throw err;
 			console.log(rows);
-			console.log(rows.length);
-			console.log(!rows.length);
 
 			if (!rows.length) {
 				console.log("User not created yet");
 
-				// Was testing something ealier - password mismatch
+				// Was testing registration - remove later
 				return res.end();
 
 				db.query("INSERT INTO users (Email, Username, Password) VALUES(?,?,?)", [req.body.email, req.body.username, req.body.password], function (err, rows, fields) {
@@ -31,6 +29,7 @@ module.exports = {
 		});
 	},
 
+	// Change name?
 	getUser: function(req, res, next) {
 		console.log(req.body);
 

@@ -33,9 +33,9 @@ div.form input[type=submit] {
 	padding: 15px 0;
 }
 
+
 /* Form validation. *
  * -----------------*/
-
  .form-error {
  	padding-top: 3px;
  	color: #ff3333;

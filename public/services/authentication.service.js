@@ -17,7 +17,7 @@ angular
 				var cookie = {
 					username: user.username,
 					role: 'guest',
-					token: response };
+					token: response.data };
 
 				// Create user session
 				$cookies.put('user', JSON.stringify(cookie));
@@ -27,13 +27,10 @@ angular
 			else {
 				error(response);
 			}
-
-		}, function errorCallBack(response) {
-			error();
 		});
 	}
 
-	authService.getCookie = function() {
+	authService.refreshSession = function() {
 		if ($cookies.get('user')) {
 			var cookie = JSON.parse($cookies.get('user'));
 			console.log(cookie);

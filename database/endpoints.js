@@ -18,7 +18,7 @@ module.exports = function(db) {
 
 	apiRouter.post('/users/login', users.getUser);
 
-	apiRouter.post('/users/:id');
+	// apiRouter.post('/users/:id');
 
 	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
 

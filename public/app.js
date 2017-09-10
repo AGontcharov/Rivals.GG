@@ -1,9 +1,7 @@
 var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
 
-app.config(function($routeProvider, $locationProvider) {
-	$routeProvider
-	
-	.when('/', {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
+	$routeProvider.when('/', {
 		templateUrl: 'view/register.html',
 		controller: 'registerCtrl'
 	})
@@ -21,20 +19,39 @@ app.config(function($routeProvider, $locationProvider) {
 	});
 
 	$locationProvider.html5Mode(true);
-});
+
+	$httpProvider.interceptors.push(['session', function($session) {
+
+		return {
+			'request': function(config) {
+
+				if ($session) {
+					console.log($session);
+					config.headers['Auth-Token'] = $session.token;
+					// config.headers.Authorization = 'Bearer ' + $session.token;
+				}
+				console.log(config.headers);
+				return config;
+			}
+		};
+	}]);
+}]);
 
 app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, $authentication) {
 	$rootScope.$on('$routeChangeStart', function(event, next, current) {
 
 		console.log('triggered', $location.path());
-		$authentication.getCookie();
+		$authentication.refreshSession();
 
-		if ($location.path() != '/' && $location.path() != '/login')
+		// Possibly rethink this
+		if ($location.path() != '/' && $location.path() != '/login') {
+			
 			if (!$authentication.isAuthenticated()) {
 				console.log('DENY : Redirecting to login page');
 				event.preventDefault();
 			 	$location.path('/login');
 			}
+		}
 	});
 }]);
 

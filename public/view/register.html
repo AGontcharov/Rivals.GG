@@ -40,6 +40,12 @@
 		<div class="submit-input">
 			<input type="submit" value="Create account">
 		</div>
+
+		<!-- Submit feedback -->
+		<div class="form-error" ng-show="error">
+			<span>Username already taken</span>
+		</div>
+
 		<p>Already have an account? <a href="/login">Log in</a></p>
 	</form>
 </div>

@@ -8,7 +8,7 @@ angular
 
 		$scope.find = function() {
 			searchQuery.create($scope.region, $scope.searchQuery);
-			$location.url(searchQuery.route);
+			$location.path(searchQuery.route);
 		}
 
 		$scope.submitForm = function(keyEvent) {
