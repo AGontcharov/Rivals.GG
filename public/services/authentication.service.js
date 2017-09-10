@@ -10,8 +10,8 @@ angular
 		console.log(user);
 
 		userService.login(user).then(function(response) {
-			if (response) {
-				delete user.password;
+			if (response.sucess) {
+				// delete user.password;
 
 				var cookie = {
 					username: user.username,
@@ -24,7 +24,7 @@ angular
 				success(user);
 			}
 			else {
-				error();
+				error(response);
 			}
 
 		}, function errorCallBack(response) {

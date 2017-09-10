@@ -10,7 +10,7 @@ angular
 	}
 
 	userService.login = function(user) {
-		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error login user'); });
+		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
 	}
 
 	userService.getByUsername = function(username) {
@@ -29,6 +29,7 @@ angular
 		return $http.delete(baseURL + '/users/' + id).then(handleSuccess, function() { return handleError('Error deleting user'); });
 	}
 
+	// Private functions
 	function handleSuccess(res) {
 		return { sucess: true, data: res.data };
 	}

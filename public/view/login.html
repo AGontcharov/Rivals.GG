@@ -8,14 +8,14 @@
 		<label for="username">Username</label>
 		<input type="text" id="username" name="username" ng-model="credentials.username" autofocus required>
 		<div class="form-error" ng-show="(loginForm.$submitted || loginForm.username.$dirty) && loginForm.username.$invalid">
-			<span ng-show="loginForm.username.$error">Username is required</span>
+			<span ng-show="loginForm.username.$error.required">Username is required</span>
 		</div>
 
 		<!-- Password -->
 		<label for="password">Password</label>
 		<input type="password" id="password" name="password" ng-model="credentials.password" required>
 		<div class="form-error" ng-show="(loginForm.$submitted || loginForm.password.$dirty) && loginForm.password.$invalid">
-			<span ng-show="loginForm.password.$error">Password is required</span>
+			<span ng-show="loginForm.password.$error.required">Password is required</span>
 		</div>
 
 		<!-- Submit Button -->

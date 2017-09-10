@@ -15,7 +15,7 @@ module.exports = {
 			if (!rows.length) {
 				console.log("User not created yet");
 
-				// Was testing something ealier
+				// Was testing something ealier - password mismatch
 				return res.end();
 
 				db.query("INSERT INTO users (Email, Username, Password) VALUES(?,?,?)", [req.body.email, req.body.username, req.body.password], function (err, rows, fields) {
@@ -49,8 +49,13 @@ module.exports = {
 				res.send(token);
 			}
 			else {
+				console.log("Credentials don't match");
 				res.status(401).send('Username or password is incorrect');
 			}
 		});
+	},
+
+	updateUser: function(req, res, next) {
+		console.log(req.body);
 	}
 }
