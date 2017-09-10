@@ -3,7 +3,17 @@ angular
 	.controller('homeCtrl', ['$scope', 'session', 'userService', function($scope, session, userService) {
 
 	$scope.username = session.user;
+	$scope.profile =true;
 	$scope.accountResults = false;
+
+	$scope.change = function(location) {
+		$scope.profile = false;
+		$scope.league = false;
+		$scope.champions = false;
+
+		console.log(location);
+		$scope[location] = true;
+	}
 
 	$scope.findAccount = function() {
 		console.log('In findAccount');

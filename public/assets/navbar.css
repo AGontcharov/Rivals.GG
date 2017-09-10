@@ -4,6 +4,8 @@
     padding: 0;
     overflow: hidden;
     background: #333;
+
+    /*padding-left: 100px;*/
 }
 
 .navbar li {
