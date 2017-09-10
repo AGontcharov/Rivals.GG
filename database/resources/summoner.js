@@ -50,6 +50,7 @@ module.exports = function (req, res) {
 		});
 	}
 
+	
 	function rankedInfo(obj, callback) {
 		var requestURL = req.params.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + obj.summonerId;
 		console.log(requestURL);
@@ -61,42 +62,42 @@ module.exports = function (req, res) {
 				return res.status(404).send(error);
 			}
 
-			else {
-				console.log('statusCode:', response && response.statusCode);
-				var apiResponse = JSON.parse(body);
-				console.log(apiResponse);
+			console.log('statusCode:', response && response.statusCode);
+			var apiResponse = JSON.parse(body);
+			console.log(apiResponse);
 
-				if (0 < apiResponse.length) {
-					obj.flexActive = true;
-					obj.flexIcon = '/tier-icons/' + apiResponse[0].tier + '_' + apiResponse[0].rank;
-					obj.flexLeagueName = apiResponse[0].leagueName;
-					obj.flexTier = apiResponse[0].tier;
-					obj.flexDivision = apiResponse[0].rank;
-					obj.flexLP = apiResponse[0].leaguePoints;
-					obj.flexWins = apiResponse[0].wins;
-					obj.flexLosses = apiResponse[0].losses;
-				}
-				else {
-					obj.flexIcon = 'base-icons/provisional';
-					obj.flexActive = false;
-				}
+			if (apiResponse.length) {
 
-				if (1 < apiResponse.length) {
-					obj.soloActive = true;
-					obj.soloIcon = '/tier-icons/' + apiResponse[1].tier + '_' + apiResponse[1].rank;
-					obj.soloLeagueName = apiResponse[1].leagueName;
-					obj.soloTier = apiResponse[1].tier;
-					obj.soloDivision = apiResponse[1].rank;
-					obj.soloLP = apiResponse[1].leaguePoints;
-					obj.soloWins = apiResponse[1].wins;
-					obj.soloLosses = apiResponse[1].losses;
-				}
-				else {
-					obj.soloIcon = 'base-icons/provisional';
-					obj.soloActive = false;
+				obj.soloIcon = 'base-icons/provisional';
+				obj.soloActive = false;
+				obj.flexIcon = 'base-icons/provisional';
+				obj.flexActive = false;
+
+				for (i = 0; i < apiResponse.length; i++) {
+
+					if (apiResponse[i].queueType === 'RANKED_SOLO_5x5') {
+						obj.soloActive = true;
+						obj.soloIcon = '/tier-icons/' + apiResponse[i].tier + '_' + apiResponse[i].rank;
+						obj.soloLeagueName = apiResponse[i].leagueName;
+						obj.soloTier = apiResponse[i].tier;
+						obj.soloDivision = apiResponse[i].rank;
+						obj.soloLP = apiResponse[i].leaguePoints;
+						obj.soloWins = apiResponse[i].wins;
+						obj.soloLosses = apiResponse[i].losses;
+					}
+					else {
+						obj.flexActive = true;
+						obj.flexIcon = '/tier-icons/' + apiResponse[i].tier + '_' + apiResponse[i].rank;
+						obj.flexLeagueName = apiResponse[i].leagueName;
+						obj.flexTier = apiResponse[i].tier;
+						obj.flexDivision = apiResponse[i].rank;
+						obj.flexLP = apiResponse[i].leaguePoints;
+						obj.flexWins = apiResponse[i].wins;
+						obj.flexLosses = apiResponse[i].losses;
+					}
 				}
 			}
-			callback(null, obj);
+		callback(null, obj);
 		});		
 	}
 }

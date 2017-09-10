@@ -2,7 +2,6 @@ angular
 	.module('myApp')
 	.controller('homeCtrl', ['$scope', 'session', 'userService', function($scope, session, userService) {
 
-	// Should these be declared in scope or?
 	var selected = 'profile';
 	var subSelected = 'solo';
 
@@ -41,9 +40,7 @@ angular
 	}
 
 	$scope.search = function(keyEvent) {
-		if (keyEvent.which === 13) {
-			$scope.findAccount();
-		}
+		if (keyEvent.which === 13) $scope.findAccount();
 	}
 
 	$scope.findAccount = function() {

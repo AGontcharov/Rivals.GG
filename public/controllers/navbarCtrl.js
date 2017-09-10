@@ -12,9 +12,7 @@ angular
 		}
 
 		$scope.submitForm = function(keyEvent) {
-			if (keyEvent.which === 13) {
-				$scope.find();
-			}
+			if (keyEvent.which === 13) $scope.find();
 		}
 
 		$scope.logout = function() {
