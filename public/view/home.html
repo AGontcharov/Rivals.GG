@@ -8,9 +8,9 @@
 			<!-- home sub navigation -->
 			<div class="home-nav">
 				<ul>
-					<li><a href ng-click="change('profile')">Profile</a></li>
-					<li><a href ng-click="change('league')">League</a></li>
-					<li><a href ng-click="change('champions')">Champions</a></li>
+					<li><a ng-class="{'home-nav-active': isActive('profile')}" href ng-click="change('profile')">Profile</a></li>
+					<li><a ng-class="{'home-nav-active': isActive('league')}" href ng-click="change('league')">League</a></li>
+					<li><a ng-class="{'home-nav-active': isActive('champions')}" href ng-click="change('champions')">Champions</a></li>
 				</ul>
 			</div>
 
@@ -34,11 +34,11 @@
 				<!-- League -->
 				<div ng-show="league" class="league">
 					
-					<div class="league-nav-wrapper">
-						<div class="league-nav">
+					<div class="sub-nav-wrapper">
+						<div class="sub-nav">
 							<ul>
-								<li><a href ng-click="switchLeague('solo')">Ranked Solo</a></li>
-								<li><a href ng-click="switchLeague('flex')">Ranked Flex</a></li>
+								<li><a ng-class="{'sub-nav-active': isActive('solo')}" href ng-click="switchLeague('solo')">Ranked Solo</a></li>
+								<li><a ng-class="{'sub-nav-active': isActive('flex')}" href ng-click="switchLeague('flex')">Ranked Flex</a></li>
 							</ul>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 
 
 					<!-- Ranked Flex -->
-					<div ng-show="rankedFlex">
+					<div ng-show="rankedFlex && accountResults">
 						<img ng-src="/assets/images/tier-icons/{{result.flexIcon | lowercase}}.png" alt="Ranked flex icon">
 						<ul>
 							<li><p>League: {{result.flexLeagueName}}</p></li>
@@ -77,14 +77,26 @@
 
 				<!-- Champions -->
 				<div ng-show="champions" class="champions">
-					<h3>Champions</h3>
-					<button type="button">Add account</button>
+
+					<div class="sub-nav-wrapper">
+						<div class="sub-nav">
+							<ul>
+								<li><a ng-class="{'sub-nav-active': true}">Season 7</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<h2>{{username}}</h2>
+
+					<!-- Table here -->
+
+					<button ng-show="accountResults" type="button">Add account</button>
 				</div>
 
 				<!-- Add league of legends account -->
 				<div class="no-summoner-account">
 					<p>Find your summoner account!</p>
-						<input type="text" id="summonerName" name="summonerName" ng-model="accountName" placeholder="Summoner name"autofocus>
+						<input type="text" id="summonerName" name="summonerName" ng-model="accountName" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
 						<select ng-model="accountRegion">
 							<option value="na1">NA</option>
 							<option value="euw1">EUW</option>

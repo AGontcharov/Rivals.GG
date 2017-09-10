@@ -31,6 +31,10 @@
 	background: #e6e6e6;
 }
 
+.home-nav-active {
+	background: #e6e6e6;	
+}
+
 
 /* RENAME to something relevent to profile, league and champions */
 .summary-border {
@@ -61,18 +65,18 @@
 }
 
 
-.league-nav-wrapper {
+.sub-nav-wrapper {
 	text-align: center;
 	border-bottom: solid black 1px;
 }
 
-/* League page */
-.league-nav {
+/* sub page */
+.sub-nav {
 	display: inline-block;
 	margin: 0 auto;
 }
 
-.league-nav ul {
+.sub-nav ul {
 	display: inline-block;	
 	padding: 0;
 	margin: 0;
@@ -81,12 +85,12 @@
 	/*background: #cccccc;*/
 }
 
-.league-nav li {
+.sub-nav li {
 	float: left;
 	padding: 8px 10px 0 10px;
 }
 
-.league-nav a {
+.sub-nav a {
 	display: block;
 	/*font-size: 15px;*/
 	text-decoration: none;
@@ -95,11 +99,14 @@
 	/*border-bottom: solid #cccccc 2px;*/
 }
 
-.league-nav a:hover {
+.sub-nav a:hover {
 	border-bottom: solid #ffa31a 2px;
-	color: #ffa31a;
 }
 
+.sub-nav-active {
+	border-bottom: solid #ffa31a 2px !important;
+	color: #ffa31a !important;
+}
 
 /* Champions page */
 
