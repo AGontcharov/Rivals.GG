@@ -10,8 +10,9 @@ angular
 		console.log(user);
 
 		userService.login(user).then(function(response) {
+			delete user.password;
+
 			if (response.sucess) {
-				// delete user.password;
 
 				var cookie = {
 					username: user.username,

@@ -65,12 +65,12 @@
 }
 
 
+/* sub page */
 .sub-nav-wrapper {
 	text-align: center;
-	border-bottom: solid black 1px;
+	border-bottom: solid #808080 1px;
 }
 
-/* sub page */
 .sub-nav {
 	display: inline-block;
 	margin: 0 auto;
@@ -92,14 +92,15 @@
 
 .sub-nav a {
 	display: block;
-	/*font-size: 15px;*/
 	text-decoration: none;
 	color: black;
 	border-bottom: solid #e6e6e6 2px;
+	/*color: #555555;*/
 	/*border-bottom: solid #cccccc 2px;*/
 }
 
 .sub-nav a:hover {
+	/*color: black;*/
 	border-bottom: solid #ffa31a 2px;
 }
 
@@ -107,6 +108,7 @@
 	border-bottom: solid #ffa31a 2px !important;
 	color: #ffa31a !important;
 }
+
 
 /* Champions page */
 

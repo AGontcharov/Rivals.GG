@@ -10,23 +10,23 @@
 		<label for="username">Username</label>
 		<input type="text" id="username" name="username" ng-model="account.username" autofocus required>
 		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
-			<span ng-show="registerForm.username.$error">Username is required</span>
+			<span ng-show="registerForm.username.$error.required">Username is required</span>
 		</div>
 
 		<!-- Password -->
 		<label for="password">Password</label>
 		<input type="password" id="password" name="password" ng-model="account.password" required>
 		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.password.$dirty) && registerForm.password.$invalid">
-			<span ng-show="registerForm.password.$error">Password is required</span>
+			<span ng-show="registerForm.password.$error.required">Password is required</span>
 		</div>
 
 		<!-- Confirm password -->
 		<label for="confirmPassword">Confirm password</label>
-		<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword" required>
+		<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword" required compare-to="account.password">
 		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.confirmPassword.$dirty) && registerForm.confirmPassword.$invalid">
-			<span ng-show="registerForm.confirmPassword.$error">Confirm Password is required</span>
+			<span ng-show="registerForm.confirmPassword.$error.required">Confirm Password is required</span>
+			<span ng-show="registerForm.confirmPassword.$error.compareTo">Passwords do not match</span>
 		</div>
-		<span class="form-error" ng-show="passwordMismatch">Passwords do not match</span>
 
 		<!-- Email -->
 		<label for="email">Email</label>

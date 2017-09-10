@@ -56,4 +56,8 @@ angular
 			}
 		});
 	}
+
+	$scope.addAccount = function() {
+
+	}
 }]);
