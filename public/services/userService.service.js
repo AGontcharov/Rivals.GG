@@ -13,9 +13,9 @@ angular
 		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
 	}
 
-	// userService.getByUsername = function(username) {
-	// 	return $http.get(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error getting user by username'); });
-	// }
+	/*userService.getByUsername = function(username) {
+		return $http.get(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error getting user by username'); });
+	}*/
 
 	userService.getBySummoner = function(region, summoner) {
 		return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by name'); });
@@ -25,9 +25,9 @@ angular
 		return $http.put(baseURL + '/users/' + user.id, user).then(handleSuccess, function() { return handleError('Error updating user'); });
 	}
 
-	// userService.delete = function(id) {
-	// 	return $http.delete(baseURL + '/users/' + id).then(handleSuccess, function() { return handleError('Error deleting user'); });
-	// }
+	/*userService.delete = function(id) {
+		return $http.delete(baseURL + '/users/' + id).then(handleSuccess, function() { return handleError('Error deleting user'); });
+	}*/
 
 	// Private functions
 	function handleSuccess(res) {

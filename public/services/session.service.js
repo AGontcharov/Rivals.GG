@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.service('session', function($rootScope, USER_ROLES) {
+	.service('session', function() {
 
 	this.create = function(user, role, token) {
 		this.user = user;

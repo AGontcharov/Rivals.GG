@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.factory('authentication', ['$http', '$rootScope', '$cookies', 'userService', 'session', 'AUTH_EVENTS', function($http, $rootScope, $cookies, userService, session, AUTH_EVENTS) {
+	.factory('authentication', ['$http', '$cookies', 'userService', 'session', function($http, $cookies, userService, session) {
 
 	// Create a service object. 
 	var authService = {};
