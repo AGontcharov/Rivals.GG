@@ -1,11 +1,28 @@
 var request = require('request');
 var async = require('async');
 var config = require('../../config.json');
+var jwt = require('jsonwebtoken');
 
 module.exports = function (req, res) {
-	var API_KEY = config.apiKey;
-	
-	start();
+
+	// Verify the jwt token
+	jwt.verify(req.get('auth-token'), config.jwtKey, function(err, decoded) {
+
+		if (err) {
+			console.log(err);
+
+			// 400 Bad request
+			if (err.message === 'jwt malformed' || err.message === 'jwt signature is required') {
+				return res.status(400).send(err.message);
+			}
+			// 401 Unathorized
+			else return res.status(401).send(err.message);
+		}
+		
+		// Get summoner
+		console.log(decoded);
+		start();
+	});
 
 	function start() {
 		var summoners = req.params.summoners.split('+');
@@ -23,11 +40,12 @@ module.exports = function (req, res) {
 		});
 	}
 
+	// Get summoner general info
 	function accountInfo(name, callback) {
 		var requestURL = req.params.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name;
 		console.log(requestURL);
 
-		request('https://' + requestURL + '?api_key=' + API_KEY, function(error, response, body) {
+		request('https://' + requestURL + '?api_key=' + config.apiKey, function(error, response, body) {
 
 			// Better message to send later?
 			if (error) {
@@ -50,12 +68,12 @@ module.exports = function (req, res) {
 		});
 	}
 
-	
+	// Get summoner ranked info	
 	function rankedInfo(obj, callback) {
 		var requestURL = req.params.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + obj.summonerId;
 		console.log(requestURL);
 
-		request('https://' + requestURL + '?api_key=' + API_KEY, function (error, response, body) {
+		request('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {
 
 			// Better message to send later?
 			if (error) {

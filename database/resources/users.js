@@ -1,4 +1,5 @@
 var db = require('../database');
+var config = require('../../config.json');
 var jwt = require('jsonwebtoken');
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
 					if (err) throw err;
 					console.log(rows);
 
-					var token = jwt.sign({username: req.body.username}, 'test', {expiresIn: '2m'});
+					var token = jwt.sign({username: req.body.username}, config.jwtKey, {expiresIn: '1m'});
 					console.log('Token:', token);
 					res.send(token);
 				});
@@ -42,13 +43,11 @@ module.exports = {
 			}
 
 			if (req.body.username == rows[0].Username && req.body.password == rows[0].Password) {
-				console.log('Credentials match');
-				var token = jwt.sign({username: rows[0].username}, 'test', {expiresIn: '2m'});
+				var token = jwt.sign({username: rows[0].Username}, config.jwtKey, {expiresIn: '1m'});
 				console.log('Token:', token);
 				res.send(token);
 			}
 			else {
-				console.log("Credentials don't match");
 				res.status(401).send('Username or password is incorrect');
 			}
 		});

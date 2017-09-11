@@ -26,11 +26,9 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 			'request': function(config) {
 
 				if ($session) {
-					console.log($session);
 					config.headers['Auth-Token'] = $session.token;
 					// config.headers.Authorization = 'Bearer ' + $session.token;
 				}
-				console.log(config.headers);
 				return config;
 			}
 		};
