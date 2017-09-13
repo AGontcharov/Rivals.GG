@@ -21,7 +21,7 @@ module.exports = {
 					if (err) throw err;
 					console.log(rows);
 
-					var token = jwt.sign({username: req.body.username}, config.jwtKey, {expiresIn: '1m'});
+					var token = jwt.sign({username: req.body.username}, config.jwtKey, {expiresIn: '10m'});
 					console.log('Token:', token);
 					res.send(token);
 				});
@@ -43,7 +43,7 @@ module.exports = {
 			}
 
 			if (req.body.username == rows[0].Username && req.body.password == rows[0].Password) {
-				var token = jwt.sign({username: rows[0].Username}, config.jwtKey, {expiresIn: '1m'});
+				var token = jwt.sign({username: rows[0].Username}, config.jwtKey, {expiresIn: '10m'});
 				console.log('Token:', token);
 				res.send(token);
 			}
@@ -52,4 +52,31 @@ module.exports = {
 			}
 		});
 	},
+
+	addAccount: function(req, res, next) {
+		console.log(req.body);
+
+		try {
+			db.query("SELECT Account FROM users", function(err, rows, fields) {
+				console.log('In try');
+				// console.log(err);
+				if (err) throw err;
+			});			
+		}
+		catch (err) {
+			console.log('In catch')
+			console.log(err);
+		}
+
+			// if (err) throw err;
+			
+			// console.log(rows);
+			// console.log(fields);
+
+			// if (!rows.length) {
+			// 	console.log('A league of legends account is not binded');
+			// }
+
+		res.end();
+	}
 }

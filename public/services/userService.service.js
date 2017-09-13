@@ -21,8 +21,9 @@ angular
 		return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by name'); });
 	}
 
-	userService.update = function(user) {
-		return $http.put(baseURL + '/users/' + user.id, user).then(handleSuccess, function() { return handleError('Error updating user'); });
+	userService.addLolAccount = function(account) {
+		// return $http.put(baseURL + '/users/' + user.id, user).then(handleSuccess, function() { return handleError('Error updating user'); });
+		return $http.put(baseURL + '/users', account).then(handleSuccess, function() { return handleError('Error updating user'); });
 	}
 
 	/*userService.delete = function(id) {

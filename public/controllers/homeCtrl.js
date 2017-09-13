@@ -58,6 +58,18 @@ angular
 	}
 
 	$scope.addAccount = function() {
+		console.log('Adding: ', $scope.accountName);
 
+		userService.addLolAccount( { account: $scope.accountName }).then( function(response) {
+
+			if (response.sucess) {
+				console.log('Added league of legends main account');
+				console.log(response.data);
+			}
+			else {
+				console.log(response.message);
+			}
+		});
 	}
+
 }]);

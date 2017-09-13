@@ -14,11 +14,13 @@ module.exports = function(db) {
 		next();
 	});
 
-	apiRouter.post('/users/', users.createUser);
+	apiRouter.post('/users', users.createUser);
 
 	apiRouter.post('/users/login', users.getUser);
 
 	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
+
+	apiRouter.put('/users', users.addAccount);
 
 	return apiRouter;
 }
