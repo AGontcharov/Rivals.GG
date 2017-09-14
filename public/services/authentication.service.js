@@ -7,7 +7,6 @@ angular
 
 	authService.login = function(user, success, error) {
 		console.log('Authenticating ' + user.username + ': ' + user.password);
-		console.log(user);
 
 		userService.login(user).then(function(response) {
 			delete user.password;
@@ -39,7 +38,6 @@ angular
 	}
 
 	authService.isAuthenticated = function() {
-		console.log(!!session.user);
 		return !!session.user;
 	};
 

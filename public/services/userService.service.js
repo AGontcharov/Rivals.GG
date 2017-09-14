@@ -15,12 +15,11 @@ angular
 	}
 
 	userService.getByAccount = function(username) {
-		return $http.get(baseURL + '/users/account').then(handleSuccess, function() { return handleError('Error getting account by username'); });
+		return $http.get(baseURL + '/users/account').then(handleSuccess, function() { return handleError('Error getting summoner account by username'); });
 	}
 
-	userService.addLolAccount = function(account) {
-		// return $http.put(baseURL + '/users/' + user.id, user).then(handleSuccess, function() { return handleError('Error updating user'); });
-		return $http.put(baseURL + '/users', account).then(handleSuccess, function() { return handleError('Error updating user'); });
+	userService.updateAccount = function(account) {
+		return $http.put(baseURL + '/users/account', account).then(handleSuccess, function() { return handleError('Error updating user summoner account'); });
 	}
 
 

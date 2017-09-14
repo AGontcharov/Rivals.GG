@@ -32,7 +32,7 @@ angular
 	}
 
 	$scope.isActive = function(location) {
-		if (location == 'solo' || location === 'flex') return subSelected === location;
+		if (location === 'solo' || location === 'flex') return subSelected === location;
 		else return selected === location;		
 	}
 
@@ -78,9 +78,9 @@ angular
 	}
 
 	$scope.addAccount = function() {
-		console.log('Adding: ', $scope.accountName);
+		console.log('Adding: ', $scope.summonerName);
 
-		userService.addLolAccount( { account: $scope.accountName }).then( function(response) {
+		userService.updateAccount( { account: $scope.summonerName }).then( function(response) {
 
 			if (response.sucess) {
 				console.log('Added league of legends main account');

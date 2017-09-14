@@ -30,7 +30,6 @@ module.exports = {
 		});
 	},
 
-	// Change name?
 	getUser: function(req, res, next) {
 		console.log(req.body);
 
@@ -105,7 +104,13 @@ module.exports = {
 			}
 
 			console.log(req.body);
-			res.end();
+
+			db.query("UPDATE users SET Account=? WHERE Username=?", [req.body.account, decoded.username], function(err, rows, fields) {
+				if (err) throw err;
+				console.log(rows);
+				
+				res.status(200).send('Updated summoner account');
+			});
 		});
 	}
 }
