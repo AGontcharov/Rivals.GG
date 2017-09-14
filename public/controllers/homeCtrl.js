@@ -21,7 +21,7 @@ angular
 				//For now - need to figure where to add region in database
 				if (response.data.result) {
 					$scope.accountSearch = response.data.result;
-					$scope.findAccount('na1', response.data.account)
+					$scope.findAccount(response.data.region, response.data.account)
 					$scope.summonerAccount = true;
 				}
 			}

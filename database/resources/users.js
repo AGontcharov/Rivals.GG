@@ -81,7 +81,7 @@ module.exports = {
 				}
 				else {
 					console.log('Found account ' + rows[0].Account);
-					res.status(200).send({result: true, account: rows[0].Account});
+					res.status(200).send({result: true, account: rows[0].Account, region: 'na1'});
 				}
 			});
 		});

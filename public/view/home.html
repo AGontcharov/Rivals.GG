@@ -27,6 +27,7 @@
 							<li><p>Last online: {{result.lastActivity | date:'yyyy-MMM-dd'}}</p></li>
 							<li><p>Level: {{result.summonerLevel}}</p></li>
 						</ul>
+						<button ng-show="summonerAccount" type="button">Edit account</button>
 						<button ng-show="!summonerAccount" type="button" ng-click="addAccount()">Add account</button>
 					</div>
 				</div>
@@ -89,6 +90,11 @@
 					<h2>{{username}}</h2>
 
 					<!-- Table here -->
+					<table>
+						<tr>
+							<!-- <th>Most played champion</th> -->
+						</tr>
+					</table>
 
 					<button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
 				</div>
