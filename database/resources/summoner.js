@@ -84,12 +84,13 @@ module.exports = function (req, res) {
 			var apiResponse = JSON.parse(body);
 			console.log(apiResponse);
 
-			if (apiResponse.length) {
+			// Initialize summoner icons
+			obj.soloIcon = 'base-icons/provisional';
+			obj.soloActive = false;
+			obj.flexIcon = 'base-icons/provisional';
+			obj.flexActive = false;
 
-				obj.soloIcon = 'base-icons/provisional';
-				obj.soloActive = false;
-				obj.flexIcon = 'base-icons/provisional';
-				obj.flexActive = false;
+			if (apiResponse.length) {
 
 				for (i = 0; i < apiResponse.length; i++) {
 

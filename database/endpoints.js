@@ -18,9 +18,11 @@ module.exports = function(db) {
 
 	apiRouter.post('/users/login', users.getUser);
 
-	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
+	apiRouter.get('/users/account', users.getAccount);
 
-	apiRouter.put('/users', users.addAccount);
+	// apiRouter.put('/users/account', users.addAccount);
+
+	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
 
 	return apiRouter;
 }

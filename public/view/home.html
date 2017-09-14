@@ -20,14 +20,14 @@
 				<div ng-show="profile" class="profile">
 					<h2>{{username}}</h2>
 
-					<div ng-show="accountResults" class="account-result">
+					<div ng-show="accountSearch" class="account-result">
 						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
 						<ul>
 							<li><p>Summoner: {{result.summonerName}}</p></li>
 							<li><p>Last online: {{result.lastActivity | date:'yyyy-MMM-dd'}}</p></li>
 							<li><p>Level: {{result.summonerLevel}}</p></li>
 						</ul>
-						<button type="button" ng-click="addAccount()">Add account</button>
+						<button ng-show="!summonerAccount" type="button" ng-click="addAccount()">Add account</button>
 					</div>
 				</div>
 
@@ -46,7 +46,7 @@
 					<h2>{{username}}</h2>
 
 					<!-- Ranked Solo -->
-					<div ng-show="rankedSolo && accountResults">
+					<div ng-show="rankedSolo && accountSearch">
 						<img ng-src="/assets/images/tier-icons/{{result.soloIcon | lowercase}}.png" alt="Ranked solo icon">
 						<ul>
 							<li><p>League: {{result.soloLeagueName}}</p></li>
@@ -60,7 +60,7 @@
 
 
 					<!-- Ranked Flex -->
-					<div ng-show="rankedFlex && accountResults">
+					<div ng-show="rankedFlex && accountSearch">
 						<img ng-src="/assets/images/tier-icons/{{result.flexIcon | lowercase}}.png" alt="Ranked flex icon">
 						<ul>
 							<li><p>League: {{result.flexLeagueName}}</p></li>
@@ -71,7 +71,7 @@
 							<li><p>Losses: {{result.flexLosses}}</p></li>
 						</ul>
 					</div>
-					<button ng-show="accountResults" type="button">Add account</button>
+					<button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
 
 				</div>
 
@@ -90,18 +90,18 @@
 
 					<!-- Table here -->
 
-					<button ng-show="accountResults" type="button">Add account</button>
+					<button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
 				</div>
 
 				<!-- Add league of legends account -->
-				<div class="no-summoner-account">
+				<div ng-show="!summonerAccount" class="no-summoner-account">
 					<p>Find your summoner account!</p>
-						<input type="text" id="summonerName" name="summonerName" ng-model="accountName" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
-						<select ng-model="accountRegion">
-							<option value="na1">NA</option>
-							<option value="euw1">EUW</option>
-						</select>
-						<a href ng-click="findAccount()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+					<input type="text" id="summonerName" name="summonerName" ng-model="summonerName" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
+					<select ng-model="accountRegion">
+						<option value="na1">NA</option>
+						<option value="euw1">EUW</option>
+					</select>
+					<a href ng-click="findAccount(accountRegion, summonerName)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 				</div>
 			</div>
 			<!-- ./summary-border -->

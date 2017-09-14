@@ -5,6 +5,7 @@ angular
 	var baseURL = '/api';
 	var userService = {};
 
+	// User endpoints
 	userService.create = function(user) {
 		return $http.post(baseURL + '/users', user).then(handleSuccess, function() { return handleError('Error creating user'); });
 	}
@@ -13,12 +14,8 @@ angular
 		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
 	}
 
-	/*userService.getByUsername = function(username) {
-		return $http.get(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error getting user by username'); });
-	}*/
-
-	userService.getBySummoner = function(region, summoner) {
-		return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by name'); });
+	userService.getByAccount = function(username) {
+		return $http.get(baseURL + '/users/account').then(handleSuccess, function() { return handleError('Error getting account by username'); });
 	}
 
 	userService.addLolAccount = function(account) {
@@ -26,9 +23,12 @@ angular
 		return $http.put(baseURL + '/users', account).then(handleSuccess, function() { return handleError('Error updating user'); });
 	}
 
-	/*userService.delete = function(id) {
-		return $http.delete(baseURL + '/users/' + id).then(handleSuccess, function() { return handleError('Error deleting user'); });
-	}*/
+
+	// Summoner endpoints
+	userService.getBySummoner = function(region, summoner) {
+		return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by name'); });
+	}
+
 
 	// Private functions
 	function handleSuccess(res) {

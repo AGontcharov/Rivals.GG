@@ -4,12 +4,32 @@ angular
 
 	var selected = 'profile';
 	var subSelected = 'solo';
+	init();
 
-	$scope.username = session.user;
-	$scope.profile =true;
-	$scope.rankedSolo = true;
-	$scope.rankedFlex = false;
-	$scope.accountResults = false;
+	function init() {
+		$scope.username = session.user;
+		$scope.profile =true;
+		$scope.rankedSolo = true;
+		$scope.rankedFlex = false;
+		$scope.summonerAccount = false;
+		$scope.accountSearch = false;
+
+		userService.getByAccount().then( function(response) {
+			if (response) {
+				console.log(response.data);
+
+				//For now - need to figure where to add region in database
+				if (response.data.result) {
+					$scope.accountSearch = response.data.result;
+					$scope.findAccount('na1', response.data.account)
+					$scope.summonerAccount = true;
+				}
+			}
+			else {
+				console.log(response.message);
+			}
+		})
+	}
 
 	$scope.isActive = function(location) {
 		if (location == 'solo' || location === 'flex') return subSelected === location;
@@ -43,13 +63,13 @@ angular
 		if (keyEvent.which === 13) $scope.findAccount();
 	}
 
-	$scope.findAccount = function() {
-		userService.getBySummoner($scope.accountRegion, $scope.accountName).then( function(response) {
+	$scope.findAccount = function(region, account) {
+		userService.getBySummoner(region, account).then( function(response) {
 
 			if (response.sucess) {
 				console.log(response.data);
 				$scope.result = response.data[0];
-				$scope.accountResults = true;
+				$scope.accountSearch = true;
 			}
 			else {
 				console.log(response.message);
