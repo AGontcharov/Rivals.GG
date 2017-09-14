@@ -1,4 +1,14 @@
-div.form {
+.heading {
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.heading h1 {
+	padding-top: 15px;
+	margin: 0;
+}
+
+div.form, .alternative {
 	width: 400px;
 	background: #f2f2f2;
 	/*background-color: rgb(238, 238, 238);*/
@@ -30,7 +40,17 @@ div.form input[type=submit] {
 }
 
 .submit-input {
-	padding: 15px 0;
+	padding-top: 10px;
+}
+
+.alternative {
+	margin-top: 15px;
+	padding: 20px;
+}
+
+.alternative p, .alternative a {
+	font-size: 14px;
+	margin: 0;
 }
 
 
