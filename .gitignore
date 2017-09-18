@@ -1,3 +1,4 @@
 node_modules
+test/addition.test.js
 config.json
 toDo
