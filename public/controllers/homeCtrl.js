@@ -3,7 +3,7 @@ angular
 	.controller('homeCtrl', ['$scope', 'session', 'userService', function($scope, session, userService) {
 
 	var selected = 'profile';
-	var subSelected = 'solo';
+	var leagueSelected = 'solo';
 	init();
 
 	function init() {
@@ -31,28 +31,44 @@ angular
 		})
 	}
 
+	// Sets the active class for the items in the home subnavbar
 	$scope.isActive = function(location) {
-		if (location === 'solo' || location === 'flex') return subSelected === location;
+
+		// Add active class for sublinks solo and flex
+		if (location === 'solo' || location === 'flex') return leagueSelected === location;
+
+		// Add active class for profile, league and champion
 		else return selected === location;		
 	}
 
-	$scope.change = function(location) {
+	// Sets the scope variables profile, league, champions
+	$scope.show = function(location) {
+		
+		// Set the current selected location in the summary
+		selected = location;
+		
+		// Reset all scope variables
 		$scope.profile = false;
 		$scope.league = false;
 		$scope.champions = false;
-		selected = location;
 
-		console.log(location);
+		// Set scope variables and shows the container
 		$scope[location] = true;
 	}
 
+	// Sets the scope variables rankedSolo and RankedFlex
 	$scope.switchLeague = function(league) {
-		subSelected = league;
 
+		// Sets the current selected league type in the league container
+		leagueSelected = league;
+
+		// Show the ranked flex league
 		if (league === 'flex') {
 			$scope.rankedSolo = false;
 			$scope.rankedFlex = true;
 		}
+
+		// Show the ranked solo league
 		else {
 			$scope.rankedFlex = false;
 			$scope.rankedSolo = true;
