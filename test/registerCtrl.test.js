@@ -1,40 +1,42 @@
-describe('Login Controller', function() {
+describe('Register Controller', function() {
 	beforeEach(module('myApp'));
 
-	var scope, controller;
+	var scope, controller, userService;
 
-	beforeEach(inject(function($controller, $rootScope) {
+	beforeEach(inject(function($controller, $rootScope, _userService_) {
 		scope = $rootScope.$new();
 		controller = $controller('registerCtrl', {
 			$scope: scope
 		});
+		userService = _userService_;
 	}));
 
-	describe('Register form', function() {
+	describe('register form', function() {
 		it('Submit function should be defined', function() {
 			expect(scope.submit).toBeDefined();
 		});
 
-		it('Should not submit on invalid form', function() {
+		it('Should should not call the userService on invalid form', function() {
 			scope.registerForm = {}
 			scope.registerForm.$invalid = true;
 			scope.credentials = {};
 
-			spyOn(controller, 'register');
+			spyOn(userService, 'create');
 			scope.submit();
-			expect(controller.register).not.toHaveBeenCalled();
+			expect(userService.create).not.toHaveBeenCalled();
 		});
 
-		// How to unit test private function?
-		/*it('Should submit on valid form', function() {
-			controller.register = function() {};
-			scope.registerForm = {}
-			scope.registerForm.$invalid = false;
-			scope.credentials = { username: 'test', password: 'test123' };
+		// Need to figure out how to test with promises
+		// it('Should should call the userService on valid form', function() {
+		// 	scope.credentials = {};
+		// 	scope.registerForm = {}
+		// 	scope.registerForm.$invalid = false;
+		// 	scope.registerForm.$setPristine = function() {};
+		// 	userService.create = function() {};
 
-			spyOn(controller, 'register');
-			scope.submit();
-			expect(controller.register).toHaveBeenCalled();
-		});*/
+		// 	spyOn(userService, 'create');
+		// 	scope.submit();
+		// 	expect(userService.create).toHaveBeenCalled();
+		// });
 	});
 });

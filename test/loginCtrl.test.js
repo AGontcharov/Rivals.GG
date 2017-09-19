@@ -1,13 +1,14 @@
 describe('Login Controller', function() {
 	beforeEach(module('myApp'));
 
-	var scope, controller;
+	var scope, controller, authentication;
 
-	beforeEach(inject(function($controller, $rootScope) {
+	beforeEach(inject(function($controller, $rootScope, _authentication_) {
 		scope = $rootScope.$new();
 		controller = $controller('loginCtrl', {
 			$scope: scope
 		});
+		authentication = _authentication_;
 	}));
 
 	describe('Login form', function() {
@@ -15,26 +16,28 @@ describe('Login Controller', function() {
 			expect(scope.submit).toBeDefined();
 		});
 
-		it('Should not submit on invalid form', function() {
+		it('Should not authenticate on invalid form', function() {
 			scope.loginForm = {}
 			scope.loginForm.$invalid = true;
 			scope.credentials = {};
 
-			spyOn(controller, 'login');
+			spyOn(authentication, 'login');
 			scope.submit();
-			expect(controller.login).not.toHaveBeenCalled();
+			expect(authentication.login).not.toHaveBeenCalled();
+			expect(authentication.login.calls.count()).toBe(0);
 		});
 
-		// How to unit test private function?
-		/*it('Should submit on valid form', function() {
-			controller.login = function() {};
+		it('Should authenticate on valid form', function() {
+			scope.credentials = {};
 			scope.loginForm = {}
 			scope.loginForm.$invalid = false;
-			scope.credentials = { username: 'test', password: 'test123' };
+			scope.loginForm.$setPristine = function() {};
+			authentication.login = function() {};
 
-			spyOn(controller, 'login');
+			spyOn(authentication, 'login');
 			scope.submit();
-			expect(controller.login).toHaveBeenCalled();
-		});*/
+			expect(authentication.login).toHaveBeenCalled();
+			expect(authentication.login.calls.count()).toBe(1);
+		});
 	});
 });
