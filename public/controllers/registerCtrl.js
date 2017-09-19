@@ -6,7 +6,8 @@ angular
 		if (!$scope.registerForm.$invalid) register($scope.account);
 	}
 
-	function register(user) {
+	this.register = function(user) {
+	// function register(user) {
 		console.log(user);
 
 		userService.create(user).then(function(response) {
