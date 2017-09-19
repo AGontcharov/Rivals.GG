@@ -16,7 +16,7 @@ describe('Register Controller', function() {
 			expect(scope.submit).toBeDefined();
 		});
 
-		it('Should should not call the userService on invalid form', function() {
+		it('Should not call the userService on invalid form', function() {
 			scope.registerForm = {}
 			scope.registerForm.$invalid = true;
 			scope.credentials = {};
@@ -27,16 +27,17 @@ describe('Register Controller', function() {
 		});
 
 		// Need to figure out how to test with promises
-		// it('Should should call the userService on valid form', function() {
-		// 	scope.credentials = {};
-		// 	scope.registerForm = {}
-		// 	scope.registerForm.$invalid = false;
-		// 	scope.registerForm.$setPristine = function() {};
-		// 	userService.create = function() {};
+		it('Should should call the userService create method on valid form', function() {
+			scope.credentials = {};
+			scope.registerForm = {}
+			scope.registerForm.$invalid = false;
+			scope.registerForm.$setPristine = function() {};
+			userService.create = function() {};
 
-		// 	spyOn(userService, 'create');
-		// 	scope.submit();
-		// 	expect(userService.create).toHaveBeenCalled();
-		// });
+			spyOn(userService, 'create');
+			fail('Need to mock promises');
+			// scope.submit();
+			// expect(userService.create).toHaveBeenCalled();
+		});
 	});
 });

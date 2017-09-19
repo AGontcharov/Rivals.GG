@@ -2,10 +2,13 @@ angular
 	.module('myApp')
 	.controller('homeCtrl', ['$scope', 'session', 'userService', function($scope, session, userService) {
 
+	// Private variables
 	var selected = 'profile';
 	var leagueSelected = 'solo';
+
 	init();
 
+	// Private function
 	function init() {
 		$scope.username = session.user;
 		$scope.profile =true;
@@ -14,6 +17,7 @@ angular
 		$scope.summonerAccount = false;
 		$scope.accountSearch = false;
 
+		// pretty big logic to keep private and not be able to test
 		userService.getByAccount().then( function(response) {
 			if (response) {
 				console.log(response.data);
@@ -47,12 +51,12 @@ angular
 		// Set the current selected location in the summary
 		selected = location;
 		
-		// Reset all scope variables
+		// Resets all scope variables
 		$scope.profile = false;
 		$scope.league = false;
 		$scope.champions = false;
 
-		// Set scope variables and shows the container
+		// Sets the scope variable and shows the container
 		$scope[location] = true;
 	}
 
@@ -62,23 +66,25 @@ angular
 		// Sets the current selected league type in the league container
 		leagueSelected = league;
 
-		// Show the ranked flex league
+		// Shows the ranked flex league
 		if (league === 'flex') {
 			$scope.rankedSolo = false;
 			$scope.rankedFlex = true;
 		}
 
-		// Show the ranked solo league
+		// Shows the ranked solo league
 		else {
 			$scope.rankedFlex = false;
 			$scope.rankedSolo = true;
 		}
 	}
 
+	// Searches account on Enter key press inside the input
 	$scope.search = function(keyEvent) {
 		if (keyEvent.which === 13) $scope.findAccount();
 	}
 
+	// Find summoner account based on region and name
 	$scope.findAccount = function(region, account) {
 		userService.getBySummoner(region, account).then( function(response) {
 
@@ -93,6 +99,7 @@ angular
 		});
 	}
 
+	// Understand how to mock promises
 	$scope.addAccount = function() {
 		console.log('Adding: ', $scope.summonerName);
 

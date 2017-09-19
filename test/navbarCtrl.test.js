@@ -56,7 +56,7 @@ describe('Navbar Controller', function() {
 	});
 
 	describe('submitForm', function() {
-		it('Should call the find method', function() {
+		it('Should call the find method on Enter key press', function() {
 			var keyEvent = { which: 13 };
 			scope.find = function() {};
 			
