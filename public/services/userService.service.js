@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.factory('userService', ['$http', function($http) {
+	.factory('userService', ['$http', '$q', function($http, $q) {
 
 	var baseURL = '/api';
 	var userService = {};
@@ -31,13 +31,11 @@ angular
 
 	// Private functions
 	function handleSuccess(res) {
-		console.log('In Handle Success');
-		return { success: true, data: res.data };
+		return res.data;
 	}
 
 	function handleError(err) {
-		console.log('In Handle Error');
-		return { success: false, message: err };
+		return $q.reject({ success: false, message: err })
 	}
 
 	return userService;

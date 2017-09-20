@@ -6,15 +6,9 @@ angular
 		if (!$scope.registerForm.$invalid) {
 
 			userService.create($scope.account).then(function(response) {
+				console.log('User created');
+				$location.path('/login');
 
-				if (response.success) {
-					console.log('User created');
-					$location.path('/login');
-				}
-				/*else {
-					console.error(response.message);
-					$scope.error = true;
-				}*/
 			}, function(response) {
 				console.error(response.message);
 				$scope.error = true;

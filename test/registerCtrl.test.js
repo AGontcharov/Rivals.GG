@@ -47,7 +47,7 @@ describe('Register Controller', function() {
 			scope.registerForm = { $invalid: false };
 			scope.submit();
 
-			deferred.resolve( {success: true} );
+			deferred.resolve('data');
 			scope.$apply();
 
 			expect(userService.create).toHaveBeenCalled();
@@ -59,12 +59,13 @@ describe('Register Controller', function() {
 			scope.registerForm = { $invalid: false };
 			scope.submit();
 
-			deferred.reject( {sucess: false, message: 'promises rejected'} );
+			deferred.reject({ sucess: false, message: 'promise rejected' });
 			scope.$apply();
 
-			//assertions here
 			expect(userService.create).toHaveBeenCalled();
 			expect(userService.create.calls.count()).toBe(1);
+			expect(scope.error).toBeTruthy();
+			expect($location.path()).toBe('/');
 		});
 	});
 });

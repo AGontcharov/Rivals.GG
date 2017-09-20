@@ -20,31 +20,31 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 
 	$locationProvider.html5Mode(true);
 
-	$httpProvider.interceptors.push(['session', function($session) {
+	$httpProvider.interceptors.push(['session', '$q', function(session, $q) {
 
 		return {
 			'request': function(config) {
 
-				if ($session) {
-					config.headers['Auth-Token'] = $session.token;
-					// config.headers.Authorization = 'Bearer ' + $session.token;
+				if (session) {
+					config.headers['Auth-Token'] = session.token;
+					// config.headers.Authorization = 'Bearer ' + session.token;
 				}
 				return config;
-			}
+			},
 		};
 	}]);
 }]);
 
-app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, $authentication) {
+app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, authentication) {
 	$rootScope.$on('$routeChangeStart', function(event, next, current) {
 
 		console.log('triggered', $location.path());
-		$authentication.refreshSession();
+		authentication.refreshSession();
 
 		// Possibly rethink this
 		if ($location.path() != '/' && $location.path() != '/login') {
 			
-			if (!$authentication.isAuthenticated()) {
+			if (!authentication.isAuthenticated()) {
 				console.log('DENY : Redirecting to login page');
 				event.preventDefault();
 			 	$location.path('/login');
@@ -53,7 +53,7 @@ app.run(['$rootScope', '$location', 'authentication', function($rootScope, $loca
 	});
 }]);
 
-app.constant('USER_ROLES', {
+/*app.constant('USER_ROLES', {
 	all: '*',
 	admin: 'admin',
 	editor: 'editor',
@@ -65,4 +65,4 @@ app.constant('USER_ROLES', {
 	sessionTimeout: 'auth-session-timeout',
 	notAuthenticated: 'auth-not-authenticated',
 	notAuthorized: 'auth-not-authorized'
-});
+});*/
