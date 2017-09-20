@@ -1,3 +1,4 @@
 node_modules
+test/promises.test.js
 config.json
 toDo

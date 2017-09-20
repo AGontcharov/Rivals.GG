@@ -43,23 +43,28 @@ describe('Register Controller', function() {
 			expect(userService.create.calls.count()).toBe(1);
 		});
 
-		/*it('Should resolve promise', function() {
+		it('Should resolve promise', function() {
+			scope.registerForm = { $invalid: false };
+			scope.submit();
+
 			deferred.resolve( {success: true} );
-
 			scope.$apply();
-			scope.$digest();
 
+			expect(userService.create).toHaveBeenCalled();
+			expect(userService.create.calls.count()).toBe(1);
 			expect($location.path()).toBe('/login');
-
 		});
 
 		it('Should reject promise', function() {
-			deferred.reject();
-			
-			scope.$apply();
-			scope.$digest();
+			scope.registerForm = { $invalid: false };
+			scope.submit();
 
-			expect(scope.error).toBeTruthy();
-		});*/
+			deferred.reject( {sucess: false, message: 'promises rejected'} );
+			scope.$apply();
+
+			//assertions here
+			expect(userService.create).toHaveBeenCalled();
+			expect(userService.create.calls.count()).toBe(1);
+		});
 	});
 });

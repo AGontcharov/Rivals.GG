@@ -4,20 +4,28 @@ angular
 		
 	$scope.submit = function() {
 		if (!$scope.registerForm.$invalid) {
-			console.log($scope.account);
 
 			userService.create($scope.account).then(function(response) {
 
 				if (response.success) {
 					console.log('User created');
-					$scope.error = false;
 					$location.path('/login');
 				}
-				else {
+				/*else {
 					console.error(response.message);
 					$scope.error = true;
-				}
-			});	
+				}*/
+			}, function(response) {
+				console.error(response.message);
+				$scope.error = true;
+			});
+
+			/*.catch(function(response) {
+				console.log('In catch');
+
+				console.error(response.message);
+				$scope.error = true;
+			});*/
 		}
-	}	
+	}
 }]);

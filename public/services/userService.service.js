@@ -31,10 +31,12 @@ angular
 
 	// Private functions
 	function handleSuccess(res) {
+		console.log('In Handle Success');
 		return { success: true, data: res.data };
 	}
 
 	function handleError(err) {
+		console.log('In Handle Error');
 		return { success: false, message: err };
 	}
 
