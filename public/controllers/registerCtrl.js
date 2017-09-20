@@ -8,8 +8,9 @@ angular
 
 			userService.create($scope.account).then(function(response) {
 
-				if (response.sucess) {
+				if (response.success) {
 					console.log('User created');
+					$scope.error = false;
 					$location.path('/login');
 				}
 				else {

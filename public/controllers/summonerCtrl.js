@@ -7,7 +7,7 @@ angular
 	if (!searchQuery.summoners) searchQuery.create($routeParams.region, $routeParams.name);
 
 	$http.get(searchQuery.requestURL).then(function successCallback(response) {
-		console.log('sucess');
+		console.log('success');
 		console.log(response.data);
 		$scope.records = response.data;
 

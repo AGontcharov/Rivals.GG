@@ -84,11 +84,11 @@ angular
 		if (keyEvent.which === 13) $scope.findAccount();
 	}
 
-	// Find summoner account based on region and name
+	// Finds summoner account based on region and name
 	$scope.findAccount = function(region, account) {
-		userService.getBySummoner(region, account).then( function(response) {
+		userService.getBySummoner(region, account).then(function(response) {
 
-			if (response.sucess) {
+			if (response.success) {
 				console.log(response.data);
 				$scope.result = response.data[0];
 				$scope.accountSearch = true;
@@ -99,11 +99,11 @@ angular
 		});
 	}
 
-	// Understand how to mock promises
+	// Updates the user with their summoner account
 	$scope.addAccount = function() {
 		console.log('Adding: ', $scope.summonerName);
 
-		userService.updateAccount( { account: $scope.summonerName }).then( function(response) {
+		userService.updateAccount( { account: $scope.summonerName }).then(function(response) {
 
 			if (response.sucess) {
 				console.log('Added league of legends main account');

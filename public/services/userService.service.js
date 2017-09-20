@@ -31,11 +31,11 @@ angular
 
 	// Private functions
 	function handleSuccess(res) {
-		return { sucess: true, data: res.data };
+		return { success: true, data: res.data };
 	}
 
 	function handleError(err) {
-		return { sucess: false, message: err };
+		return { success: false, message: err };
 	}
 
 	return userService;

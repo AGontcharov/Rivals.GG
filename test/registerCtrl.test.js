@@ -1,43 +1,65 @@
 describe('Register Controller', function() {
 	beforeEach(module('myApp'));
 
-	var scope, controller, userService;
+	var scope, controller, userService, $location, $q, deferred;
 
-	beforeEach(inject(function($controller, $rootScope, _userService_) {
+	// Inject unwraps the underscores around services
+	beforeEach(inject(function($controller, $rootScope, _$location_, _userService_, _$q_) {
 		scope = $rootScope.$new();
-		controller = $controller('registerCtrl', {
-			$scope: scope
-		});
 		userService = _userService_;
+		$location = _$location_;
+		$q = _$q_;
+
+		// Create mock instance of defer
+		deferred = $q.defer();
+
+		// Use a spy to return the deferred promise
+		spyOn(userService, 'create').and.returnValue(deferred.promise);
+
+		// Init the controller, passing the spy service instance
+		controller = $controller('registerCtrl', {
+			$scope: scope,
+			userService: userService,
+		});
 	}));
 
 	describe('register form', function() {
-		it('Submit function should be defined', function() {
-			expect(scope.submit).toBeDefined();
-		});
 
-		it('Should not call the userService on invalid form', function() {
-			scope.registerForm = {}
-			scope.registerForm.$invalid = true;
+		it('Should not call the userService create method on invalid form', function() {
+			scope.registerForm = { $invalid: true };
 			scope.credentials = {};
 
-			spyOn(userService, 'create');
 			scope.submit();
 			expect(userService.create).not.toHaveBeenCalled();
+			expect(userService.create.calls.count()).toBe(0);
 		});
 
-		// Need to figure out how to test with promises
-		it('Should should call the userService create method on valid form', function() {
+		it('Should call the userService create method on valid form', function() {
 			scope.credentials = {};
-			scope.registerForm = {}
-			scope.registerForm.$invalid = false;
-			scope.registerForm.$setPristine = function() {};
-			userService.create = function() {};
+			scope.registerForm = { $invalid: false };
 
-			spyOn(userService, 'create');
-			fail('Need to mock promises');
-			// scope.submit();
-			// expect(userService.create).toHaveBeenCalled();
+			scope.submit();
+			expect(userService.create).toHaveBeenCalled();
+			expect(userService.create.calls.count()).toBe(1);
 		});
+
+		/*it('Should resolve promise', function() {
+			deferred.resolve( {success: true} );
+
+			scope.$apply();
+			scope.$digest();
+
+			expect($location.path()).toBe('/login');
+
+		});
+
+		it('Should reject promise', function() {
+			deferred.reject();
+			
+			scope.$apply();
+			scope.$digest();
+
+			expect(scope.error).toBeTruthy();
+		});*/
 	});
 });

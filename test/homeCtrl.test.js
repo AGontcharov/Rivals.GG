@@ -1,15 +1,26 @@
 describe('Home Controller', function() {
 	beforeEach(module('myApp'));
 
-	var scope, controller, session, userService;
+	var scope, controller, session, userService, $q, deferred;
 
-	beforeEach(inject(function($rootScope, $controller, _session_, _userService_) {
+	beforeEach(inject(function($rootScope, $controller, _session_, _userService_, _$q_) {
 		scope = $rootScope.$new();
-		controller = $controller('homeCtrl', {
-			$scope: scope
-		});
 		session = _session_;
 		userService = _userService_;
+		$q = _$q_;
+
+		// Create mock instance of defer
+		deferred = $q.defer();
+
+		// Use a spy to return the deferred promise
+		spyOn(userService, 'getBySummoner').and.returnValue(deferred.promise);
+		spyOn(userService, 'updateAccount').and.returnValue(deferred.promise);
+
+		// Init the controller, passing the spy service instance
+		controller = $controller('homeCtrl', {
+			$scope: scope,
+			userService: userService
+		});
 	}));
 
 	describe('show', function() {
@@ -97,13 +108,17 @@ describe('Home Controller', function() {
 
 	describe('findAccount', function() {
 		it('Should call the userService getBySummoner method', function() {
-			fail('Not implemented yet');
+			scope.findAccount();
+			expect(userService.getBySummoner).toHaveBeenCalled();
+			expect(userService.getBySummoner.calls.count()).toBe(1);
 		});
 	});
 
 	describe('AddAccount', function() {
 		it('Should call the userService updateAccount method', function() {
-			fail('Not implemented yet');
+			scope.addAccount();
+			expect(userService.updateAccount).toHaveBeenCalled();
+			expect(userService.updateAccount.calls.count()).toBe(1);
 		});
 	});
 });

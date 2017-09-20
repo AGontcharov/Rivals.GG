@@ -11,7 +11,7 @@ angular
 		userService.login(user).then(function(response) {
 			delete user.password;
 
-			if (response.sucess) {
+			if (response.success) {
 
 				var cookie = {
 					username: user.username,
