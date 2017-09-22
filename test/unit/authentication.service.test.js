@@ -12,7 +12,6 @@ describe('Authentication Service', function() {
 		session = _session_;
 		$q = _$q_;
 		deferred = $q.defer();
-
 	}));
 
 	describe('authService.login', function() {

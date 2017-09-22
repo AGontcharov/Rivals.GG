@@ -77,7 +77,7 @@ module.exports = {
 
 				if (!rows[0].Account) {
 					console.log('No account is tied to user ' + decoded.username);
-					res.status(200).send({result: false});
+					res.status(404).send({result: false});
 				}
 				else {
 

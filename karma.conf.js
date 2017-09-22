@@ -26,7 +26,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      "test/unit/promises.test.js"
+      "test/unit/userService.service.test.js"
     ],
 
 

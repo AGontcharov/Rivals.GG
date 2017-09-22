@@ -1,4 +1,4 @@
 node_modules
-test/promises.test.js
+test/unit/userService.service.test.js
 config.json
 toDo
