@@ -20,7 +20,7 @@ describe('Summoner Controller', function() {
 		});
 	}));
 
-	describe('SeachQuery service', function() {
+	describe('SeachQuery.create', function() {
 
 		it('Should call the searchQuery service', function() {
 			expect(scope.missing).toBeFalsy();

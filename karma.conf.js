@@ -82,9 +82,9 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     // Client
-    // Disable capturing console.log
+    // Disable console capture
     client: {
-      captureConsole: false
+      captureConsole: true
     }
 
   })

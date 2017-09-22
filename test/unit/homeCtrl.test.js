@@ -107,7 +107,6 @@ describe('Home Controller', function() {
 	});
 
 	describe('findAccount', function() {
-
 		it('Should resolve the promise', function() {
 			scope.findAccount();
 			deferred.resolve( { data: ['1']} );
@@ -118,7 +117,6 @@ describe('Home Controller', function() {
 			expect(scope.result).toBe('1');
 			expect(scope.accountSearch).toBeTruthy();
 		});
-
 
 		it('Should reject the promise', function() {
 			scope.findAccount();

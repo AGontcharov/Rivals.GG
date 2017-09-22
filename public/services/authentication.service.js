@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.factory('authentication', ['$http', '$cookies', 'userService', 'session', function($http, $cookies, userService, session) {
+	.factory('authentication', ['$cookies', 'userService', 'session', function($cookies, userService, session) {
 
 	// Create a service object. 
 	var authService = {};
@@ -11,6 +11,7 @@ angular
 		userService.login(user).then(function(response) {
 			delete user.password;
 
+			// Initialize cookie
 			var cookie = {
 				username: user.username,
 				role: 'guest',
@@ -24,14 +25,14 @@ angular
 			
 		}, function(response) {
 			delete user.password;
-			error(response)
+			error(response.message)
 		});
 	}
 
 	authService.refreshSession = function() {
 		if ($cookies.get('user')) {
 			var cookie = JSON.parse($cookies.get('user'));
-			console.log(cookie);
+			console.log('cookie:', cookie);
 			session.create(cookie.username, cookie.role, cookie.token);
 		}
 	}

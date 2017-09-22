@@ -2,7 +2,7 @@ describe('Session Service', function() {
 
 	beforeEach(module('myApp'));
 
-	var scope, controller, session;
+	var session;
 
 	beforeEach(inject(function(_session_) {
 		session = _session_;
