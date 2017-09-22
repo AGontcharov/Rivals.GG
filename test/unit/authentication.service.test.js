@@ -13,13 +13,18 @@ describe('Authentication Service', function() {
 		$q = _$q_;
 		deferred = $q.defer();
 
-		spyOn(userService, 'login').and.returnValue(deferred.promise);
 	}));
 
-
 	describe('authService.login', function() {
+
+		var user;
+
+		beforeEach(function() {
+			user = { username: 'test', password: '123' };
+			spyOn(userService, 'login').and.returnValue(deferred.promise);
+		});
+
 		it('Should resolve the promise', function() {
-			var user = { username: 'test', password: '123' };
 			window.success = function() {};
 
 			// Spies
@@ -31,11 +36,6 @@ describe('Authentication Service', function() {
 			authentication.login(user, success, function() {});
 			deferred.resolve( {data: 'test-jwt-token'} );
 			$rootScope.$apply();
-
-			// Should delete user password on resolve
-			expect(userService.login).toHaveBeenCalled();
-			expect(userService.login.calls.count()).toBe(1);
-			expect(user.password).toBeFalsy();
 
 			// Creates browser cookie
 			expect($cookies.put).toHaveBeenCalled();
@@ -54,7 +54,6 @@ describe('Authentication Service', function() {
 		});
 
 		it('Should reject the promise', function() {
-			var user = { username: 'test', password: '123' };
 			window.error = function() {};
 			spyOn(window, 'error');
 
@@ -62,18 +61,27 @@ describe('Authentication Service', function() {
 			deferred.reject('reject promise');
 			$rootScope.$apply();
 
-			// Should delete user password on reject
-			expect(userService.login).toHaveBeenCalled();
-			expect(userService.login.calls.count()).toBe(1);
-			expect(user.password).toBeFalsy();
 			expect(window.error).toHaveBeenCalled();
 			expect(window.error.calls.count()).toBe(1);
+		});
+
+		// After resolve and reject
+		afterEach(function() {
+			expect(userService.login).toHaveBeenCalled();
+			expect(userService.login.calls.count()).toBe(1);
+
+			// Should delete user password
+			expect(user.password).toBeFalsy();			
 		});
 	});
 
 	describe('authService.refreshSession', function() {
-		it('Should', function() {
+		it('Should not refresh session if cookie is not found', function() {
 			
+		});
+
+		it('Should refresh session if cookie is found', function() {
+
 		});
 	});
 

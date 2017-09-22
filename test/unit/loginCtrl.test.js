@@ -9,29 +9,25 @@ describe('Login Controller', function() {
 			$scope: scope
 		});
 		authentication = _authentication_;
+
+		spyOn(authentication, 'login');
+		scope.credentials = {};
 	}));
 
 	describe('Login form', function() {
 		
 		it('Should not authenticate on invalid form', function() {
-			scope.loginForm = {}
-			scope.loginForm.$invalid = true;
-			scope.credentials = {};
+			scope.loginForm = { $invalid: true }
 
-			spyOn(authentication, 'login');
 			scope.submit();
 			expect(authentication.login).not.toHaveBeenCalled();
 			expect(authentication.login.calls.count()).toBe(0);
 		});
 
 		it('Should authenticate on valid form', function() {
-			scope.credentials = {};
-			scope.loginForm = {}
-			scope.loginForm.$invalid = false;
+			scope.loginForm = { $invalid: false };
 			scope.loginForm.$setPristine = function() {};
-			authentication.login = function() {};
 
-			spyOn(authentication, 'login');
 			scope.submit();
 			expect(authentication.login).toHaveBeenCalled();
 			expect(authentication.login.calls.count()).toBe(1);

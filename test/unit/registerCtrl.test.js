@@ -34,15 +34,6 @@ describe('Register Controller', function() {
 			expect(userService.create.calls.count()).toBe(0);
 		});
 
-		it('Should call the userService create method on valid form', function() {
-			scope.credentials = {};
-			scope.registerForm = { $invalid: false };
-
-			scope.submit();
-			expect(userService.create).toHaveBeenCalled();
-			expect(userService.create.calls.count()).toBe(1);
-		});
-
 		it('Should resolve promise', function() {
 			scope.registerForm = { $invalid: false };
 			scope.submit();
