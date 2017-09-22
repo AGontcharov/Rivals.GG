@@ -71,29 +71,103 @@ describe('Authentication Service', function() {
 			expect(userService.login.calls.count()).toBe(1);
 
 			// Should delete user password
-			expect(user.password).toBeFalsy();			
+			expect(user.password).toBeFalsy();
+
+			// Prevent from cascading other tests
+			authentication.logout();
 		});
 	});
 
 	describe('authService.refreshSession', function() {
-		it('Should not refresh session if cookie is not found', function() {
-			
+
+		beforeEach(function() {
+			spyOn($cookies, 'get').and.callThrough();
+			spyOn(session, 'create');
 		});
 
 		it('Should refresh session if cookie is found', function() {
+			
+			// Create custom cookie
+			var cookie = {
+				username: 'test',
+				role: 'guest',
+				token: 'test-jwt-token'
+			};
 
+			$cookies.put('user', JSON.stringify(cookie));
+			authentication.refreshSession();
+			expect(session.create).toHaveBeenCalled();
+			expect(session.create.calls.count()).toBe(1);
+		});
+
+		it('Should not refresh session if cookie is not found', function() {
+			authentication.refreshSession();
+
+			expect($cookies.get('user')).toBeFalsy();
+			expect(session.create).not.toHaveBeenCalled();
+			expect(session.create.calls.count()).toBe(0);
+		});
+
+		afterEach(function() {
+
+			// An extra call is triggered on route change
+			expect($cookies.get).toHaveBeenCalled();
+			expect($cookies.get.calls.count()).toBe(2);
+
+			// Prevent from cascading other tests
+			authentication.logout();
 		});
 	});
 
 	describe('authService.isAuthenticated', function() {
-		it('Should', function() {
+		it('Should return true if session is active', function() {
+			session.user = '';
+			authentication.isAuthenticated();
+			expect(session.user).toBeFalsy();
+		});
 
+		it('Should return false if session is not active', function() {
+			session.user = 'rivals.gg';
+			authentication.isAuthenticated();
+			expect(session.user).toBeTruthy();
 		});
 	});
 
 	describe('authService.logout', function() {
-		it('Should', function() {
+		it('Should destroy active session', function() {
+			session.user = 'rivals.gg';
+			session.role = 'guest';
+			session.token = 'test-jwt-token';
 
+			// Assert session is defined
+			expect(session.user).toBe('rivals.gg');
+			expect(session.role).toBe('guest');
+			expect(session.token).toBe('test-jwt-token');
+
+			// Assert session is destroyed
+			authentication.logout();
+			expect(session.user).toBeFalsy();
+			expect(session.role).toBeFalsy();
+			expect(session.token).toBeFalsy();
+		});
+
+		it('Should remove active cookie', function() {
+			
+			// Create custom cookie
+			var cookie = {
+				username: 'test',
+				role: 'guest',
+				token: 'test-jwt-token'
+			};
+
+			// Assert cookie is defined
+			$cookies.put('user', JSON.stringify(cookie));
+			expect($cookies.get('user')).toBeTruthy();
+			expect(JSON.parse($cookies.get('user'))).toEqual(cookie);
+
+			// Assert cookie is removed
+			authentication.logout();
+			expect($cookies.get('user')).toBeFalsy();
 		});
 	});
 });

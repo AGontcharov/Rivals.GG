@@ -84,7 +84,7 @@ module.exports = function(config) {
     // Client
     // Disable console capture
     client: {
-      captureConsole: true
+      captureConsole: false
     }
 
   })

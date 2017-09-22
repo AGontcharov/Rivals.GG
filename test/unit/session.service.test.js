@@ -16,6 +16,7 @@ describe('Session Service', function() {
 		expect(session.create).toHaveBeenCalled();
 		expect(session.create.calls.count()).toBe(1);
 
+		// Assert session is defined
 		expect(session.user).toBe('Emma');
 		expect(session.role).toBe('host');
 		expect(session.token).toBe('adsfjasdlkjfaslkdf');
@@ -26,6 +27,7 @@ describe('Session Service', function() {
 		expect(session.destroy).toHaveBeenCalled();
 		expect(session.destroy.calls.count()).toBe(1);
 
+		// Assert session is destroyed
 		expect(session.user).toBeFalsy();
 		expect(session.role).toBeFalsy();
 		expect(session.token).toBeFalsy();
