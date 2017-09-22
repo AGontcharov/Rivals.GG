@@ -2,6 +2,7 @@ angular
 	.module('myApp')
 	.service('searchQuery', function() {
 
+	// Private function
 	function filter(query) {
 		return query.replace(/\s/g, '').replace(/,/g, '+');
 	}
@@ -10,8 +11,7 @@ angular
 		this.region = region;
 		this.summoners = filter(summoners).split('+');
 		this.route = 'summoner/' + region + '/' + filter(summoners);
-		this.requestURL = '/api/search/' + region + '/' + filter(summoners);
-		console.log(this);
+		this.requestURL = filter(summoners);
 	}
 
 	this.destroy = function() {

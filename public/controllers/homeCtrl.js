@@ -17,22 +17,18 @@ angular
 		$scope.summonerAccount = false;
 		$scope.accountSearch = false;
 
-		// pretty big logic to keep private and not be able to test
-		userService.getByAccount().then( function(response) {
-			if (response) {
-				console.log(response.data);
+		// Pretty big logic to keep private and not be able to test
+		userService.getByAccount().then(function(response) {
+			console.log(response.data);
 
-				//For now - need to figure where to add region in database
-				if (response.data.result) {
-					$scope.accountSearch = response.data.result;
-					$scope.findAccount(response.data.region, response.data.account)
-					$scope.summonerAccount = true;
-				}
-			}
-			else {
-				console.log(response.message);
-			}
-		})
+			// Region hardcoded from backend - need to figure where to add region in database
+			$scope.accountSearch = response.data.result;
+			$scope.findAccount(response.data.region, response.data.account)
+			$scope.summonerAccount = true;
+
+		}, function(response) {
+			console.log(response.message);
+		});
 	}
 
 	// Sets the active class for the items in the home subnavbar
@@ -88,14 +84,12 @@ angular
 	$scope.findAccount = function(region, account) {
 		userService.getBySummoner(region, account).then(function(response) {
 
-			if (response.success) {
-				console.log(response.data);
-				$scope.result = response.data[0];
-				$scope.accountSearch = true;
-			}
-			else {
-				console.log(response.message);
-			}
+			console.log(response.data);
+			$scope.result = response.data[0];
+			$scope.accountSearch = true;
+			
+		}, function(response) {
+			console.log(response.message);
 		});
 	}
 
@@ -105,13 +99,11 @@ angular
 
 		userService.updateAccount( { account: $scope.summonerName }).then(function(response) {
 
-			if (response.sucess) {
-				console.log('Added league of legends main account');
-				console.log(response.data);
-			}
-			else {
-				console.log(response.message);
-			}
+			console.log('Added league of legends main account');
+			console.log(response.data);
+			
+		}, function(response) {
+			console.log(response.message);
 		});
 	}
 

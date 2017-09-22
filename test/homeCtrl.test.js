@@ -107,18 +107,49 @@ describe('Home Controller', function() {
 	});
 
 	describe('findAccount', function() {
-		it('Should call the userService getBySummoner method', function() {
+
+		it('Should resolve the promise', function() {
 			scope.findAccount();
+			deferred.resolve( { data: ['1']} );
+			scope.$apply();
+
 			expect(userService.getBySummoner).toHaveBeenCalled();
 			expect(userService.getBySummoner.calls.count()).toBe(1);
+			expect(scope.result).toBe('1');
+			expect(scope.accountSearch).toBeTruthy();
+		});
+
+
+		it('Should reject the promise', function() {
+			scope.findAccount();
+			deferred.reject( { success: false, message: 'reject promise'} );
+			scope.$apply();
+
+			expect(userService.getBySummoner).toHaveBeenCalled();
+			expect(userService.getBySummoner.calls.count()).toBe(1);
+			fail('Need to implement error callback logic in controller');
 		});
 	});
 
 	describe('AddAccount', function() {
-		it('Should call the userService updateAccount method', function() {
+		it('Should resolve the promise', function() {
 			scope.addAccount();
+			deferred.resolve('data');
+			scope.$apply();
+
 			expect(userService.updateAccount).toHaveBeenCalled();
 			expect(userService.updateAccount.calls.count()).toBe(1);
 		});
+
+
+		it('Should reject the promise', function() {
+			scope.addAccount();
+			deferred.reject( { success: false, message: 'reject promise'} );
+			scope.$apply();
+
+			expect(userService.updateAccount).toHaveBeenCalled();
+			expect(userService.updateAccount.calls.count()).toBe(1);
+			fail('Need to implement error callback logic in controller');
+		});	
 	});
 });

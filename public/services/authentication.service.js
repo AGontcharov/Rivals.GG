@@ -11,21 +11,20 @@ angular
 		userService.login(user).then(function(response) {
 			delete user.password;
 
-			if (response.success) {
+			var cookie = {
+				username: user.username,
+				role: 'guest',
+				token: response.data 
+			};
 
-				var cookie = {
-					username: user.username,
-					role: 'guest',
-					token: response.data };
-
-				// Create user session
-				$cookies.put('user', JSON.stringify(cookie));
-				session.create(cookie.username, cookie.role, cookie.token);
-				success(user);
-			}
-			else {
-				error(response);
-			}
+			// Create user session
+			$cookies.put('user', JSON.stringify(cookie));
+			session.create(cookie.username, cookie.role, cookie.token);
+			success(user);
+			
+		}, function(response) {
+			delete user.password;
+			error(response)
 		});
 	}
 

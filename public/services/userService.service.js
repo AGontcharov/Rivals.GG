@@ -31,7 +31,7 @@ angular
 
 	// Private functions
 	function handleSuccess(res) {
-		return res.data;
+		return { data: res.data };
 	}
 
 	function handleError(err) {

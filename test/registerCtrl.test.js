@@ -59,7 +59,7 @@ describe('Register Controller', function() {
 			scope.registerForm = { $invalid: false };
 			scope.submit();
 
-			deferred.reject({ sucess: false, message: 'promise rejected' });
+			deferred.reject({ success: false, message: 'promise rejected' });
 			scope.$apply();
 
 			expect(userService.create).toHaveBeenCalled();

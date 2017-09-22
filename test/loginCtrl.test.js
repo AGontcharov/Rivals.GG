@@ -12,10 +12,7 @@ describe('Login Controller', function() {
 	}));
 
 	describe('Login form', function() {
-		it('Submit function should be defined', function() {
-			expect(scope.submit).toBeDefined();
-		});
-
+		
 		it('Should not authenticate on invalid form', function() {
 			scope.loginForm = {}
 			scope.loginForm.$invalid = true;
