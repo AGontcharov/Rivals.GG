@@ -1,4 +1,7 @@
 node_modules
+public/view/footer.html
+public/assets/footer.css
 test/unit/userService.service.test.js
 config.json
+rivals_gg.sql
 toDo

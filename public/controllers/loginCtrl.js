@@ -3,6 +3,7 @@ angular
 	.controller('loginCtrl', ['$scope', '$location', 'authentication', function($scope, $location, authentication) {
 
 	$scope.submit = function() {
+		$scope.error = false;
 
 		if (!$scope.loginForm.$invalid) {
 			$scope.loginForm.$setPristine();
@@ -14,7 +15,7 @@ angular
 				
 			// Error callback
 			}, function(err) {
-				console.error(err.message);
+				console.error(err);
 				$scope.error = true;
 			});
 		}

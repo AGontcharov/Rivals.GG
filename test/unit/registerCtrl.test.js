@@ -25,38 +25,51 @@ describe('Register Controller', function() {
 
 	describe('register form', function() {
 
-		it('Should not call the userService create method on invalid form', function() {
-			scope.registerForm = { $invalid: true };
-			scope.credentials = {};
+		beforeEach(function() {
+			scope.account = { username: 'test', password: 123, confirmPassword: 123, email: 'test@mail.com' }
+			scope.registerForm = {}
+			scope.registerForm.$setPristine = function() {};
+		});
 
+		it('Should not call the userService on invalid form', function() {
+			scope.registerForm.$invalid = true;
 			scope.submit();
+
 			expect(userService.create).not.toHaveBeenCalled();
 			expect(userService.create.calls.count()).toBe(0);
 		});
 
-		it('Should resolve promise', function() {
-			scope.registerForm = { $invalid: false };
-			scope.submit();
+		describe('Valid form', function() {
 
-			deferred.resolve('data');
-			scope.$apply();
+			it('Should resolve promise', function() {
+				scope.registerForm.$invalid = false;
+				scope.submit();
 
-			expect(userService.create).toHaveBeenCalled();
-			expect(userService.create.calls.count()).toBe(1);
-			expect($location.path()).toBe('/login');
-		});
+				deferred.resolve('data');
+				scope.$apply();
 
-		it('Should reject promise', function() {
-			scope.registerForm = { $invalid: false };
-			scope.submit();
+				expect(userService.create).toHaveBeenCalled();
+				expect(userService.create.calls.count()).toBe(1);
+				expect($location.path()).toBe('/login');
+			});
 
-			deferred.reject({ success: false, message: 'promise rejected' });
-			scope.$apply();
+			it('Should reject promise', function() {
+				scope.registerForm.$invalid = false;
+				scope.submit();
 
-			expect(userService.create).toHaveBeenCalled();
-			expect(userService.create.calls.count()).toBe(1);
-			expect(scope.error).toBeTruthy();
-			expect($location.path()).toBe('/');
-		});
+				deferred.reject({ success: false, message: 'promise rejected' });
+				scope.$apply();
+
+				expect(userService.create).toHaveBeenCalled();
+				expect(userService.create.calls.count()).toBe(1);
+				expect(scope.error).toBeTruthy();
+				expect($location.path()).toBe('/');
+			});
+
+			afterEach(function() {
+				expect(scope.account.password).toBeFalsy();
+				expect(scope.account.confirmPassword).toBeFalsy();
+			});
+		});	
 	});
 });
