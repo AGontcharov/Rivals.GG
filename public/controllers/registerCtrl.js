@@ -5,20 +5,25 @@ angular
 	$scope.submit = function() {
 		if (!$scope.registerForm.$invalid) {
 
-			// Delete passwords and reset the form
-			delete $scope.account.password;
-			delete $scope.account.confirmPassword;
-			$scope.registerForm.$setPristine();
-
 			// Success callback
 			userService.create($scope.account).then(function(response) {
 				console.log('User created');
 				$location.path('/login');
 
+				// Delete passwords and reset the form
+				delete $scope.account.password;
+				delete $scope.account.confirmPassword;
+				$scope.registerForm.$setPristine();
+
 			// Error callback
 			}, function(response) {
 				console.error(response.message);
 				$scope.error = true;
+
+				// Delete passwords and reset the form
+				delete $scope.account.password;
+				delete $scope.account.confirmPassword;
+				$scope.registerForm.$setPristine();
 			});
 		}
 	}

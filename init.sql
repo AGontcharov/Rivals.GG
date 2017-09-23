@@ -1,24 +1,26 @@
 CREATE DATABASE rivals_gg;
 use rivals_gg;
 
-DROP TABLE IF EXISTS 'user';
+DROP TABLE IF EXISTS `User`;
 
-CREATE TABLE 'user' (
- 	'ID' int(11) NOT NULL AUTO_INCREMENT,
-  	'Email' varchar(255) NOT NULL,
-  	'Username' varchar(255) NOT NULL,
-  	'Password' varchar(255) NOT NULL,
-  	PRIMARY KEY ('ID')
+CREATE TABLE `User` (
+ 	`ID` int(11) NOT NULL AUTO_INCREMENT,
+  	`Username` varchar(255) NOT NULL,
+  	`Password` varchar(255) NOT NULL,
+  	`Email` varchar(255) NOT NULL,
+  	PRIMARY KEY (`ID`)
 );
 
-DROP TABLE IF EXISTS 'summoner';
+DROP TABLE IF EXISTS `Summoner`;
 
-CREATE TABLE 'summoner' (
-	'summoner_name' varchar(255) NOT NULL,
-	'summoner_id' int(11) NOT NULL,
-	'profile_icon_id' int(11) NOT NULL,
-	'summoner_level' int(11) NOT NULL,
-	'revision_date' bigint(20) NOT NULL,
-	'region' varchar(255) NOT NULL
-	PRIMARY KEY ('')
+CREATE TABLE `Summoner` (
+	`SummonerID` int(11) NOT NULL,
+	`ID` int(11) NOT NULL,
+	`Name` varchar(255) NOT NULL,
+	`ProfileIconID` int(11) NOT NULL,
+	`Level` int(11) NOT NULL,
+	`RevisionDate` bigint(20) NOT NULL,
+	`Region` varchar(255) NOT NULL,
+	PRIMARY KEY (`SummonerID`),
+	FOREIGN KEY (`ID`) REFERENCES `User` (`ID`)
 );

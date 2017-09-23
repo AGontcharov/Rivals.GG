@@ -7,7 +7,7 @@ module.exports = {
 	createUser: function(req, res, next) {
 		console.log(req.body);
 
-		db.query("SELECT * FROM users WHERE Username=?", req.body.username, function(err, rows, fields) {
+		db.query("SELECT * FROM User WHERE Username=?", req.body.username, function(err, rows, fields) {
 			if (err) throw err;
 			console.log(rows);
 
@@ -15,9 +15,9 @@ module.exports = {
 				console.log("User not created yet");
 
 				// Was testing registration - remove later
-				return res.end();
+				// return res.end();
 
-				db.query("INSERT INTO users (Email, Username, Password) VALUES(?,?,?)", [req.body.email, req.body.username, req.body.password], function (err, rows, fields) {
+				db.query("INSERT INTO User (Email, Username, Password) VALUES(?,?,?)", [req.body.email, req.body.username, req.body.password], function (err, rows, fields) {
 					if (err) throw err;
 					console.log(rows);
 
@@ -33,7 +33,7 @@ module.exports = {
 	getUser: function(req, res, next) {
 		console.log(req.body);
 
-		db.query("SELECT * FROM users WHERE Username=?", req.body.username, function(err, rows, fields) {
+		db.query("SELECT * FROM User WHERE Username=?", req.body.username, function(err, rows, fields) {
 			if (err) throw err;
 			console.log(rows);
 
@@ -71,7 +71,8 @@ module.exports = {
 			console.log(req.body);
 			console.log(decoded.username);
 
-			db.query("SELECT Account FROM users WHERE Username=?", decoded.username, function(err, rows, fields) {
+			// NEED TO UPDATE THIS
+			db.query("SELECT Account FROM Summoner WHERE Username=?", decoded.username, function(err, rows, fields) {
 				if (err) throw err;
 				console.log(rows);
 
@@ -107,7 +108,7 @@ module.exports = {
 
 			console.log(req.body);
 
-			db.query("UPDATE users SET Account=? WHERE Username=?", [req.body.account, decoded.username], function(err, rows, fields) {
+			db.query("UPDATE User SET Account=? WHERE Username=?", [req.body.account, decoded.username], function(err, rows, fields) {
 				if (err) throw err;
 				console.log(rows);
 				
