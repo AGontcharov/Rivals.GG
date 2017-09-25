@@ -20,7 +20,6 @@ module.exports = function (req, res) {
 		}
 		
 		// Get summoner
-		console.log(decoded);
 		start();
 	});
 

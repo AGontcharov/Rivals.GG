@@ -10,23 +10,27 @@ angular
 
 		userService.login(user).then(function(response) {
 			delete user.password;
-
-			// Initialize cookie
-			var cookie = {
-				username: user.username,
-				role: 'guest',
-				token: response.data 
-			};
-
-			// Create user session
-			$cookies.put('user', JSON.stringify(cookie));
-			session.create(cookie.username, cookie.role, cookie.token);
+			authService.createSession(user, response);
 			success(user);
 			
 		}, function(response) {
 			delete user.password;
 			error(response.message)
 		});
+	}
+
+	authService.createSession = function(user, response) {
+		
+		// Initialize cookie
+		var cookie = {
+			username: user.username,
+			role: 'guest',
+			token: response.data 
+		};
+
+		// Create user session
+		$cookies.put('user', JSON.stringify(cookie));
+		session.create(cookie.username, cookie.role, cookie.token);
 	}
 
 	authService.refreshSession = function() {

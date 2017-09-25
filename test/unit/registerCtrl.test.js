@@ -50,7 +50,7 @@ describe('Register Controller', function() {
 
 				expect(userService.create).toHaveBeenCalled();
 				expect(userService.create.calls.count()).toBe(1);
-				expect($location.path()).toBe('/login');
+				expect($location.path()).toBe('/home');
 			});
 
 			it('Should reject promise', function() {

@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.controller('registerCtrl', ['$scope', '$location', 'userService', function($scope, $location, userService) {
+	.controller('registerCtrl', ['$scope', '$location', 'userService', 'authentication', function($scope, $location, userService, authentication) {
 		
 	$scope.submit = function() {
 		if (!$scope.registerForm.$invalid) {
@@ -8,7 +8,12 @@ angular
 			// Success callback
 			userService.create($scope.account).then(function(response) {
 				console.log('User created');
-				$location.path('/login');
+
+				// Create cookie and session
+				authentication.createSession($scope.account, response);
+
+				// Redirect to dashboard
+				$location.path('/home');
 
 				// Delete passwords and reset the form
 				delete $scope.account.password;
