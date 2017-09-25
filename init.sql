@@ -18,9 +18,9 @@ CREATE TABLE `Summoner` (
 	`ID` int(11) NOT NULL,
 	`Name` varchar(255) NOT NULL,
 	`ProfileIconID` int(11) NOT NULL,
+	`Region` varchar(255) NOT NULL,
 	`Level` int(11) NOT NULL,
 	`RevisionDate` bigint(20) NOT NULL,
-	`Region` varchar(255) NOT NULL,
 	PRIMARY KEY (`SummonerID`),
 	FOREIGN KEY (`ID`) REFERENCES `User` (`ID`)
 );

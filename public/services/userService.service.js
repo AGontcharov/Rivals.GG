@@ -14,18 +14,24 @@ angular
 		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
 	}
 
+
+	// Account endpoints
+	userService.createAccount = function(account) {
+		return $http.post(baseURL + '/users/account', account).then(handleSuccess, function() { return handleError('Error creating summoner account'); });
+	}
+
 	userService.getByAccount = function(username) {
 		return $http.get(baseURL + '/users/account').then(handleSuccess, function() { return handleError('Error getting summoner account by username'); });
 	}
 
-	userService.updateAccount = function(account) {
+	/*userService.updateAccount = function(account) {
 		return $http.put(baseURL + '/users/account', account).then(handleSuccess, function() { return handleError('Error updating user summoner account'); });
-	}
+	}*/
 
 
 	// Summoner endpoints
 	userService.getBySummoner = function(region, summoner) {
-		return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by name'); });
+		return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by region and name'); });
 	}
 
 

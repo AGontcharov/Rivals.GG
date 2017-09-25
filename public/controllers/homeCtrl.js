@@ -17,13 +17,12 @@ angular
 		$scope.summonerAccount = false;
 		$scope.accountSearch = false;
 
-		// Pretty big logic to keep private and not be able to test
+		// Pretty big logic to keep private and not be able to test - any argument?
 		userService.getByAccount().then(function(response) {
 			console.log(response.data);
 
-			// Region hardcoded from backend - need to figure where to add region in database
 			$scope.accountSearch = response.data.result;
-			$scope.findAccount(response.data.region, response.data.account)
+			$scope.findAccount(response.data.region, response.data.account);
 			$scope.summonerAccount = true;
 
 		}, function(response) {
@@ -81,8 +80,8 @@ angular
 	}
 
 	// Finds summoner account based on region and name
-	$scope.findAccount = function(region, account) {
-		userService.getBySummoner(region, account).then(function(response) {
+	$scope.findAccount = function(region, name) {
+		userService.getBySummoner(region, name).then(function(response) {
 
 			console.log(response.data);
 			$scope.result = response.data[0];
@@ -95,12 +94,23 @@ angular
 
 	// Updates the user with their summoner account
 	$scope.addAccount = function() {
-		console.log('Adding: ', $scope.summonerName);
+		console.log('Adding: ', $scope.summoner.name);
 
-		userService.updateAccount( { account: $scope.summonerName }).then(function(response) {
+		// Get account details
+		var account = {
+			summonerID: $scope.result.summonerId,
+			name: $scope.result.summonerName,
+			profileIconID: $scope.result.profileIcon,
+			region: $scope.summoner.region,
+			level: $scope.result.summonerLevel,
+			revisionDate: $scope.result.lastActivity
+		};
+
+		userService.createAccount(account).then(function(response) {
 
 			console.log('Added league of legends main account');
 			console.log(response.data);
+			$scope.summonerAccount = true;
 			
 		}, function(response) {
 			console.log(response.message);

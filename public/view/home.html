@@ -102,12 +102,12 @@
 				<!-- Add league of legends account -->
 				<div ng-show="!summonerAccount" class="no-summoner-account">
 					<p>Find your summoner account!</p>
-					<input type="text" id="summonerName" name="summonerName" ng-model="summonerName" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
-					<select ng-model="accountRegion">
+					<input type="text" id="summonerName" name="summonerName" ng-model="summoner.name" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
+					<select ng-model="summoner.region">
 						<option value="na1">NA</option>
 						<option value="euw1">EUW</option>
 					</select>
-					<a href ng-click="findAccount(accountRegion, summonerName)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+					<a href ng-click="findAccount(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 				</div>
 			</div>
 			<!-- ./summary-border -->
