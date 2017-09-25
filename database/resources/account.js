@@ -1,6 +1,4 @@
 var db = require('../database');
-var config = require('../../config.json');
-var jwt = require('jsonwebtoken');
 
 module.exports = {
 
