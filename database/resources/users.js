@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 module.exports = {
 
   /**
-   * Creates a user resource
+   * Creates user resource
    * @params {Object} req - The request object
    * @params {Object} res - The response object
    * @params {function} next - The callback for the next matching route
@@ -39,7 +39,7 @@ module.exports = {
   },
 
   /**
-   * Gets a user resource
+   * Gets user resource
    * @params {Object} the request object
    * @params {Object} the response object
    * @params {Function} the callback for the next matching route
@@ -52,12 +52,13 @@ module.exports = {
       if (err) throw err;
       console.log(rows);
 
+      // HTTP 401 Unauthorized
       if (!rows.length) {
         return res.status(401).send('Username or password is incorrect');
       }
 
       // HTTP 200 OK
-      if (req.body.username == rows[0].Username && req.body.password == rows[0].Password) {
+      if (req.body.username === rows[0].Username && req.body.password === rows[0].Password) {
         var token = jwt.sign({username: rows[0].Username}, config.jwtKey, {expiresIn: '10m'});
         return res.status(200).send(token);
       }
