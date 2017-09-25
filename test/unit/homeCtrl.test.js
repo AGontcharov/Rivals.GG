@@ -14,7 +14,7 @@ describe('Home Controller', function() {
 
 		// Use a spy to return the deferred promise
 		spyOn(userService, 'getBySummoner').and.returnValue(deferred.promise);
-		spyOn(userService, 'updateAccount').and.returnValue(deferred.promise);
+		spyOn(userService, 'createAccount').and.returnValue(deferred.promise);
 
 		// Init the controller, passing the spy service instance
 		controller = $controller('homeCtrl', {
@@ -95,6 +95,7 @@ describe('Home Controller', function() {
 	});
 
 	describe('search', function() {
+		
 		it('Should call the findAccount method on Enter key press', function() {
 			var keyEvent = { which: 13 };
 			scope.findAccount = function() {};
@@ -107,6 +108,7 @@ describe('Home Controller', function() {
 	});
 
 	describe('findAccount', function() {
+		
 		it('Should resolve the promise', function() {
 			scope.findAccount();
 			deferred.resolve( { data: ['1']} );
@@ -130,13 +132,19 @@ describe('Home Controller', function() {
 	});
 
 	describe('AddAccount', function() {
+
+		beforeEach(function() {
+			scope.result = {};
+			scope.summoner = {};
+		});
+		
 		it('Should resolve the promise', function() {
 			scope.addAccount();
 			deferred.resolve('data');
 			scope.$apply();
 
-			expect(userService.updateAccount).toHaveBeenCalled();
-			expect(userService.updateAccount.calls.count()).toBe(1);
+			expect(userService.createAccount).toHaveBeenCalled();
+			expect(userService.createAccount.calls.count()).toBe(1);
 		});
 
 
@@ -145,8 +153,8 @@ describe('Home Controller', function() {
 			deferred.reject( { success: false, message: 'reject promise'} );
 			scope.$apply();
 
-			expect(userService.updateAccount).toHaveBeenCalled();
-			expect(userService.updateAccount.calls.count()).toBe(1);
+			expect(userService.createAccount).toHaveBeenCalled();
+			expect(userService.createAccount.calls.count()).toBe(1);
 			fail('Need to implement error callback logic in controller');
 		});	
 	});

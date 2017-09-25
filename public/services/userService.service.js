@@ -24,6 +24,14 @@ angular
 		return $http.get(baseURL + '/users/account').then(handleSuccess, function() { return handleError('Error getting summoner account by username'); });
 	}
 
+	userService.createSoloLeague = function(stats) {
+		return $http.post(baseURL + '/users/account/solo', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked solo'); });
+	}
+
+	userService.createFlexLeague = function(stats) {
+		return $http.post(baseURL + '/users/account/flex', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked flex'); });
+	}
+
 	/*userService.updateAccount = function(account) {
 		return $http.put(baseURL + '/users/account', account).then(handleSuccess, function() { return handleError('Error updating user summoner account'); });
 	}*/

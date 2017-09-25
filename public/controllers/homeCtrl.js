@@ -93,8 +93,8 @@ angular
 	}
 
 	// Updates the user with their summoner account
+	// Split ranked solo and flex as private functions?
 	$scope.addAccount = function() {
-		console.log('Adding: ', $scope.summoner.name);
 
 		// Get account details
 		var account = {
@@ -106,15 +106,67 @@ angular
 			revisionDate: $scope.result.lastActivity
 		};
 
+		// Create account
 		userService.createAccount(account).then(function(response) {
 
-			console.log('Added league of legends main account');
 			console.log(response.data);
 			$scope.summonerAccount = true;
+
+			// Create ranked solo
+			if ($scope.result.soloActive) {
+
+				// Need to change Id to ID
+				var stats = {
+					summonerID: $scope.result.summonerId,
+					icon: $scope.result.soloIcon, 
+					leagueName: $scope.result.soloLeagueName,
+					tier: $scope.result.soloTier,
+					division: $scope.result.soloDivision,
+					leaguePoints: $scope.result.soloLP,
+					wins: $scope.result.soloWins,
+					losses: $scope.result.soloLosses
+				}
+				console.log(stats);
+
+				userService.createSoloLeague(stats).then(function(response) {
+
+					console.log('Added ranked solo stats');
+					console.log(response.data);
+				
+				}, function(response) {
+					console.log(response.message);
+				});			
+			}
+
+			// Create ranked flex
+			if ($scope.result.flexActive) {
+
+				// Need to change Id to ID
+				var stats = {
+					summonerID: $scope.result.summonerId,
+					icon: $scope.result.flexIcon, 
+					leagueName: $scope.result.flexLeagueName,
+					tier: $scope.result.flexTier,
+					division: $scope.result.flexDivision,
+					leaguePoints: $scope.result.flexLP,
+					wins: $scope.result.flexWins,
+					losses: $scope.result.flexLosses
+				}
+				console.log(stats);
+
+				userService.createFlexLeague(stats).then(function(response) {
+
+					console.log('Added ranked flex stats');
+					console.log(response.data);
+				
+				}, function(response) {
+					console.log(response.message);
+				});			
+			}
 			
 		}, function(response) {
 			console.log(response.message);
-		});
+		});	
 	}
 
 }]);

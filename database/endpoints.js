@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var users = require('./resources/users');
+var account = require('./resources/account');
 
 module.exports = function(db) {
 	var apiRouter = express.Router();
@@ -18,11 +19,15 @@ module.exports = function(db) {
 
 	apiRouter.post('/users/login', users.getUser);
 
-	apiRouter.post('/users/account', users.createAccount);
+	apiRouter.post('/users/account', account.createAccount);
 
-	apiRouter.get('/users/account', users.getAccount);
-
+	apiRouter.get('/users/account', account.getAccount);
+	
 	// apiRouter.put('/users/account', users.updateAccount);
+
+	apiRouter.post('/users/account/solo', account.createAccountSolo);
+
+	apiRouter.post('/users/account/flex', account.createAccountFlex);
 
 	apiRouter.get('/search/:region/:summoners', require('./resources/summoner.js'));
 
