@@ -57,7 +57,7 @@ module.exports = function (req, res) {
 
 				var entry = {
 					result : true,
-					summonerId: apiResponse.id,
+					summonerID: apiResponse.id,
 					profileIcon: apiResponse.profileIconId,
 					summonerName: apiResponse.name,
 					summonerLevel: apiResponse.summonerLevel,
@@ -70,7 +70,7 @@ module.exports = function (req, res) {
 
 	// Get summoner ranked info	
 	function rankedInfo(obj, callback) {
-		var requestURL = req.params.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + obj.summonerId;
+		var requestURL = req.params.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + obj.summonerID;
 		console.log(requestURL);
 
 		request('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {

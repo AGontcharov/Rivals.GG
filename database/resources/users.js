@@ -14,9 +14,6 @@ module.exports = {
 			if (!rows.length) {
 				console.log("User not created yet");
 
-				// Was testing registration - remove later
-				// return res.end();
-
 				var args = [req.body.email, req.body.username, req.body.password];
 
 				db.query("INSERT INTO User (Email, Username, Password) VALUES(?,?,?)", args, function (err, rows, fields) {

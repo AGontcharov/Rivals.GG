@@ -11,7 +11,7 @@ angular
 	// Private function
 	function init() {
 		$scope.username = session.user;
-		$scope.profile =true;
+		$scope.profile = true;
 		$scope.rankedSolo = true;
 		$scope.rankedFlex = false;
 		$scope.summonerAccount = false;
@@ -19,11 +19,9 @@ angular
 
 		// Pretty big logic to keep private and not be able to test - any argument?
 		userService.getByAccount().then(function(response) {
-			console.log(response.data);
-
-			$scope.accountSearch = response.data.result;
-			$scope.findAccount(response.data.region, response.data.account);
+			$scope.accountSearch = true;
 			$scope.summonerAccount = true;
+			$scope.findAccount(response.data.region, response.data.account);
 
 		}, function(response) {
 			console.log(response.message);
@@ -98,7 +96,7 @@ angular
 
 		// Get account details
 		var account = {
-			summonerID: $scope.result.summonerId,
+			summonerID: $scope.result.summonerID,
 			name: $scope.result.summonerName,
 			profileIconID: $scope.result.profileIcon,
 			region: $scope.summoner.region,
@@ -115,9 +113,8 @@ angular
 			// Create ranked solo
 			if ($scope.result.soloActive) {
 
-				// Need to change Id to ID
 				var stats = {
-					summonerID: $scope.result.summonerId,
+					summonerID: $scope.result.summonerID,
 					icon: $scope.result.soloIcon, 
 					leagueName: $scope.result.soloLeagueName,
 					tier: $scope.result.soloTier,
@@ -129,8 +126,6 @@ angular
 				console.log(stats);
 
 				userService.createSoloLeague(stats).then(function(response) {
-
-					console.log('Added ranked solo stats');
 					console.log(response.data);
 				
 				}, function(response) {
@@ -141,7 +136,6 @@ angular
 			// Create ranked flex
 			if ($scope.result.flexActive) {
 
-				// Need to change Id to ID
 				var stats = {
 					summonerID: $scope.result.summonerId,
 					icon: $scope.result.flexIcon, 
@@ -155,8 +149,6 @@ angular
 				console.log(stats);
 
 				userService.createFlexLeague(stats).then(function(response) {
-
-					console.log('Added ranked flex stats');
 					console.log(response.data);
 				
 				}, function(response) {

@@ -88,11 +88,11 @@ module.exports = {
 
 					if (!rows.length) {
 						console.log('No account is tied to user ' + decoded.username);
-						res.status(404).send({ result: false });
+						res.status(404).send('No account listed for ' + decoded.username);
 					}
 					else {
 						console.log('Found account ' + rows[0].Name);
-						res.status(200).send({ result: true, account: rows[0].Name, region: rows[0].Region });
+						res.status(200).send({ account: rows[0].Name, region: rows[0].Region });
 					}
 				});
 			});
