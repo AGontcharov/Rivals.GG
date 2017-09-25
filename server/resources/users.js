@@ -1,4 +1,4 @@
-var db = require('../database');
+var db = require('../database/database');
 var config = require('../../config.json');
 var jwt = require('jsonwebtoken');
 
@@ -40,8 +40,8 @@ module.exports = {
 
   /**
    * Gets user resource
-   * @params {Object} the request object
-   * @params {Object} the response object
+   * @params {Object} req - The request object
+   * @params {Object} res = The response object
    * @params {Function} the callback for the next matching route
    * @returns {HTTP 200 on success, HTTP 401 on failure}
    */

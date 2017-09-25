@@ -1,4 +1,4 @@
-var db = require('../database');
+var db = require('../database/database');
 
 module.exports = {
 

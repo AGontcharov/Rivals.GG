@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 
 // Loads the database module to cofigure and connect to the mysql database
-var db = require('./database/database');
+var db = require('./server/database/database');
 
 // Loads the api routes
-var api = require('./database/endpoints')(db);
+var api = require('./server/endpoints')(db);
 app.use('/api', api);
 
 // Serves static contents from the /public folder
