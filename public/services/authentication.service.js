@@ -45,10 +45,6 @@ angular
 		return !!session.user;
 	};
 
-	authService.isAuthorized = function() {
-
-	};
-
 	authService.logout = function() {
 		session.destroy();
 		$cookies.remove('user');

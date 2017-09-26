@@ -16,7 +16,8 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 	.when('/summoner/:region/:name', { 
 		templateUrl: '/view/summoner.html',
 		controller: 'summonerCtrl'
-	});
+	})
+	.otherwise({ redirectTo: '/' });
 
 	$locationProvider.html5Mode(true);
 
@@ -29,8 +30,7 @@ app.run(['$rootScope', '$location', 'authentication', function($rootScope, $loca
 		console.log('triggered', $location.path());
 		authentication.refreshSession();
 
-		// Possibly rethink this
-		if ($location.path() != '/' && $location.path() != '/login') {
+		if ($location.path() !== '/' && $location.path() !== '/login') {
 			
 			if (!authentication.isAuthenticated()) {
 				console.log('DENY : Redirecting to login page');
