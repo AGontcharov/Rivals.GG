@@ -35,6 +35,7 @@ module.exports = function (req, res) {
    * Get summoner information
    * @params {String} name - The summoner name to look up
    * @params {Function} callback - The async callback for async.map
+   * @returns response.statusCode on failure
    */
   function accountInfo(name, callback) {
     var requestURL = req.params.region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name;
@@ -43,6 +44,8 @@ module.exports = function (req, res) {
     // Makes a request to Riot Games
     request.get('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {
     console.log('statusCode:', response && response.statusCode);
+
+      if (error) throw error;
 
       // Error
       if (response.statusCode != 200) {
@@ -69,6 +72,7 @@ module.exports = function (req, res) {
    * Get summoner ranked stats
    * @params {Object} obj - The entry representing the summoner
    * @params {Function} callback - The async callback for async.map
+   * @returns response.statusCode on failure
    */
   function rankedInfo(obj, callback) {
     var requestURL = req.params.region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + obj.summonerID;
@@ -77,7 +81,7 @@ module.exports = function (req, res) {
     // Makes a request to Riot Games
     request.get('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {
       console.log('statusCode:', response && response.statusCode);
-      
+
       // Error
       if (response.statusCode != 200) {
         return res.status(response.statusCode).send(body);

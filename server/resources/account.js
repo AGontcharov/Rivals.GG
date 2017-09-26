@@ -55,7 +55,7 @@ module.exports = {
    * @returns {HTTP 200 on success, HTTP 404 on failure}
    */
   getAccount: function(req, res, next) {
-    console.log(req.body);
+    // console.log(req.body);
     console.log(res.locals.username);
 
     // Get user ID
