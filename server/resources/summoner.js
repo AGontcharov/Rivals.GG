@@ -41,12 +41,14 @@ module.exports = function (req, res) {
     console.log(requestURL);
 
     // Makes a request to Riot Games
-    request('https://' + requestURL + '?api_key=' + config.apiKey, function(error, response, body) {
+    request.get('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {
+    console.log('statusCode:', response && response.statusCode);
 
-      // Better message to send later?
-      if (error) return res.status(404).send(error);
+      // Error
+      if (response.statusCode != 200) {
+        return res.status(response.statusCode).send(body);
+      }
       
-      console.log('statusCode:', response && response.statusCode);
       var apiResponse = JSON.parse(body);
 
       // Summoner info
@@ -73,12 +75,14 @@ module.exports = function (req, res) {
     console.log(requestURL);
 
     // Makes a request to Riot Games
-    request('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {
-
-      // Better message to send later?
-      if (error) return res.status(404).send(error);
-
+    request.get('https://' + requestURL + '?api_key=' + config.apiKey, function (error, response, body) {
       console.log('statusCode:', response && response.statusCode);
+      
+      // Error
+      if (response.statusCode != 200) {
+        return res.status(response.statusCode).send(body);
+      }
+
       var apiResponse = JSON.parse(body);
       console.log(apiResponse);
 
