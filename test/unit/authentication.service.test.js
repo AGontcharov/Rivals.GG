@@ -27,29 +27,19 @@ describe('Authentication Service', function() {
 			window.success = function() {};
 
 			// Spies
-			spyOn($cookies, 'put').and.callThrough();
-			spyOn(session, 'create');
+			spyOn(authentication, 'createSession').and.callThrough();
 			spyOn(window, 'success');
 
 			// Mock promise resolve
 			authentication.login(user, success, function() {});
-			deferred.resolve( {data: 'test-jwt-token'} );
+			deferred.resolve('test');
 			$rootScope.$apply();
 
-			// Creates browser cookie
-			expect($cookies.put).toHaveBeenCalled();
-			expect($cookies.put.calls.count()).toBe(1);
-			var cookie = JSON.parse($cookies.get('user'));
-			expect(cookie.username).toBe('test');
-			expect(cookie.role).toBe('guest');
-			expect(cookie.token).toBe('test-jwt-token');
-
 			// Creates session
-			expect(session.create).toHaveBeenCalled();
-			expect(session.create.calls.count()).toBe(2); // An extra call is triggered on route change
+			expect(authentication.createSession).toHaveBeenCalled();
+			expect(authentication.createSession.calls.count()).toBe(1);
 			expect(window.success).toHaveBeenCalled();
 			expect(window.success.calls.count()).toBe(1);
-
 		});
 
 		it('Should reject the promise', function() {
@@ -66,6 +56,7 @@ describe('Authentication Service', function() {
 
 		// After resolve and reject
 		afterEach(function() {
+
 			expect(userService.login).toHaveBeenCalled();
 			expect(userService.login.calls.count()).toBe(1);
 

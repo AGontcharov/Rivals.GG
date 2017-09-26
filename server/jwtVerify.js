@@ -3,8 +3,12 @@ var config = require('../config.json');
 
 module.exports = function(req, res, next) {
 
+  // Get the Authorization header from request
+  var bearerHeader = req.get('Authorization');
+  var token = bearerHeader.split(' ')[1];
+
   // Verify the jwt token
-  jwt.verify(req.get('auth-token'), config.jwtKey, function(err, decoded) {
+  jwt.verify(token, config.jwtKey, function(err, decoded) {
 
     if (err) {
       console.log(err);

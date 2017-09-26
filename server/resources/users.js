@@ -29,7 +29,8 @@ module.exports = {
 
           // HTTP 201 Created
           var token = jwt.sign({username: req.body.username}, config.jwtKey, {expiresIn: '10m'});
-          return res.status(201).send(token);
+          res.cookie('token', token);
+          return res.status(201).send('User created');
         });
       }
 
@@ -60,7 +61,8 @@ module.exports = {
       // HTTP 200 OK
       if (req.body.username === rows[0].Username && req.body.password === rows[0].Password) {
         var token = jwt.sign({username: rows[0].Username}, config.jwtKey, {expiresIn: '10m'});
-        return res.status(200).send(token);
+        res.cookie('token', token);
+        return res.status(200).send('Authenticated');
       }
 
       // HTTP 401 Unauthorized

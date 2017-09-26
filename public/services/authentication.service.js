@@ -10,7 +10,7 @@ angular
 
 		userService.login(user).then(function(response) {
 			delete user.password;
-			authService.createSession(user, response);
+			authService.createSession(user);
 			success(user);
 			
 		}, function(response) {
@@ -19,13 +19,13 @@ angular
 		});
 	}
 
-	authService.createSession = function(user, response) {
-		
+	authService.createSession = function(user) {
+
 		// Initialize cookie
 		var cookie = {
 			username: user.username,
 			role: 'guest',
-			token: response.data 
+			token: $cookies.get('token')
 		};
 
 		// Create user session

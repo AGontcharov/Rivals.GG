@@ -6,8 +6,7 @@ angular
 		'request': function (config) {
 
 			if (session) {
-				config.headers['Auth-Token'] = session.token;
-				// config.headers.Authorization = 'Bearer ' + session.token;
+				config.headers.Authorization = 'Bearer ' + session.token;
 			}
 			return config;
 		},
