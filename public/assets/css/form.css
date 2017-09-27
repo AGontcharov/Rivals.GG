@@ -1,10 +1,14 @@
-.form-wrapper {
+.center-form {
 	position: fixed;
   	top: 35%;
   	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
+
+/* 
+ * Main header
+ */
 .heading {
 	padding-bottom: 5px;
 	text-align: center;
@@ -21,6 +25,10 @@
 	white-space: nowrap;
 }
 
+
+/* 
+ * Register and login forms
+ */
 div.form, .alternative {
 	width: 400px;
 	background: #f2f2f2;
@@ -56,6 +64,10 @@ div.form input[type=submit] {
 	padding-top: 10px;
 }
 
+
+/* 
+ * Alternative link
+ */
 .alternative {
 	margin-top: 15px;
 	padding: 20px;
@@ -67,8 +79,9 @@ div.form input[type=submit] {
 }
 
 
-/* Form validation. *
- * -----------------*/
+/* 
+ * Form validation
+ */
  .form-error {
  	padding-top: 3px;
  	color: #ff3333;

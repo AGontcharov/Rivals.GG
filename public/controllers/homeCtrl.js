@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.controller('homeCtrl', ['$scope', 'session', 'userService', function($scope, session, userService) {
+	.controller('homeCtrl', ['$scope', '$location', 'session', 'userService', function($scope, $location, session, userService) {
 
 	// Private variables
 	var selected = 'profile';
@@ -70,6 +70,10 @@ angular
 			$scope.rankedFlex = false;
 			$scope.rankedSolo = true;
 		}
+	}
+
+	$scope.go = function(location) {
+		$location.path(location);
 	}
 
 	// Searches account on Enter key press inside the input

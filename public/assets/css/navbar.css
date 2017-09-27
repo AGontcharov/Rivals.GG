@@ -1,11 +1,12 @@
+/* 
+ * Navbar
+ */
 .navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background: #333;
-
-    /*padding-left: 100px;*/
 }
 
 .navbar li {
@@ -31,6 +32,10 @@
 	background-color: #111;
 }
 
+
+/* 
+ * Search bar
+ */
 .search-bar {
 	position: relative;
 	width: 350px;

@@ -3,10 +3,6 @@
 	text-align: center;
 }
 
-.summoner-profile, .ranked-stats {
-	padding-top: 15px;
-}
-
 .portfolio {
 	max-width: 900px;
 	border: solid 2px black;
@@ -22,6 +18,7 @@
 	display: inline-block;
 	text-align: left;
 	padding-bottom: 10px;
+	padding-top: 15px;
 }
 
 .summoner-profile p, .ranked-stats p {

@@ -1,3 +1,7 @@
+/*
+ * Top level CSS style
+ */
+
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -14,22 +18,15 @@ h1, h2, h3 {
 	text-align: center;
 }
 
-
-/* Bootstrap. *
- * -----------*/
-
-.container {
-	/*background: white;*/
-}
-
-/* Custom ccs style. *
- * ------------------*/
+/* 
+ * Custom ccs style
+ */
 
 .center {
 	text-align: center;
 }
 
-/*using this in summoner.html*/
+/* Using this in summoner.html */
 .circle-radius {
 	border-radius: 50%;
 }

@@ -40,13 +40,13 @@ module.exports = {
   },
 
   /**
-   * Gets user resource
+   * Authenticates a user resource
    * @params {Object} req - The request object
    * @params {Object} res = The response object
    * @params {Function} the callback for the next matching route
    * @returns {HTTP 200 on success, HTTP 401 on failure}
    */
-  getUser: function(req, res, next) {
+  authenticateUser: function(req, res, next) {
     console.log(req.body);
 
     db.query("SELECT * FROM User WHERE Username=? LIMIT 1", req.body.username, function(err, rows, fields) {
@@ -68,5 +68,23 @@ module.exports = {
       // HTTP 401 Unauthorized
       else return res.status(401).send('Username or password is incorrect');
     });
-  }
+  },
+
+  /**
+   * Get user resource
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching route
+   * @returns {HTTP 200 on success}
+   */
+  getUser: function(req, res, next) {
+    console.log(req.params.username);
+
+    db.query("SELECT * FROM User WHERE Username=? LIMIT 1", req.params.username, function(err, rows, fields) {
+      if (err) throw err;
+      console.log(rows);
+
+      return res.status(200).send({ username: rows[0].Username, email: rows[0].Email })
+    });
+  },
 }

@@ -1,0 +1,81 @@
+<div ng-include src="'view/navbar.html'"></div>
+
+<div class="container">
+	<div class="row">
+		<h2>Edit My Account</h2>
+		
+		<div class="col-xs-12 col-lg-5">
+			<div class="form-wrapper">
+				
+				<!-- Update email -->
+				<div class="change-email">
+					<form name="updateEmail" method="put" ng-submit="updateEmail()" novalidate>
+						<h3>Account</h3>
+
+						<!-- Username -->
+						<label for="username">Username</label>
+						<input type="text" id="username" name="username" ng-model="account.username" disabled>
+
+						<!-- Email -->
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" ng-model="account.email" ng-model-options="{ updateOn: 'blur' }" autofocus required>
+						<div class="form-error" ng-show="(updateForm.$submitted || updateForm.email.$dirty) && updateForm.email.$invalid">
+							<span ng-show="updateForm.email.$error.required">Email is required</span>
+							<span ng-show="updateForm.email.$error.email">Enter a valid email</span>
+						</div>
+
+						<!-- Update button -->
+						<div class="update-input">
+							<input type="submit" value="Update email">
+						</div>
+
+					</form>
+				</div>
+
+				<!-- Update password -->
+				<div class="change-password">
+					<form name="updatePass" method"put" ng-submit="updatePass()" novalidate>
+						<h3>Change Password</h3>
+
+						<!-- Old password -->
+						<label for="password">Old Password</label>
+						<input type="password" id="password" name="password" ng-model="account.password" required>
+						<div class="form-error" ng-show="(updatePass.$submitted || updatePass.password.$dirty) && updatePass.password.$invalid">
+							<span ng-show="updatePass.password.$error.required">Password is required</span>
+						</div>
+
+						<!-- New password -->
+						<label for="newPassword">New password</label>
+						<input type="password" id="newPassword" name="newPassword" ng-model="account.newPassword" required>
+						<div class="form-error" ng-show="(updatePass.$submitted || updatePass.newPassword.$dirty) && updatePass.newPassword.$invalid">
+							<span ng-show="updatePass.newPassword.$error.required">Password is required</span>
+						</div>
+
+						<!-- Confirm new password -->
+						<label for="confirmNewPassword">Confirm New password</label>
+						<input type="password" id="confirmNewPassword" name="confirmNewPassword" ng-model="account.confirmNewPassword" required compare-to="account.newPassword">
+						<div class="form-error" ng-show="(updatePass.$submitted || updatePass.confirmNewPassword.$dirty) && updatePass.confirmNewPassword.$invalid">
+							<span ng-show="updatePass.confirmNewPassword.$error.required">Password is required</span>
+							<span ng-show="updatePass.confirmNewPassword.$error.compareTo">Passwords do not match</span>
+						</div>
+
+						<!-- Update button -->
+						<div class="update-input">
+							<input type="submit" value="Update password">
+						</div>
+
+					</form>
+				</div>
+
+				<!-- Delete Account -->
+				<div class="delete-account">
+					<h3>Delete Account</h3>
+					<p>Once you delete your account, there is no going back. Please be certain.</p>
+					<button ng-click="deleteAccount()">Delete account</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ./row -->
+</div>
+<!-- ./container -->

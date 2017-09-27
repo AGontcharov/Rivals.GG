@@ -13,6 +13,10 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 		templateUrl: '/view/home.html',
 		controller: 'homeCtrl'
 	})
+	.when('/profile', {
+		templateUrl: 'view/profile.html',
+		controller: 'profileCtrl'
+	})
 	.when('/summoner/:region/:name', { 
 		templateUrl: '/view/summoner.html',
 		controller: 'summonerCtrl'

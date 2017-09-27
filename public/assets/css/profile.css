@@ -1,0 +1,60 @@
+/*
+ * All forms
+ */
+.form-wrapper {
+	padding-top: 20px;
+}
+
+.form-wrapper h3 {
+	border-bottom: 1px solid #cccccc;
+	padding-bottom: 10px;
+	text-align: left;
+}
+
+.form-wrapper p {
+	color: black;
+}
+
+.form-wrapper input, .form-wrapper label {
+	text-align: left;
+	display: block;
+	width: 100%;
+}
+
+.form-wrapper input[type=text], .form-wrapper input[type=password], .form-wrapper input[type=email] {
+	background: white;
+	margin-bottom: 5px;
+}
+
+.change-email, .change-password, .delete-account {
+	padding-bottom: 20px;
+}
+
+
+/*
+ * Update button
+ */
+.update-input {
+	padding-top: 10px;
+
+	display: block;
+	margin: 0 auto;
+}
+
+.update-input input {
+	text-align: center;
+}
+
+
+/*
+ * Delete account
+ */
+.delete-account h3, .delete-account button {
+	color: #cc0000;
+}
+
+.delete-account p {
+	white-space: nowrap;
+	color: #555555;
+	font-size: 14px;
+}

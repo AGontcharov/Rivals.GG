@@ -17,15 +17,19 @@ module.exports = function(db) {
   });
 
   apiRouter.post('/users', users.createUser);
-  apiRouter.post('/users/login', users.getUser);
+  apiRouter.post('/users/login', users.authenticateUser);
 
   // Verify all request made to these endpoints
   apiRouter.use(jwtVerify);
 
-  apiRouter.post('/users/account', account.createAccount);
-  apiRouter.get('/users/account', account.getAccount);
-  apiRouter.post('/users/account/solo', account.createAccountSolo);
-  apiRouter.post('/users/account/flex', account.createAccountFlex);
+  apiRouter.post('/users/accounts', account.createAccount);
+  apiRouter.get('/users/accounts', account.getAccount);
+
+  // Must go here to prevent conflict
+  apiRouter.get('/users/:username', users.getUser);
+
+  apiRouter.post('/users/accounts/solo', account.createAccountSolo);
+  apiRouter.post('/users/accounts/flex', account.createAccountFlex);
 
   apiRouter.get('/search/:region/:summoners', require('./resources/summoner'));
 

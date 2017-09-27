@@ -14,22 +14,26 @@ angular
 		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
 	}
 
+	userService.getByUser = function(username) {
+		return $http.get(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error retrieving user by username'); });
+	}
+
 
 	// Account endpoints
 	userService.createAccount = function(account) {
-		return $http.post(baseURL + '/users/account', account).then(handleSuccess, function() { return handleError('Error creating summoner account'); });
+		return $http.post(baseURL + '/users/accounts', account).then(handleSuccess, function() { return handleError('Error creating summoner account'); });
 	}
 
 	userService.getByAccount = function(username) {
-		return $http.get(baseURL + '/users/account').then(handleSuccess, function() { return handleError('Error getting summoner account by username'); });
+		return $http.get(baseURL + '/users/accounts').then(handleSuccess, function() { return handleError('Error getting summoner account by username'); });
 	}
 
 	userService.createSoloLeague = function(stats) {
-		return $http.post(baseURL + '/users/account/solo', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked solo'); });
+		return $http.post(baseURL + '/users/accounts/solo', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked solo stats'); });
 	}
 
 	userService.createFlexLeague = function(stats) {
-		return $http.post(baseURL + '/users/account/flex', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked flex'); });
+		return $http.post(baseURL + '/users/accounts/flex', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked flex stats'); });
 	}
 
 
