@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.factory('authInterceptor', ['session', '$location', '$injector', '$q', function(session, $location, $injector, $q) {
+	.factory('authInterceptor', ['session', '$injector', '$q', function(session, $injector, $q) {
 
 	return {
 		'request': function (config) {
@@ -15,7 +15,6 @@ angular
 
 			if (response.status === 401 || response.status === 403) {
 				$injector.get('authentication').logout();
-				$location.path('/login');
 			}
 			return $q.reject(response);
 		}

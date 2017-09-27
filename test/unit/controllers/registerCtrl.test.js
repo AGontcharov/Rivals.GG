@@ -31,7 +31,7 @@ describe('Register Controller', function() {
 			scope.registerForm.$setPristine = function() {};
 		});
 
-		it('Should not call the userService on invalid form', function() {
+		it('Should not call the user on invalid form', function() {
 			scope.registerForm.$invalid = true;
 			scope.submit();
 

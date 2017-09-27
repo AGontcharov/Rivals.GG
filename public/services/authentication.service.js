@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.factory('authentication', ['$cookies', 'userService', 'session', function($cookies, userService, session) {
+	.factory('authentication', ['$cookies', '$location', 'userService', 'session', function($cookies, $location, userService, session) {
 
 	// Create a service object. 
 	var authService = {};
@@ -48,6 +48,7 @@ angular
 	authService.logout = function() {
 		session.destroy();
 		$cookies.remove('user');
+		$location.path('/login');
 	};
 
 	return authService;	

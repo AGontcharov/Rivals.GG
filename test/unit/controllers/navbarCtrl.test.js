@@ -75,10 +75,6 @@ describe('Navbar Controller', function() {
 			scope.logout();
 			expect(authentication.logout.calls.count()).toBe(1);
 			expect(authentication.logout).toHaveBeenCalled();
-			expect($location.path()).toBe('/login');
-			expect($location.path()).not.toBe('/home');
-			expect($location.path()).not.toBe('/friends');
-			expect($location.path()).not.toBe('/leaderboard');
 		});
 	});
 });

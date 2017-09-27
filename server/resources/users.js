@@ -78,13 +78,33 @@ module.exports = {
    * @returns {HTTP 200 on success}
    */
   getUser: function(req, res, next) {
-    console.log(req.params.username);
 
+    // Get user account
     db.query("SELECT * FROM User WHERE Username=? LIMIT 1", req.params.username, function(err, rows, fields) {
       if (err) throw err;
       console.log(rows);
 
+      // HTTP 200 Ok
       return res.status(200).send({ username: rows[0].Username, email: rows[0].Email })
     });
   },
+
+  /**
+   * Delete user resource
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching route
+   * @returns {HTTP 204 on success}
+   */
+  deleteUser: function(req, res, next) {
+    
+    // Delete user account
+    db.query("DELETE FROM User WHERE Username=?", req.params.username, function(err, rows, fields) {
+      if (err) throw err;
+      console.log(rows);
+
+      // HTTP 204 Deleted
+      return res.status(204).send('User deleted');
+    })
+  }
 }

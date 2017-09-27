@@ -29,7 +29,7 @@ describe('Summoner Controller', function() {
 		});
 	});
 
-	describe('userService.getBySummoner', function() {
+	describe('user.getBySummoner', function() {
 		
 		it('Should resolve the promise', function() {
 			deferred.resolve( {data: 'xInFam0us'} );

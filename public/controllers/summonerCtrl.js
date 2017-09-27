@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.controller('summonerCtrl', ['$scope', '$http', '$routeParams', 'searchQuery', 'userService', function($scope, $http, $routeParams, searchQuery, userService) {
+	.controller('summonerCtrl', ['$scope', '$routeParams', 'searchQuery', 'userService', function($scope, $routeParams, searchQuery, userService) {
 	
 	$scope.missing = false;
 

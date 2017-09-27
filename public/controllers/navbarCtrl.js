@@ -17,7 +17,6 @@ angular
 
 	$scope.logout = function() {
 		authentication.logout();
-		$location.path('/login');
 	}
 	
 }]);

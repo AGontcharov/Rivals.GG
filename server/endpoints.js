@@ -27,6 +27,7 @@ module.exports = function(db) {
 
   // Must go here to prevent conflict
   apiRouter.get('/users/:username', users.getUser);
+  apiRouter.delete('/users/:username', users.deleteUser);
 
   apiRouter.post('/users/accounts/solo', account.createAccountSolo);
   apiRouter.post('/users/accounts/flex', account.createAccountFlex);

@@ -18,6 +18,8 @@ module.exports = {
       if (err) throw err;
       console.log(rows);
 
+      var userID = rows[0].ID;
+
       // Inner join user ID on Summoner ID
       var query = "SELECT * FROM Summoner INNER JOIN User ON Summoner.ID = User.ID WHERE User.ID=?";
       db.query(query, rows[0].ID, function(err, rows, fields) {
@@ -136,7 +138,9 @@ module.exports = {
     db.query(query, req.body.summonerID, function(err, rows, fields) {
 
       if (err) throw err;
-      console.log(rows);
+      console.log('1st: ', rows);
+      console.log('PROBLEM HERE?');
+
 
       // No flex league stats found
       if (!rows.length) {
@@ -144,18 +148,20 @@ module.exports = {
 
         // Create flex league stats
         var args = [req.body.summonerID, req.body.icon, req.body.leagueName, req.body.tier, req.body.division, req.body.leaguePoints, req.body.wins, req.body.losses];
+        console.log(args);
+
         db.query("INSERT INTO Flex VALUES (?, ?, ?, ?, ?, ?, ?, ?)", args, function(err, rows, fields) {
 
           if (err) throw err;
           console.log(rows);
 
           // HTTP 201 Created
-          return res.status(201).send('Ranked Flex League added');
+          return res.status(201).send('Ranked Flex League stats added for Summoner');
         });
       }
 
       // HTTP 409 Conflict
-      else return res.status(409).send('Ranked Flex stats alrady exist for summoner');
+      else return res.status(409).send('Ranked Flex stats already exist for summoner');
     });
   }
 }

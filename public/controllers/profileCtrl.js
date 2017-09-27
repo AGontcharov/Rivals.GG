@@ -1,6 +1,6 @@
 angular
 	.module('myApp')
-	.controller('profileCtrl', ['$scope', 'session', 'userService', function($scope, session, userService) {
+	.controller('profileCtrl', ['$scope', 'session', 'userService', 'authentication', function($scope, session, userService, authentication) {
 
 	// Initialize the controller on load
 	init();
@@ -8,7 +8,7 @@ angular
 	function init() {
 
 		// Get user information
-		userService.getByUser(session.user).then(function(response) {
+		userService.getByUsername(session.user).then(function(response) {
 			$scope.account = { email: response.data.email, username: session.user };
 		},
 
@@ -30,6 +30,14 @@ angular
 	// Delete user account
 	$scope.deleteAccount = function() {
 
+		userService.deleteByUsername(session.user).then(function(response) {
+			console.log('am I here?');
+			authentication.logout();
+		},
+
+		function(response) {
+			response.message;
+		});
 	}
 
 }]);

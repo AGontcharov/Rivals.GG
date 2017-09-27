@@ -14,8 +14,12 @@ angular
 		return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
 	}
 
-	userService.getByUser = function(username) {
+	userService.getByUsername = function(username) {
 		return $http.get(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error retrieving user by username'); });
+	}
+
+	userService.deleteByUsername = function(username) {
+		return $http.delete(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error deleting user by username'); });
 	}
 
 

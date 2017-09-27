@@ -23,6 +23,8 @@ CREATE TABLE `Summoner` (
 	`RevisionDate` bigint(20) NOT NULL,
 	PRIMARY KEY (`SummonerID`),
 	FOREIGN KEY (`ID`) REFERENCES `User` (`ID`)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Solo`;
@@ -38,6 +40,8 @@ CREATE TABLE `Solo` (
 	`Losses` int(11) NOT NULL,
 	PRIMARY KEY (`SummonerID`),
 	FOREIGN KEY (`SummonerID`) REFERENCES `Summoner` (`SummonerID`)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Flex`;
@@ -53,4 +57,6 @@ CREATE TABLE `Flex` (
 	`Losses` int(11) NOT NULL,
 	PRIMARY KEY (`SummonerID`),
 	FOREIGN KEY (`SummonerID`) REFERENCES `Summoner` (`SummonerID`)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );

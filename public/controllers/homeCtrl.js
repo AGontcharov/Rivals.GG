@@ -141,7 +141,7 @@ angular
 			if ($scope.result.flexActive) {
 
 				var stats = {
-					summonerID: $scope.result.summonerId,
+					summonerID: $scope.result.summonerID,
 					icon: $scope.result.flexIcon, 
 					leagueName: $scope.result.flexLeagueName,
 					tier: $scope.result.flexTier,
