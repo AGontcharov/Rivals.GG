@@ -1,22 +1,35 @@
+.form-wrapper {
+	position: fixed;
+  	top: 35%;
+  	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .heading {
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	text-align: center;
 }
 
 .heading h1 {
+	color: black;
 	padding-top: 15px;
 	margin: 0;
+}
+
+.heading p {
+	color: black;
+	white-space: nowrap;
 }
 
 div.form, .alternative {
 	width: 400px;
 	background: #f2f2f2;
-	/*background-color: rgb(238, 238, 238);*/
 	padding: 15px 20px;
 	border: solid black 1px;
+	text-align: center;
+	
 	display: block;
 	margin: 0 auto;
-	text-align: center;
 }
 
 div.form input, div.form label {

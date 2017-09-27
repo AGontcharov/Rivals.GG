@@ -1,58 +1,56 @@
-<!-- http://i.imgur.com/JkJ0DL8.jpg -->
+<div class="form-wrapper">
+	<div class="heading">
+		<h1>Rivals.GG</h1>
+		<p>Add rivals, analyze summoners, compete on the leaderboard</p>
+	</div>
 
-<div class="heading">
-	<h1>Rivals.GG</h1>
-	<p>Add rivals, analyze summoners, compete on the leaderboard</p>
+	<div class="form">
+		<!-- Register/Sign Up form -->
+		<form name="registerForm" method="post" ng-submit="submit()" novalidate>
+
+			<!-- Username -->
+			<label for="username">Username</label>
+			<input type="text" id="username" name="username" ng-model="account.username" autofocus required>
+			<div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
+				<span ng-show="registerForm.username.$error.required">Username is required</span>
+			</div>
+
+			<!-- Password -->
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" ng-model="account.password" required>
+			<div class="form-error" ng-show="(registerForm.$submitted || registerForm.password.$dirty) && registerForm.password.$invalid">
+				<span ng-show="registerForm.password.$error.required">Password is required</span>
+			</div>
+
+			<!-- Confirm password -->
+			<label for="confirmPassword">Confirm password</label>
+			<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword" required compare-to="account.password">
+			<div class="form-error" ng-show="(registerForm.$submitted || registerForm.confirmPassword.$dirty) && registerForm.confirmPassword.$invalid">
+				<span ng-show="registerForm.confirmPassword.$error.required">Confirm Password is required</span>
+				<span ng-show="registerForm.confirmPassword.$error.compareTo">Passwords do not match</span>
+			</div>
+
+			<!-- Email -->
+			<label for="email">Email</label>
+			<input type="email" id="email" name="email" ng-model="account.email" ng-model-options="{ updateOn: 'blur' }" required>
+			<div class="form-error" ng-show="(registerForm.$submitted || registerForm.email.$dirty) && registerForm.email.$invalid">
+				<span ng-show="registerForm.email.$error.required">Email is required</span>
+				<span ng-show="registerForm.email.$error.email">Enter a valid email</span>
+			</div>
+
+			<!-- Submit button -->
+			<div class="submit-input">
+				<input type="submit" value="Create account">
+			</div>
+
+			<!-- Submit feedback -->
+			<div class="form-error" ng-show="error">
+				<span>Username already taken</span>
+			</div>
+		</form>
+	</div>
+
+	<div class="alternative">
+		<p>Already have an account? <a href="/login">Log in</a></p>
+	</div>
 </div>
-
-<div class="form">
-	<!-- Register/Sign Up form -->
-	<form name="registerForm" method="post" ng-submit="submit()" novalidate>
-
-		<!-- Username -->
-		<label for="username">Username</label>
-		<input type="text" id="username" name="username" ng-model="account.username" autofocus required>
-		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
-			<span ng-show="registerForm.username.$error.required">Username is required</span>
-		</div>
-
-		<!-- Password -->
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password" ng-model="account.password" required>
-		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.password.$dirty) && registerForm.password.$invalid">
-			<span ng-show="registerForm.password.$error.required">Password is required</span>
-		</div>
-
-		<!-- Confirm password -->
-		<label for="confirmPassword">Confirm password</label>
-		<input type="password" id="confirmPassword" name="confirmPassword" ng-model="account.confirmPassword" required compare-to="account.password">
-		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.confirmPassword.$dirty) && registerForm.confirmPassword.$invalid">
-			<span ng-show="registerForm.confirmPassword.$error.required">Confirm Password is required</span>
-			<span ng-show="registerForm.confirmPassword.$error.compareTo">Passwords do not match</span>
-		</div>
-
-		<!-- Email -->
-		<label for="email">Email</label>
-		<input type="email" id="email" name="email" ng-model="account.email" ng-model-options="{ updateOn: 'blur' }" required>
-		<div class="form-error" ng-show="(registerForm.$submitted || registerForm.email.$dirty) && registerForm.email.$invalid">
-			<span ng-show="registerForm.email.$error.required">Email is required</span>
-			<span ng-show="registerForm.email.$error.email">Enter a valid email</span>
-		</div>
-
-		<!-- Submit button -->
-		<div class="submit-input">
-			<input type="submit" value="Create account">
-		</div>
-
-		<!-- Submit feedback -->
-		<div class="form-error" ng-show="error">
-			<span>Username already taken</span>
-		</div>
-	</form>
-</div>
-
-<div class="alternative">
-	<p>Already have an account? <a href="/login">Log in</a></p>
-</div>
-
-<!-- <div ng-include src="'view/footer.html'"></div> -->

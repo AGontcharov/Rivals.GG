@@ -1,38 +1,40 @@
-<div class="heading">
-	<h1>Rivals.GG</h1>
-	<p>Add rivals, analyze summoners, compete on the leaderboard</p>
-</div>
+<div class="form-wrapper">
+	<div class="heading">
+		<h1>Rivals.GG</h1>
+		<p>Add rivals, analyze summoners, compete on the leaderboard</p>
+	</div>
 
-<!-- Login form -->
-<div class="form">
-	<form name="loginForm" method="post" ng-submit="submit()" novalidate>
+	<!-- Login form -->
+	<div class="form">
+		<form name="loginForm" method="post" ng-submit="submit()" novalidate>
 
-		<!-- Username -->
-		<label for="username">Username</label>
-		<input type="text" id="username" name="username" ng-model="credentials.username" autofocus required>
-		<div class="form-error" ng-show="(loginForm.$submitted || loginForm.username.$dirty) && loginForm.username.$invalid">
-			<span ng-show="loginForm.username.$error.required">Username is required</span>
-		</div>
+			<!-- Username -->
+			<label for="username">Username</label>
+			<input type="text" id="username" name="username" ng-model="credentials.username" autofocus required>
+			<div class="form-error" ng-show="(loginForm.$submitted || loginForm.username.$dirty) && loginForm.username.$invalid">
+				<span ng-show="loginForm.username.$error.required">Username is required</span>
+			</div>
 
-		<!-- Password -->
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password" ng-model="credentials.password" required>
-		<div class="form-error" ng-show="(loginForm.$submitted || loginForm.password.$dirty) && loginForm.password.$invalid">
-			<span ng-show="loginForm.password.$error.required">Password is required</span>
-		</div>
+			<!-- Password -->
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" ng-model="credentials.password" required>
+			<div class="form-error" ng-show="(loginForm.$submitted || loginForm.password.$dirty) && loginForm.password.$invalid">
+				<span ng-show="loginForm.password.$error.required">Password is required</span>
+			</div>
 
-		<!-- Submit button -->
-		<div class="submit-input">
-			<input type="submit" value="Log in">
-		</div>
+			<!-- Submit button -->
+			<div class="submit-input">
+				<input type="submit" value="Log in">
+			</div>
 
-		<!-- Submit feedback -->
-		<div class="form-error" ng-show="error">
-			<span>Username or password is incorrect</span>
-		</div>
-	</form>
-</div>
+			<!-- Submit feedback -->
+			<div class="form-error" ng-show="error">
+				<span>Username or password is incorrect</span>
+			</div>
+		</form>
+	</div>
 
-<div class="alternative">
-	<p>Don't have an account? <a href="/">Register</a></p>
+	<div class="alternative">
+		<p>Don't have an account? <a href="/">Register</a></p>
+	</div>
 </div>
