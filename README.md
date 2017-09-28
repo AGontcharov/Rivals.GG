@@ -9,7 +9,24 @@ Linux & OS X:
 git clone https://github.com/AGontcharov/rivals.gg.git
 cd rivals.gg/
 sudo npm install
+mysql -u root -p < init.sql
 ```
+Next provide a config.json file in the root directory with the necessary crendentials.
+
+config.json:
+
+```sh
+{
+  "mysql": {
+    "user": "",
+    "password": "",
+    "database": ""
+  },
+  "apiKey": "",
+  "jwtKey": ""
+}
+```
+You can acquire your own Riot Games Api Key by signing up at https://developer.riotgames.com/
 
 Windows:
 
@@ -17,19 +34,22 @@ Windows:
 Not yet available
 ```
 
-More installation instructions to come later...
-
 ## Running
 
 Linux & OS X:
 
 ```sh
 npm start
-Open your favorite broswer
+Open Chrome (or your favorite browser)
 Go to: localhost:3000
 ```
 
 ## Testing
+The unit tests for the controllers, services, and directives were implemented using **Jasmine**.
+The e2e (end-to-end) will be done using **Protractor** in the future.
+
+All tests are run through **Karma** through a headless broswer (phantomJS) and can be configured inside karma.conf.js
+
 
 Linux & OS X:
 ```sh
