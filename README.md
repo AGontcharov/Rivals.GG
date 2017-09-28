@@ -11,9 +11,7 @@ cd rivals.gg/
 sudo npm install
 mysql -u root -p < init.sql
 ```
-Next provide a config.json file in the root directory with the necessary crendentials.
-
-config.json:
+Next provide a **config.json** file in the root directory with the necessary crendentials:
 
 ```sh
 {
@@ -48,7 +46,7 @@ Go to: localhost:3000
 The unit tests for the controllers, services, and directives were implemented using **Jasmine**.
 The e2e (end-to-end) will be done using **Protractor** in the future.
 
-All tests are run through **Karma** through a headless broswer (phantomJS) and can be configured inside karma.conf.js
+All tests are run through **Karma** through a headless broswer (phantomJS) and can be configured inside **karma.conf.js**
 
 
 Linux & OS X:
