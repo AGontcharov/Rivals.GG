@@ -1,8 +1,11 @@
 var express = require('express');
 var app = express();
 
-// Loads the database module to cofigure and connect to the mysql database
-var db = require('./server/database/database');
+// Configure the port which the app is ran
+var port = 3000;
+
+// Load body parser to parse requests
+var bodyParser = require('body-parser');
 
 // Set the response headers
 app.use(function(req, res, next) {
@@ -11,8 +14,14 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Parse JSON from body on requests
+app.use(bodyParser.json());
+
+// Disable posting nested objets
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Loads the api routes
-var api = require('./server/endpoints')(db);
+var api = require('./server/endpoints');
 app.use('/api', api);
 
 // Serves static contents from the /public folder
@@ -23,6 +32,7 @@ app.get('*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.listen(3000, function() {
-  console.log("Listening on port 3000");
+// Create HTTP server
+app.listen(port, function() {
+  console.log("Listening on port ", port);
 });

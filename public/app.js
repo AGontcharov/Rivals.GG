@@ -21,7 +21,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 		templateUrl: '/view/summoner.html',
 		controller: 'summonerCtrl'
 	})
-	.otherwise({ redirectTo: '/' });
+	.otherwise({ redirectTo: '/login' });
 
 	$locationProvider.html5Mode(true);
 

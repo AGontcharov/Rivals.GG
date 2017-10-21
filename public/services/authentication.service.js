@@ -42,7 +42,7 @@ angular
 	}
 
 	authService.isAuthenticated = function() {
-		return !!session.user;
+		return !!session;
 	};
 
 	authService.logout = function() {

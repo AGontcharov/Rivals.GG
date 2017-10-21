@@ -2,7 +2,7 @@
   "name": "League",
   "version": "1.0.0",
   "description": "A small league app using Riot Games APIs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "start": "node server.js"
@@ -10,7 +10,10 @@
   "keywords": [],
   "author": "Alexander Gontcharov",
   "license": "ISC",
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AGontcharov/Rivals.GG"
+  },
   "dependencies": {
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
