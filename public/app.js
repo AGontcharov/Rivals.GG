@@ -2,9 +2,8 @@
 	'use strict';
 
 	angular
-		.module('myApp', ['ngRoute', 'ngCookies'])
-		.config(['$routeProvider', '$locationProvider', '$httpProvider', config])
-		.run(['$rootScope', '$location', 'authentication', run]);
+		.module('myApp', ['ngRoute', 'ngCookies', 'app.auth'])
+		.config(['$routeProvider', '$locationProvider', '$httpProvider', config]);
 
 	function config($routeProvider, $locationProvider, $httpProvider) {
 		$routeProvider.when('/', {
@@ -31,22 +30,5 @@
 
 		$locationProvider.html5Mode(true);
 		$httpProvider.interceptors.push('authInterceptor');
-	}
-
-	function run($rootScope, $location, authentication) {
-		$rootScope.$on('$routeChangeStart', function(event, next, current) {
-
-			console.log('triggered', $location.path());
-			authentication.refreshSession();
-
-			if ($location.path() !== '/' && $location.path() !== '/login') {
-				
-				if (!authentication.isAuthenticated()) {
-					console.log('DENY : Redirecting to login page');
-					event.preventDefault();
-				 	$location.path('/login');
-				}
-			}
-		});
 	}
 })();

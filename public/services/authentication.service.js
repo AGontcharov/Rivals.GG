@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('myApp')
+		.module('app.auth')
 		.factory('authentication', ['$cookies', '$location', 'userService', 'session', authentication]);
 
 	function authentication($cookies, $location, userService, session) {

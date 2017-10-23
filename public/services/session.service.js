@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('myApp')
+		.module('app.auth')
 		.service('session', session);
 
 	function session() {
