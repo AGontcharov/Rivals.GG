@@ -17,7 +17,9 @@
 
         // Summoner endpoints
         function getBySummoner(region, summoner) {
-            return $http.get(baseURL + '/search/' + region + '/' + summoner).then(handleSuccess, function() { return handleError('Error getting summoner(s) by region and name'); });
+            return $http.get(baseURL + '/search/' + region + '/' + summoner)
+            .then(handleSuccess)
+            .catch(function() { return handleError('Error getting summoner(s) by region and name'); });
         }
 
         // Private functions

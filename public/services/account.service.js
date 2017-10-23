@@ -20,19 +20,27 @@
 
         // Account endpoints
         function createAccount(account) {
-            return $http.post(baseURL + '/users/accounts', account).then(handleSuccess, function() { return handleError('Error creating summoner account'); });
+            return $http.post(baseURL + '/users/accounts', account)
+            .then(handleSuccess)
+            .catch(function() { return handleError('Error creating summoner account'); });
         }
 
         function getByAccount(username) {
-            return $http.get(baseURL + '/users/accounts').then(handleSuccess, function() { return handleError('Error getting summoner account by username'); });
+            return $http.get(baseURL + '/users/accounts')
+            .then(handleSuccess)
+            .catch(function() { return handleError('Error getting summoner account by username'); });
         }
 
         function createSoloLeague(stats) {
-            return $http.post(baseURL + '/users/accounts/solo', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked solo stats'); });
+            return $http.post(baseURL + '/users/accounts/solo', stats)
+            .then(handleSuccess)
+            .catch(function() { return handleError('Error creating summoner ranked solo stats'); });
         }
 
         function createFlexLeague(stats) {
-            return $http.post(baseURL + '/users/accounts/flex', stats).then(handleSuccess, function() { return handleError('Error creating summoner ranked flex stats'); });
+            return $http.post(baseURL + '/users/accounts/flex', stats)
+            .then(handleSuccess)
+            .catch(function() { return handleError('Error creating summoner ranked flex stats'); });
         }
 
         // Private functions

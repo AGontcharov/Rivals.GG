@@ -20,22 +20,29 @@
 
 		// User endpoints
 		function create(user) {
-			return $http.post(baseURL + '/users', user).then(handleSuccess, function() { return handleError('Error creating user'); });
+			return $http.post(baseURL + '/users', user)
+			.then(handleSuccess)
+			.catch(function() { return handleError('Error creating user'); });
 		}
 
 		function login(user) {
-			return $http.post(baseURL + '/users/login', user).then(handleSuccess, function() { return handleError('Error authenticating user'); });
+			return $http.post(baseURL + '/users/login', user)
+			.then(handleSuccess)
+			.catch(function() { return handleError('Error authenticating user'); });
 		}
 
 		function getByUsername(username) {
-			return $http.get(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error retrieving user by username'); });
+			return $http.get(baseURL + '/users/' + username)
+			.then(handleSuccess)
+			.catch(function() { return handleError('Error retrieving user by username'); });
 		}
 
 		function deleteByUsername(username) {
-			return $http.delete(baseURL + '/users/' + username).then(handleSuccess, function() { return handleError('Error deleting user by username'); });
+			return $http.delete(baseURL + '/users/' + username)
+			.then(handleSuccess)
+			.catch(function() { return handleError('Error deleting user by username'); });
 		}
 		
-
 		// Private functions
 		function handleSuccess(res) {
 			return { data: res.data };
