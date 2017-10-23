@@ -13,26 +13,6 @@
 
 		activate();
 
-		// Private function
-		function activate() {
-			$scope.username = session.user;
-			$scope.profile = true;
-			$scope.rankedSolo = true;
-			$scope.rankedFlex = false;
-			$scope.summonerAccount = false;
-			$scope.accountSearch = false;
-
-			// Pretty big logic to keep private and not be able to test - any argument?
-			accountService.getByAccount().then(function(response) {
-				$scope.accountSearch = true;
-				$scope.summonerAccount = true;
-				$scope.findAccount(response.data.region, response.data.account);
-
-			}, function(response) {
-				console.log(response.message);
-			});
-		}
-
 		// Sets the active class for the items in the home subnavbar
 		$scope.isActive = function(location) {
 
@@ -88,13 +68,13 @@
 
 		// Finds summoner account based on region and name
 		$scope.findAccount = function(region, name) {
-			summonerService.getBySummoner(region, name).then(function(response) {
-
+			summonerService.getBySummoner(region, name)
+			.then(function(response) {
 				console.log(response.data);
 				$scope.result = response.data[0];
 				$scope.accountSearch = true;
-				
-			}, function(response) {
+			})
+			.catch(function(response) {
 				console.log(response.message);
 			});
 		}
@@ -114,7 +94,8 @@
 			};
 
 			// Create account
-			accountService.createAccount(account).then(function(response) {
+			accountService.createAccount(account)
+			.then(function(response) {
 
 				console.log(response.data);
 				$scope.summonerAccount = true;
@@ -134,10 +115,11 @@
 					}
 					console.log(stats);
 
-					accountService.createSoloLeague(stats).then(function(response) {
+					accountService.createSoloLeague(stats)
+					.then(function(response) {
 						console.log(response.data);
-					
-					}, function(response) {
+					})
+					.catch(function(response) {
 						console.log(response.message);
 					});			
 				}
@@ -157,17 +139,40 @@
 					}
 					console.log(stats);
 
-					accountService.createFlexLeague(stats).then(function(response) {
+					accountService.createFlexLeague(stats)
+					.then(function(response) {
 						console.log(response.data);
-					
-					}, function(response) {
+					})
+					.catch(function(response) {
 						console.log(response.message);
 					});			
 				}
-				
-			}, function(response) {
+			})
+			.catch(function(response) {
 				console.log(response.message);
 			});	
+		}
+
+		// Private function
+		function activate() {
+			$scope.username = session.user;
+			$scope.profile = true;
+			$scope.rankedSolo = true;
+			$scope.rankedFlex = false;
+			$scope.summonerAccount = false;
+			$scope.accountSearch = false;
+
+			// Pretty big logic to keep private and not be able to test - any argument?
+			accountService.getByAccount()
+			.then(function(response) {
+				$scope.accountSearch = true;
+				$scope.summonerAccount = true;
+				$scope.findAccount(response.data.region, response.data.account);
+
+			})
+			.catch(function(response) {
+				console.log(response.message);
+			});
 		}
 	}
 })();

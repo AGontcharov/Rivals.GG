@@ -20,14 +20,17 @@
 		function login(user, success, error) {
 			console.log('Authenticating ' + user.username + ': ' + user.password);
 
-			userService.login(user).then(function(response) {
-				delete user.password;
+			userService.login(user)
+			.then(function(response) {
 				createSession(user);
 				success(user);
 				
-			}, function(response) {
-				delete user.password;
+			})
+			.catch(function(response) {
 				error(response.message)
+			})
+			.finally(function() {
+				delete user.password
 			});
 		}
 

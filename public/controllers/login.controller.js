@@ -8,8 +8,6 @@
 	function login($scope, $location, authentication) {
 
 		$scope.submit = function() {
-			$scope.error = false;
-
 			if ($scope.loginForm.$invalid) return;
 			
 			$scope.loginForm.$setPristine();

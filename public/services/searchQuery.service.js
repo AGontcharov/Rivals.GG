@@ -5,13 +5,7 @@
 		.module('myApp')
 		.service('searchQuery', searchQuery);
 
-
 	function searchQuery() {
-
-		// Private function
-		function filter(query) {
-			return query.replace(/\s/g, '').replace(/,/g, '+');
-		}
 
 		this.create = function(region, summoners) {
 			this.region = region;
@@ -25,6 +19,11 @@
 			this.summoners = null;
 			this.route = null;
 			this.requestURL = null;
+		}
+
+		// Private function
+		function filter(query) {
+			return query.replace(/\s/g, '').replace(/,/g, '+');
 		}
 
 		return this;

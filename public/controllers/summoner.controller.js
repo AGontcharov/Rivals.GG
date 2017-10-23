@@ -3,22 +3,21 @@
 
 	angular
 		.module('myApp')
-		.controller('summoner', ['$scope', '$routeParams', 'searchQuery', 'userService', summoner]);
+		.controller('summoner', ['$scope', '$routeParams', 'searchQuery', 'summonerService', summoner]);
 
-	function summoner($scope, $routeParams, searchQuery, userService) {
-		
+	function summoner($scope, $routeParams, searchQuery, summonerService) {
 		$scope.missing = false;
-
 		if (!searchQuery.summoners) searchQuery.create($routeParams.region, $routeParams.name);
 
-		userService.getBySummoner(searchQuery.region, searchQuery.requestURL).then(function(response) {
+		// Get summoner(s)
+		summonerService.getBySummoner(searchQuery.region, searchQuery.requestURL)
+		.then(function(response) {
 			console.log(response.data);
 			$scope.records = response.data;
-
-		}, function(response) {
+		})
+		.catch(function(response) {
 			console.log(response.message);
 			$scope.missing = true;
 		});
-		
 	}
 })();
