@@ -1,9 +1,14 @@
-angular
-	.module('myApp')
-	.controller('registerCtrl', ['$scope', '$location', 'userService', 'authentication', function($scope, $location, userService, authentication) {
-		
-	$scope.submit = function() {
-		if (!$scope.registerForm.$invalid) {
+(function() {
+	'use strict';
+
+	angular
+		.module('myApp')
+		.controller('register', ['$scope', '$location', 'userService', 'authentication', register]);
+
+	function register($scope, $location, userService, authentication) {
+			
+		$scope.submit = function() {
+			if ($scope.registerForm.$invalid) return;
 
 			// Success callback
 			userService.create($scope.account).then(function(response) {
@@ -32,4 +37,4 @@ angular
 			});
 		}
 	}
-}]);
+})();

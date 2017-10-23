@@ -1,46 +1,52 @@
-var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
+(function() {
+	'use strict';
 
-app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
-	$routeProvider.when('/', {
-		templateUrl: 'view/register.html',
-		controller: 'registerCtrl'
-	})
-	.when('/login', {
-		templateUrl: 'view/login.html',
-		controller: 'loginCtrl'
-	})
-	.when('/home', { 
-		templateUrl: '/view/home.html',
-		controller: 'homeCtrl'
-	})
-	.when('/profile', {
-		templateUrl: 'view/profile.html',
-		controller: 'profileCtrl'
-	})
-	.when('/summoner/:region/:name', { 
-		templateUrl: '/view/summoner.html',
-		controller: 'summonerCtrl'
-	})
-	.otherwise({ redirectTo: '/login' });
+	angular
+		.module('myApp', ['ngRoute', 'ngCookies'])
+		.config(['$routeProvider', '$locationProvider', '$httpProvider', config])
+		.run(['$rootScope', '$location', 'authentication', run]);
 
-	$locationProvider.html5Mode(true);
+	function config($routeProvider, $locationProvider, $httpProvider) {
+		$routeProvider.when('/', {
+			templateUrl: 'view/register.html',
+			controller: 'register'
+		})
+		.when('/login', {
+			templateUrl: 'view/login.html',
+			controller: 'login'
+		})
+		.when('/home', { 
+			templateUrl: '/view/home.html',
+			controller: 'home'
+		})
+		.when('/profile', {
+			templateUrl: 'view/profile.html',
+			controller: 'profile'
+		})
+		.when('/summoner/:region/:name', { 
+			templateUrl: '/view/summoner.html',
+			controller: 'summoner'
+		})
+		.otherwise({ redirectTo: '/login' });
 
-	$httpProvider.interceptors.push('authInterceptor');
-}]);
+		$locationProvider.html5Mode(true);
+		$httpProvider.interceptors.push('authInterceptor');
+	}
 
-app.run(['$rootScope', '$location', 'authentication', function($rootScope, $location, authentication) {
-	$rootScope.$on('$routeChangeStart', function(event, next, current) {
+	function run($rootScope, $location, authentication) {
+		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 
-		console.log('triggered', $location.path());
-		authentication.refreshSession();
+			console.log('triggered', $location.path());
+			authentication.refreshSession();
 
-		if ($location.path() !== '/' && $location.path() !== '/login') {
-			
-			if (!authentication.isAuthenticated()) {
-				console.log('DENY : Redirecting to login page');
-				event.preventDefault();
-			 	$location.path('/login');
+			if ($location.path() !== '/' && $location.path() !== '/login') {
+				
+				if (!authentication.isAuthenticated()) {
+					console.log('DENY : Redirecting to login page');
+					event.preventDefault();
+				 	$location.path('/login');
+				}
 			}
-		}
-	});
-}]);
+		});
+	}
+})();

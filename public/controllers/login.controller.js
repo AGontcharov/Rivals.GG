@@ -1,11 +1,17 @@
-angular
-	.module('myApp')
-	.controller('loginCtrl', ['$scope', '$location', 'authentication', function($scope, $location, authentication) {
+(function() {
+	'use strict';
 
-	$scope.submit = function() {
-		$scope.error = false;
+	angular
+		.module('myApp')
+		.controller('login', ['$scope', '$location', 'authentication', login]);
 
-		if (!$scope.loginForm.$invalid) {
+	function login($scope, $location, authentication) {
+
+		$scope.submit = function() {
+			$scope.error = false;
+
+			if ($scope.loginForm.$invalid) return;
+			
 			$scope.loginForm.$setPristine();
 
 			// Sucess callback
@@ -20,4 +26,4 @@ angular
 			});
 		}
 	}
-}]);
+})();

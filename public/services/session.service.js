@@ -1,18 +1,24 @@
-angular
-	.module('myApp')
-	.service('session', function() {
+(function() {
+	'use strict';
 
-	this.create = function(user, role, token) {
-		this.user = user;
-		this.role = role;
-		this.token = token;
-	};
+	angular
+		.module('myApp')
+		.service('session', session);
 
-	this.destroy = function() {
-		this.user = null;
-		this.role = null;
-		this.token = null;
+	function session() {
+
+		this.create = function(user, role, token) {
+			this.user = user;
+			this.role = role;
+			this.token = token;
+		};
+
+		this.destroy = function() {
+			this.user = null;
+			this.role = null;
+			this.token = null;
+		}
+
+		return this;
 	}
-
-	return this;
-});
+})();
