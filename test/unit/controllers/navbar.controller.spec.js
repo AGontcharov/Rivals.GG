@@ -23,31 +23,31 @@ describe('Navbar Controller', function() {
 		});
 	});
 
-	describe('find', function() {
+	describe('search', function() {
 
 		it('Should call the searchQuery service', function() {
 			spyOn(searchQuery, 'create');
-			scope.find();
+			scope.search();
 			expect(searchQuery.create.calls.count()).toBe(1);
 		});
 
 		it("Should redicrt the user to '/summoner/na1/InFam0us+Eyelander+DuaIWield'", function() {
 			scope.region = 'na1';
 			scope.searchQuery = 'InFam0us+Eyelander+DuaIWield';
-			scope.find();
+			scope.search();
 			expect($location.path()).toBe('/summoner/na1/InFam0us+Eyelander+DuaIWield');
 		});
 	});
 
 	describe('submitForm', function() {
 
-		it('Should call the find method on Enter key press', function() {
+		it('Should call the search method on Enter key press', function() {
 			var keyEvent = { which: 13 };
-			scope.find = function() {};			
-			spyOn(scope, 'find');
+			scope.search = function() {};			
+			spyOn(scope, 'search');
 
-			scope.submitForm(keyEvent);
-			expect(scope.find.calls.count()).toBe(1);
+			scope.searchOnKey(keyEvent);
+			expect(scope.search.calls.count()).toBe(1);
 		});
 	});
 

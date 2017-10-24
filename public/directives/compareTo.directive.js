@@ -5,6 +5,11 @@
 		.module('myApp')
 		.directive('compareTo', compareTo);
 
+	/**
+	 * @class  angular_module.app.compareTo
+	 * @description Compares two password fields
+	 * @memberOf angular_module.app
+	 */
 	function compareTo() {
 
 		return {

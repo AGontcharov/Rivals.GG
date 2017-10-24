@@ -1,6 +1,5 @@
 node_modules
 docs
-.js
 public/view/footer.html
 public/assets/footer.css
 test/unit/userService.service.test.js

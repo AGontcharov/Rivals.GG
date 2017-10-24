@@ -1,7 +1,3 @@
-/**
- * AccountService Factory
- * @namespace Factories
- */
 (function() {
     'use strict';
 
@@ -10,9 +6,9 @@
         .factory('accountService', ['$http', '$q', accountService]);
 
     /**
-     * @namespace AccountService
+     * @class angular_module.app.accountService
      * @description Data factory to handle all summoner account requests
-     * @memberOf Factories
+     * @memberOf angular_module.app
      */
     function accountService($http, $q) {
 
@@ -20,7 +16,7 @@
         
         var service = {
             createAccount: createAccount,
-            getByAccount: getByAccount,
+            getByUsername: getByUsername,
             createSoloLeague: createSoloLeague,
             createFlexLeague: createFlexLeague
         };
@@ -28,11 +24,11 @@
         return service;
 
         /**
-         * @name createAccount
+         * @function createAccount
          * @description Performs a POST request to add a summoner account
          * @param  {Object} account - Summoner account
          * @return {Object} HTTP promise
-         * @memberOf Factories.AccountService
+         * @memberOf angular_module.app.accountService
          */
         function createAccount(account) {
             return $http.post(baseURL + '/users/accounts', account)
@@ -41,11 +37,11 @@
         }
 
         /**
-         * @name getByUsername
+         * @function getByUsername
          * @description Performs a GET request to retrieve a summoner by username
          * @param  {Object} username - The user's username
          * @return {Object} HTTP promise
-         * @memberOf Factories.AccountService
+         * @memberOf angular_module.app.accountService
          */
         function getByUsername(username) {
             return $http.get(baseURL + '/users/accounts')
@@ -54,11 +50,11 @@
         }
 
         /**
-         * @name createSoloLeague
+         * @function createSoloLeague
          * @description Performs a POST request to creates the solo league statistic for summoner
          * @param  {Object} stats - The solo league statistics for summoner
          * @return {Object} HTTP Promise
-         * @memberOf Factories.AccountService
+         * @memberOf angular_module.app.accountService
          */
         function createSoloLeague(stats) {
             return $http.post(baseURL + '/users/accounts/solo', stats)
@@ -67,11 +63,11 @@
         }
 
         /**
-         * @name createFlexLeague
+         * @function createFlexLeague
          * @description Performs a POST reqeust to creates the flex league statistic for summoner
          * @param  {Object} stats - The flex league statistics for summoner
          * @return {Object} HTTP Promise
-         * @memberOf Factories.AccountService
+         * @memberOf angular_module.app.accountService
          */
         function createFlexLeague(stats) {
             return $http.post(baseURL + '/users/accounts/flex', stats)
@@ -80,24 +76,24 @@
         }
 
         /**
-         * @name handleSuccess
+         * @function handleSuccess
          * @private
          * @description Handles succesful responses
          * @param  {Object} res - The response object
          * @return {Object} The response data
-         * @memberOf Factories.UserService
+         * @memberOf angular_module.app.accountService
          */
         function handleSuccess(res) {
             return { data: res.data };
         }
 
         /**
-         * @name handleError
+         * @function handleError
          * @private
          * @description Handles error from responses
          * @param  {Object} err - The response object
          * @return {Object} An object containing the message error
-         * @memberOf Factories.UserService
+         * @memberOf angular_module.app.accountService
          */
         function handleError(err) {
             return $q.reject({ success: false, message: err })

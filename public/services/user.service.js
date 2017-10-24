@@ -1,7 +1,3 @@
-/**
- * UserService Factory
- * @namespace Factories
- */
 (function() {
 	'use strict';
 
@@ -10,10 +6,10 @@
 		.factory('userService', ['$http', '$q', userService]);
 
 	/**
-	 * @namespace UserService
-	 * @description Data factory to handle all user requests
-	 * @memberOf Factories
-	 */
+ 	* @class angular_module.app.userService
+ 	* @description Data factory to handle all user requests
+ 	* @memberOf angular_module.app
+ 	*/
 	function userService($http, $q) {
 
 		var baseURL = '/api';
@@ -28,11 +24,11 @@
 		return service;
 
 		/**
-		 * @name create
+		 * @function create
 		 * @description Performs a POST request to create a user account
 		 * @param  {Object} user - User credentials
 		 * @return {Object} HTTP promise
-		 * @memberOf Factories.UserService
+		 * @memberOf angular_module.app.userService
 		 */
 		function create(user) {
 			return $http.post(baseURL + '/users', user)
@@ -41,11 +37,11 @@
 		}
 
 		/**
-		 * @name login
+		 * @function login
 		 * @description Performs a POST request to authenticates a user
 		 * @param  {Object} user - User credentials
 		 * @return {Object} HTTP promise
-		 * @memberOf Factories.UserService
+		 * @memberOf angular_module.app.userService
 		 */
 		function login(user) {
 			return $http.post(baseURL + '/users/login', user)
@@ -54,11 +50,11 @@
 		}
 
 		/**
-		 * @name getByUsername
+		 * @function getByUsername
 		 * @description Performs a GET request to retrieve a user by username
 		 * @param  {String} username - The user's username
 		 * @return {Object} HTTP promise
-		 * @memberOf Factories.UserService
+		 * @memberOf angular_module.app.userService
 		 */
 		function getByUsername(username) {
 			return $http.get(baseURL + '/users/' + username)
@@ -67,11 +63,11 @@
 		}
 
 		/**
-		 * @name deleteByUsername
+		 * @function deleteByUsername
 		 * @description Performs a DELETE request to delete a user by username
 		 * @param  {String} username - The user's username
 		 * @return {Object} HTTP promise
-		 * @memberOf Factories.UserService
+		 * @memberOf angular_module.app.userService
 		 */
 		function deleteByUsername(username) {
 			return $http.delete(baseURL + '/users/' + username)
@@ -80,24 +76,24 @@
 		}
 		
 		/**
-		 * @name handleSuccess
+		 * @function handleSuccess
 		 * @private
 		 * @description Handles succesful responses
 		 * @param  {Object} res - The response object
 		 * @return {Object} The response data
-		 * @memberOf Factories.UserService
+		 * @memberOf angular_module.app.userService
 		 */
 		function handleSuccess(res) {
 			return { data: res.data };
 		}
 
 		/**
-		 * @name handleError
+		 * @function handleError
 		 * @private
 		 * @description Handles error from responses
 		 * @param  {Object} err - The response object
 		 * @return {Object} An object containing the message error
-		 * @memberOf Factories.UserService
+		 * @memberOf angular_module.app.userService
 		 */
 		function handleError(err) {
 			return $q.reject({ success: false, message: err })

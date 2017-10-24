@@ -1,7 +1,4 @@
-/**
- * AuthInterceptor Factory
- * @namespace Factories
- */
+	
 (function() {
 	'use strict';
 
@@ -10,20 +7,20 @@
 		.factory('authInterceptor', ['session', '$injector', '$q', authInterceptor]);
 
 	/**
-	 * @namespace AuthInterceptor
+	 * @class angular_module.app.authInterceptor
 	 * @description HTTP interceptor between the server and the client
-	 * @memberOf Factories
+	 * @memberOf angular_module.app
 	 */
 	function authInterceptor(session, $injector, $q) {
 
 		return {
 
 			/**
-			 * @name request
+			 * @function request
 			 * @description Intercepts all requests made to the server and adds the JWT token to the headers
 			 * @param {Object} config - The request object configuration
 			 * @return {Object} The updated request configuration
-			 * @memberOf Factories.AuthInterceptor
+			 * @memberOf angular_module.app.authInterceptor
 			 */
 			'request': function(config) {
 
@@ -34,11 +31,11 @@
 			},
 
 			/**
-			 * @name responseError
+			 * @function responseError
 			 * @description Intercepts all unauthorized (401) and forbidden(403) responses from the sever and rejects them
 			 * @param {Object} response - The response from the server
 			 * @return {Object} The rejected response
-			 * @memberOf Factories.AuthInterceptor
+			 * @memberOf angular_module.app.authInterceptor
 			 */
 			'responseError': function(response) {
 

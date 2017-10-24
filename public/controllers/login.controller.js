@@ -5,8 +5,18 @@
 		.module('myApp')
 		.controller('login', ['$scope', '$location', 'userService', 'authentication', login]);
 
+	/**
+	 * @class angular_module.app.login
+	 * @description Controller that handles user login
+	 * @memberOf angular_module.app
+	 */
 	function login($scope, $location, userService, authentication) {
-			
+		
+		/**
+		 * @function submit
+		 * @description Logs the user in if the form is valid
+		 * @memberOf angular_module.app.login
+		 */
 		$scope.submit = function() {
 			if ($scope.loginForm.$invalid) return;
 

@@ -3,21 +3,38 @@
 		.module('myApp')
 		.controller('profile', ['$scope', '$location', 'session', 'userService', 'authentication', profile]);
 
+	/**
+	 * @class angular_module.app.profile
+	 * @description Controller that handles the user functionality
+	 * @memberOf angular_module.app
+	 */
 	function profile($scope, $location, session, userService, authentication) {
 
 		activate();
 
-		// Update user email
+		/**
+		 * @function updateEmail
+		 * @description Updates the user's email
+		 * @memberOf angular_module.app.profile
+		 */
 		$scope.updateEmail = function() {
 
 		}
 
-		// Update user password
+		/**
+		 * @function changePass
+		 * @description Changes the user's password
+		 * @memberOf angular_module.app.profile
+		 */
 		$scope.changePass = function() {
 
 		}
 
-		// Delete user account
+		/**
+		 * @function deleteAccount
+		 * @description Deletes the user's account
+		 * @memberOf angular_module.app.profile
+		 */
 		$scope.deleteAccount = function() {
 
 			userService.deleteByUsername(session.user)
@@ -30,6 +47,12 @@
 			});
 		}
 
+		/**
+		 * @function activate
+		 * @private
+		 * @description Loads the user's profile
+		 * @memberOf angular_module.app.profile
+		 */
 		function activate() {
 
 			// Get user information

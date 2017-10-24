@@ -1,8 +1,8 @@
 <div class="navbar" ng-controller="navbar">
 	<ul>
 		<li class="search-bar">
-			<input type="text" placeholder="Summoner1, summoner2, summoner3, ..." ng-model="searchQuery" ng-keydown="submitForm($event)">
-			<a href ng-click="find()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+			<input type="text" placeholder="Summoner1, summoner2, summoner3, ..." ng-model="searchQuery" ng-keydown="searchOnKey($event)">
+			<a href ng-click="Search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 		</li>
 		<li class="region-select">
 			<select ng-model="region">

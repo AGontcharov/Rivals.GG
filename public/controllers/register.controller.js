@@ -5,8 +5,18 @@
 		.module('myApp')
 		.controller('register', ['$scope', '$location', 'userService', 'authentication', register]);
 
+	/**
+	 * @class angular_module.app.register
+	 * @description Controller that handles user register
+	 * @memberOf angular_module.app
+	 */
 	function register($scope, $location, userService, authentication) {
 			
+		/**
+		 * @function submit
+		 * @description Registers the user in if the form is valid
+		 * @memberOf angular_module.app.register
+		 */
 		$scope.submit = function() {
 			if ($scope.registerForm.$invalid) return;
 
