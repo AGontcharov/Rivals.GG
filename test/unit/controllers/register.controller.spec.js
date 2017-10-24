@@ -3,7 +3,6 @@ describe('Register Controller', function() {
 
 	var scope, controller, userService, $location, $q, deferred;
 
-	// Inject unwraps the underscores around services
 	beforeEach(inject(function($controller, $rootScope, _$location_, _userService_, _$q_) {
 		scope = $rootScope.$new();
 		userService = _userService_;
@@ -17,29 +16,37 @@ describe('Register Controller', function() {
 		spyOn(userService, 'create').and.returnValue(deferred.promise);
 
 		// Init the controller, passing the spy service instance
-		controller = $controller('registerCtrl', {
+		controller = $controller('register', {
 			$scope: scope,
 			userService: userService,
 		});
 	}));
 
-	describe('register form', function() {
+	describe('Submit', function() {
 
 		beforeEach(function() {
-			scope.account = { username: 'test', password: 123, confirmPassword: 123, email: 'test@mail.com' }
-			scope.registerForm = {}
+			scope.account = { username: 'test', password: 123, confirmPassword: 123, email: 'test@mail.com' };
+			scope.registerForm = {};
 			scope.registerForm.$setPristine = function() {};
 		});
 
-		it('Should not call the user on invalid form', function() {
+		it('Should not call the user service on invalid form', function() {
 			scope.registerForm.$invalid = true;
 			scope.submit();
-
-			expect(userService.create).not.toHaveBeenCalled();
 			expect(userService.create.calls.count()).toBe(0);
 		});
 
 		describe('Valid form', function() {
+
+			it('Should call the user service', function() {
+				scope.registerForm.$invalid = false;
+				scope.submit();
+
+				deferred.resolve('data');
+				scope.$apply();
+
+				expect(userService.create.calls.count()).toBe(1);
+			});
 
 			it('Should resolve promise', function() {
 				scope.registerForm.$invalid = false;
@@ -48,8 +55,6 @@ describe('Register Controller', function() {
 				deferred.resolve('data');
 				scope.$apply();
 
-				expect(userService.create).toHaveBeenCalled();
-				expect(userService.create.calls.count()).toBe(1);
 				expect($location.path()).toBe('/home');
 			});
 
@@ -60,10 +65,7 @@ describe('Register Controller', function() {
 				deferred.reject({ success: false, message: 'promise rejected' });
 				scope.$apply();
 
-				expect(userService.create).toHaveBeenCalled();
-				expect(userService.create.calls.count()).toBe(1);
 				expect(scope.error).toBeTruthy();
-				expect($location.path()).toBe('/');
 			});
 
 			afterEach(function() {

@@ -3,12 +3,11 @@
 
 	angular
 		.module('app.auth')
-		.factory('authentication', ['$cookies', '$location', 'userService', 'session', authentication]);
+		.factory('authentication', ['$cookies', 'userService', 'session', authentication]);
 
-	function authentication($cookies, $location, userService, session) {
+	function authentication($cookies, userService, session) {
 
 		var service = {
-			login : login,
 			createSession: createSession,
 			refreshSession: refreshSession,
 			isAuthenticated: isAuthenticated,
@@ -16,23 +15,6 @@
 		};
 
 		return service;
-
-		function login(user, success, error) {
-			console.log('Authenticating ' + user.username + ': ' + user.password);
-
-			userService.login(user)
-			.then(function(response) {
-				createSession(user);
-				success(user);
-				
-			})
-			.catch(function(response) {
-				error(response.message)
-			})
-			.finally(function() {
-				delete user.password
-			});
-		}
 
 		function createSession(user) {
 
@@ -63,7 +45,6 @@
 		function logout() {
 			session.destroy();
 			$cookies.remove('user');
-			$location.path('/login');
 		};
 	}
 })();

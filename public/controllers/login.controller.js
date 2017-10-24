@@ -3,24 +3,25 @@
 
 	angular
 		.module('myApp')
-		.controller('login', ['$scope', '$location', 'authentication', login]);
+		.controller('login', ['$scope', '$location', 'userService', 'authentication', login]);
 
-	function login($scope, $location, authentication) {
-
+	function login($scope, $location, userService, authentication) {
+			
 		$scope.submit = function() {
 			if ($scope.loginForm.$invalid) return;
-			
-			$scope.loginForm.$setPristine();
 
-			// Sucess callback
-			authentication.login($scope.credentials, function(user) {
-				console.log('Login controller authentication success');
+			userService.login($scope.credentials)
+			.then(function(response) {
+				authentication.createSession($scope.credentials, response);
 				$location.path('/home');
-				
-			// Error callback
-			}, function(err) {
-				console.error(err);
+			})
+			.catch(function(response) {
 				$scope.error = true;
+			})
+			.finally(function(response) {
+				// Delete passwords and reset the form
+				delete $scope.credentials.password;
+				$scope.loginForm.$setPristine();
 			});
 		}
 	}
