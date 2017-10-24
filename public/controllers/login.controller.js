@@ -1,3 +1,7 @@
+/**
+ * @namespace controllers
+ * @memberOf angular_module.app
+ */
 (function() {
 	'use strict';
 
@@ -6,16 +10,16 @@
 		.controller('login', ['$scope', '$location', 'userService', 'authentication', login]);
 
 	/**
-	 * @class angular_module.app.login
-	 * @description Controller that handles user login
-	 * @memberOf angular_module.app
+	 * @class login
+	 * @description Controller that handles user register
+	 * @memberOf angular_module.app.controllers
 	 */
 	function login($scope, $location, userService, authentication) {
 		
 		/**
 		 * @function submit
-		 * @description Logs the user in if the form is valid
-		 * @memberOf angular_module.app.login
+		 * @description Logs in the user if the form is valid
+		 * @memberOf angular_module.app.controllers.login
 		 */
 		$scope.submit = function() {
 			if ($scope.loginForm.$invalid) return;

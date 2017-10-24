@@ -6,9 +6,9 @@
 		.factory('userService', ['$http', '$q', userService]);
 
 	/**
- 	* @class angular_module.app.userService
+ 	* @class userService
  	* @description Data factory to handle all user requests
- 	* @memberOf angular_module.app
+ 	* @memberOf angular_module.app.factories
  	*/
 	function userService($http, $q) {
 
@@ -28,7 +28,7 @@
 		 * @description Performs a POST request to create a user account
 		 * @param  {Object} user - User credentials
 		 * @return {Object} HTTP promise
-		 * @memberOf angular_module.app.userService
+		 * @memberOf angular_module.app.factories.userService
 		 */
 		function create(user) {
 			return $http.post(baseURL + '/users', user)
@@ -41,7 +41,7 @@
 		 * @description Performs a POST request to authenticates a user
 		 * @param  {Object} user - User credentials
 		 * @return {Object} HTTP promise
-		 * @memberOf angular_module.app.userService
+		 * @memberOf angular_module.app.factories.userService
 		 */
 		function login(user) {
 			return $http.post(baseURL + '/users/login', user)
@@ -54,7 +54,7 @@
 		 * @description Performs a GET request to retrieve a user by username
 		 * @param  {String} username - The user's username
 		 * @return {Object} HTTP promise
-		 * @memberOf angular_module.app.userService
+		 * @memberOf angular_module.app.factories.userService
 		 */
 		function getByUsername(username) {
 			return $http.get(baseURL + '/users/' + username)
@@ -67,7 +67,7 @@
 		 * @description Performs a DELETE request to delete a user by username
 		 * @param  {String} username - The user's username
 		 * @return {Object} HTTP promise
-		 * @memberOf angular_module.app.userService
+		 * @memberOf angular_module.app.factories.userService
 		 */
 		function deleteByUsername(username) {
 			return $http.delete(baseURL + '/users/' + username)
@@ -81,7 +81,7 @@
 		 * @description Handles succesful responses
 		 * @param  {Object} res - The response object
 		 * @return {Object} The response data
-		 * @memberOf angular_module.app.userService
+		 * @memberOf angular_module.app.factories.userService
 		 */
 		function handleSuccess(res) {
 			return { data: res.data };
@@ -93,7 +93,7 @@
 		 * @description Handles error from responses
 		 * @param  {Object} err - The response object
 		 * @return {Object} An object containing the message error
-		 * @memberOf angular_module.app.userService
+		 * @memberOf angular_module.app.factories.userService
 		 */
 		function handleError(err) {
 			return $q.reject({ success: false, message: err })

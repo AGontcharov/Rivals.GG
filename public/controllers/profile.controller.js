@@ -4,9 +4,9 @@
 		.controller('profile', ['$scope', '$location', 'session', 'userService', 'authentication', profile]);
 
 	/**
-	 * @class angular_module.app.profile
+	 * @class profile
 	 * @description Controller that handles the user functionality
-	 * @memberOf angular_module.app
+	 * @memberOf angular_module.app.controllers
 	 */
 	function profile($scope, $location, session, userService, authentication) {
 

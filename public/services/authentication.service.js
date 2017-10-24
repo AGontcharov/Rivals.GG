@@ -1,3 +1,7 @@
+/**
+ * @namespace auth_factories
+ * @memberOf angular_module.app_auth
+ */
 (function() {
 	'use strict';
 
@@ -6,9 +10,9 @@
 		.factory('authentication', ['$cookies', 'userService', 'session', authentication]);
 
 	/**
- 	* @class angular_module.app_auth.authentication
+ 	* @class authentication
  	* @description Provides simple authentication against users
- 	* @memberOf angular_module.app_auth
+ 	* @memberOf angular_module.app_auth.auth_factories
  	*/
 	function authentication($cookies, userService, session) {
 
@@ -25,7 +29,7 @@
 		 * @function createSession
 		 * @description Creates the user's session
 		 * @param {Object} user - The users's credentials
-		 * @memberOf angular_module.app_auth.authentication
+		 * @memberOf angular_module.app_auth.auth_factories.authentication
 		 */
 		function createSession(user) {
 
@@ -44,7 +48,7 @@
 		/**
 		 * @function createSession
 		 * @description Refreshes the user's session
-		 * @memberOf angular_module.app_auth.authentication
+		 * @memberOf angular_module.app_auth.auth_factories.authentication
 		 */
 		function refreshSession() {
 			if ($cookies.get('user')) {
@@ -58,7 +62,7 @@
 		 * @function isAuthenticated
 		 * @description Checks if the user is authenticated
 		 * @return {Boolean}
-		 * @memberOf angular_module.app_auth.authentication
+		 * @memberOf angular_module.app_auth.auth_factories.authentication
 		 */
 		function isAuthenticated() {
 			return !!session.user;
@@ -67,7 +71,7 @@
 		/**
 		 * @function logout
 		 * @description Logs the user out, deleting his session in the process
-		 * @memberOf angular_module.app_auth.authentication
+		 * @memberOf angular_module.app_auth.auth_factories.authentication
 		 */
 		function logout() {
 			session.destroy();

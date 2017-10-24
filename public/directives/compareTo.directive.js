@@ -1,3 +1,7 @@
+/**
+ * @namespace directives
+ * @memberOf angular_module.app
+ */
 (function() {
 	'use strict';
 
@@ -6,9 +10,9 @@
 		.directive('compareTo', compareTo);
 
 	/**
-	 * @class  angular_module.app.compareTo
+	 * @class compareTo
 	 * @description Compares two password fields
-	 * @memberOf angular_module.app
+	 * @memberOf angular_module.app.directives
 	 */
 	function compareTo() {
 

@@ -1,3 +1,7 @@
+/**
+ * @namespace auth_services
+ * @memberOf angular_module.app_auth
+ */
 (function() {
 	'use strict';
 
@@ -6,9 +10,9 @@
 		.service('session', session);
 
 	/**
-	 * @class angular_module.app_auth.session
+	 * @class session
 	 * @description A service that stores the user's session
-	 * @memberOf angular_module.app_auth
+	 * @memberOf angular_module.app_auth.auth_services
 	 */
 	function session() {
 
@@ -18,7 +22,7 @@
 		 * @param {Object} user - The user's credentials
 		 * @param {String} role - The user's role
 		 * @param {String} token - The JSON web token stringified
-		 * @memberOf angular_module.app_auth.session
+		 * @memberOf angular_module.app_auth.auth_services.session
 		 */
 		this.create = function(user, role, token) {
 			this.user = user;
@@ -29,7 +33,7 @@
 		/**
 		 * @function destroy
 		 * @description Destroy the user's session
-		 * @memberOf angular_module.app_auth.session
+		 * @memberOf angular_module.app_auth.auth_services.session
 		 */
 		this.destroy = function() {
 			this.user = null;

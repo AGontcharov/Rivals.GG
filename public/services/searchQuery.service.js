@@ -1,3 +1,7 @@
+/**
+ * @namespace services
+ * @memberOf angular_module.app
+ */
 (function() {
 	'use strict';
 
@@ -6,9 +10,9 @@
 		.service('searchQuery', searchQuery);
 
 	/**
- 	* @class angular_module.app.searchQuery
+ 	* @class searchQuery
  	* @description Creates and destroys summoner search queries
- 	* @memberOf angular_module.app
+ 	* @memberOf angular_module.app.services
  	*/
 	function searchQuery() {
 
@@ -17,7 +21,7 @@
 		 * @description Creates an object representing the search query
 		 * @param  {String} region - The selected region
 		 * @param  {String} summoners - The summoner name(s)
-		 * @memberOf angular_module.app.searchQuery
+		 * @memberOf angular_module.app.services.searchQuery
 		 */
 		this.create = function(region, summoners) {
 			this.region = region;
@@ -29,7 +33,7 @@
 		/**
 		 * @function destroy
 		 * @description Destroy the search query
-		 * @memberOf angular_module.app.searchQuery
+		 * @memberOf angular_module.app.services.searchQuery
 		 */
 		this.destroy = function() {
 			this.region = null;
@@ -44,7 +48,7 @@
 		 * @description Filters the search query from spaces and replaces commas with '+'
 		 * @param  {String} query - The string representation of the search query
 		 * @return {String} The updated filtered search query
-		 * @memberOf angular_module.app.searchQuery
+		 * @memberOf angular_module.app.services.searchQuery
 		 */
 		function filter(query) {
 			return query.replace(/\s/g, '').replace(/,/g, '+');

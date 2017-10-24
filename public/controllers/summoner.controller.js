@@ -6,9 +6,9 @@
 		.controller('summoner', ['$scope', '$routeParams', 'searchQuery', 'summonerService', summoner]);
 
 	/**
-	 * @class angular_module.app.summoner
+	 * @class summoner
 	 * @description Controller that loads the summoner(s) search results
-	 * @memberOf angular_module.app
+	 * @memberOf angular_module.app.controllers
 	 */
 	function summoner($scope, $routeParams, searchQuery, summonerService) {
 		$scope.missing = false;

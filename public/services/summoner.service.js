@@ -6,9 +6,9 @@
         .factory('summonerService', ['$http', '$q', summonerService]);
 
     /**
-     * @class angular_module.app.summonerService
+     * @class summonerService
      * @description Data factory to handle all summoner requests
-     * @memberOf angular_module.app
+     * @memberOf angular_module.app.factories
      */
     function summonerService($http, $q) {
 
@@ -26,7 +26,7 @@
          * @param  {String} region - The selected region
          * @param {String} summoner - The summoner(s) to search for
          * @return {Object} HTTP promise
-         * @memberOf angular_module.app.summonerService
+         * @memberOf angular_module.app.factories.summonerService
          */
         function getBySummoner(region, summoner) {
             return $http.get(baseURL + '/search/' + region + '/' + summoner)
@@ -40,7 +40,7 @@
          * @description Handles succesful responses
          * @param  {Object} res - The response object
          * @return {Object} The response data
-         * @memberOf angular_module.app.summonerService
+         * @memberOf angular_module.app.factories.summonerService
          */
         function handleSuccess(res) {
             return { data: res.data };
@@ -52,7 +52,7 @@
          * @description Handles error from responses
          * @param  {Object} err - The response object
          * @return {Object} An object containing the message error
-         * @memberOf angular_module.app.summonerService
+         * @memberOf angular_module.app.factories.summonerService
          */
         function handleError(err) {
             return $q.reject({ success: false, message: err })
