@@ -1,145 +1,145 @@
 <div ng-include src="'view/navbar.html'"></div>
 
 <div class="container">
-	<div class="row">
+  <div class="row">
 
-		<div class="col-xs-4 summary">
+    <div class="col-xs-4 summary">
 
-			<!-- home sub navigation -->
-			<div class="home-nav">
-				<ul>
-					<li><a ng-class="{'home-nav-active': isActive('profile')}" href ng-click="show('profile')">Profile</a></li>
-					<li><a ng-class="{'home-nav-active': isActive('league')}" href ng-click="show('league')">League</a></li>
-					<li><a ng-class="{'home-nav-active': isActive('champions')}" href ng-click="show('champions')">Champions</a></li>
-				</ul>
-			</div>
+      <!-- home sub navigation -->
+      <div class="home-nav">
+        <ul>
+          <li><a ng-class="{'home-nav-active': isActive('profile')}" href ng-click="show('profile')">Profile</a></li>
+          <li><a ng-class="{'home-nav-active': isActive('league')}" href ng-click="show('league')">League</a></li>
+          <li><a ng-class="{'home-nav-active': isActive('champions')}" href ng-click="show('champions')">Champions</a></li>
+        </ul>
+      </div>
 
-			<div class= "summary-border">				
+      <div class= "summary-border">       
 
-				<!-- profile -->
-				<div ng-show="profile" class="profile">
-					<h2>{{username}}</h2>
+        <!-- profile -->
+        <div ng-show="profile" class="profile">
+          <h2>{{username}}</h2>
 
-					<div ng-show="accountSearch" class="account-result">
-						<img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
-						<ul>
-							<li><p>Summoner: {{result.summonerName}}</p></li>
-							<li><p>Last online: {{result.lastActivity | date:'yyyy-MMM-dd'}}</p></li>
-							<li><p>Level: {{result.summonerLevel}}</p></li>
-						</ul>
-						<button ng-show="summonerAccount" type="button" ng-click="go('/profile')">Edit account</button>
-						<button ng-show="!summonerAccount" type="button" ng-click="addAccount()">Add account</button>
-					</div>
-				</div>
+          <div ng-show="accountSearch" class="account-result">
+            <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
+            <ul>
+              <li><p>Summoner: {{result.summonerName}}</p></li>
+              <li><p>Last online: {{result.lastActivity | date:'yyyy-MMM-dd'}}</p></li>
+              <li><p>Level: {{result.summonerLevel}}</p></li>
+            </ul>
+            <button ng-show="summonerAccount" type="button" ng-click="go('/profile')">Edit account</button>
+            <button ng-show="!summonerAccount" type="button" ng-click="addAccount()">Add account</button>
+          </div>
+        </div>
 
-				<!-- League -->
-				<div ng-show="league" class="league">
-					
-					<div class="sub-nav-wrapper">
-						<div class="sub-nav">
-							<ul>
-								<li><a ng-class="{'sub-nav-active': isActive('solo')}" href ng-click="switchLeague('solo')">Ranked Solo</a></li>
-								<li><a ng-class="{'sub-nav-active': isActive('flex')}" href ng-click="switchLeague('flex')">Ranked Flex</a></li>
-							</ul>
-						</div>
-					</div>
+        <!-- League -->
+        <div ng-show="league" class="league">
+          
+          <div class="sub-nav-wrapper">
+            <div class="sub-nav">
+              <ul>
+                <li><a ng-class="{'sub-nav-active': isActive('solo')}" href ng-click="switchLeague('solo')">Ranked Solo</a></li>
+                <li><a ng-class="{'sub-nav-active': isActive('flex')}" href ng-click="switchLeague('flex')">Ranked Flex</a></li>
+              </ul>
+            </div>
+          </div>
 
-					<h2>{{username}}</h2>
+          <h2>{{username}}</h2>
 
-					<!-- Ranked Solo -->
-					<div ng-show="rankedSolo && accountSearch">
-						<img ng-src="/assets/images/tier-icons/{{result.soloIcon | lowercase}}.png" alt="Ranked solo icon">
-						<ul>
-							<li><p>League: {{result.soloLeagueName}}</p></li>
-							<li><p>Tier: {{result.soloTier}}</p></li>
-							<li><p>Division: {{result.soloDivision}}</p></li>
-							<li><p>League Points: {{result.soloLP}}</p></li>
-							<li><p>Wins: {{result.soloWins}}</p></li>
-							<li><p>Losses: {{result.soloLosses}}</p></li>
-						</ul>
-					</div>
+          <!-- Ranked Solo -->
+          <div ng-show="rankedSolo && accountSearch">
+            <img ng-src="/assets/images/tier-icons/{{result.soloIcon | lowercase}}.png" alt="Ranked solo icon">
+            <ul>
+              <li><p>League: {{result.soloLeagueName}}</p></li>
+              <li><p>Tier: {{result.soloTier}}</p></li>
+              <li><p>Division: {{result.soloDivision}}</p></li>
+              <li><p>League Points: {{result.soloLP}}</p></li>
+              <li><p>Wins: {{result.soloWins}}</p></li>
+              <li><p>Losses: {{result.soloLosses}}</p></li>
+            </ul>
+          </div>
 
 
-					<!-- Ranked Flex -->
-					<div ng-show="rankedFlex && accountSearch">
-						<img ng-src="/assets/images/tier-icons/{{result.flexIcon | lowercase}}.png" alt="Ranked flex icon">
-						<ul>
-							<li><p>League: {{result.flexLeagueName}}</p></li>
-							<li><p>Tier: {{result.flexTier}}</p></li>
-							<li><p>Division: {{result.flexDivision}}</p></li>
-							<li><p>League Points: {{result.flexLP}}</p></li>
-							<li><p>Wins: {{result.flexWins}}</p></li>
-							<li><p>Losses: {{result.flexLosses}}</p></li>
-						</ul>
-					</div>
-					<button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
+          <!-- Ranked Flex -->
+          <div ng-show="rankedFlex && accountSearch">
+            <img ng-src="/assets/images/tier-icons/{{result.flexIcon | lowercase}}.png" alt="Ranked flex icon">
+            <ul>
+              <li><p>League: {{result.flexLeagueName}}</p></li>
+              <li><p>Tier: {{result.flexTier}}</p></li>
+              <li><p>Division: {{result.flexDivision}}</p></li>
+              <li><p>League Points: {{result.flexLP}}</p></li>
+              <li><p>Wins: {{result.flexWins}}</p></li>
+              <li><p>Losses: {{result.flexLosses}}</p></li>
+            </ul>
+          </div>
+          <button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
 
-				</div>
+        </div>
 
-				<!-- Champions -->
-				<div ng-show="champions" class="champions">
+        <!-- Champions -->
+        <div ng-show="champions" class="champions">
 
-					<div class="sub-nav-wrapper">
-						<div class="sub-nav">
-							<ul>
-								<li><a ng-class="{'sub-nav-active': true}">Season 7</a></li>
-							</ul>
-						</div>
-					</div>
+          <div class="sub-nav-wrapper">
+            <div class="sub-nav">
+              <ul>
+                <li><a ng-class="{'sub-nav-active': true}">Season 7</a></li>
+              </ul>
+            </div>
+          </div>
 
-					<h2>{{username}}</h2>
+          <h2>{{username}}</h2>
 
-					<!-- Table-->
-					<table>
-						<tr>
-							<th>Rank</th>
-							<th>Champion</th>
-							<th>Win Rate</th>
-						</tr>
-						<tr>
-							<th>This</th>
-							<th>is an</th>
-							<th>example</th>
-						</tr>
-						<tr>
-							<th>1</th>
-							<th>Yasuo</th>
-							<th>67%</th>
-						</tr>
-						<tr>
-							<th>2</th>
-							<th>Zed</th>
-							<th>61%</th>
-						</tr>
-						<tr>
-							<th>3</th>
-							<th>Jayce</th>
-							<th>59%</th>
-						</tr>
-					</table>
+          <!-- Table-->
+          <table>
+            <tr>
+              <th>Rank</th>
+              <th>Champion</th>
+              <th>Win Rate</th>
+            </tr>
+            <tr>
+              <th>This</th>
+              <th>is an</th>
+              <th>example</th>
+            </tr>
+            <tr>
+              <th>1</th>
+              <th>Yasuo</th>
+              <th>67%</th>
+            </tr>
+            <tr>
+              <th>2</th>
+              <th>Zed</th>
+              <th>61%</th>
+            </tr>
+            <tr>
+              <th>3</th>
+              <th>Jayce</th>
+              <th>59%</th>
+            </tr>
+          </table>
 
-					<button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
-				</div>
+          <button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
+        </div>
 
-				<!-- Add league of legends account -->
-				<div ng-show="!summonerAccount" class="no-summoner-account">
-					<p>Find your summoner account!</p>
-					<input type="text" id="summonerName" name="summonerName" ng-model="summoner.name" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
-					<select ng-model="summoner.region">
-						<option value="na1">NA</option>
-						<option value="euw1">EUW</option>
-					</select>
-					<a href ng-click="findAccount(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
-				</div>
+        <!-- Add league of legends account -->
+        <div ng-show="!summonerAccount" class="no-summoner-account">
+          <p>Find your summoner account!</p>
+          <input type="text" id="summonerName" name="summonerName" ng-model="summoner.name" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
+          <select ng-model="summoner.region">
+            <option value="na1">NA</option>
+            <option value="euw1">EUW</option>
+          </select>
+          <a href ng-click="findAccount(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+        </div>
 
-			</div>
-			<!-- ./summary-border -->
-		</div>
-		<!-- ./summary -->
+      </div>
+      <!-- ./summary-border -->
+    </div>
+    <!-- ./summary -->
 
-		<!-- Newsfeed -->
-		<div class="col-xs-8 newsfeed">
-			<h1>Welcome {{username}}!</h1>
-		</div>
-	</div>
+    <!-- Newsfeed -->
+    <div class="col-xs-8 newsfeed">
+      <h1>Welcome {{username}}!</h1>
+    </div>
+  </div>
 </div>

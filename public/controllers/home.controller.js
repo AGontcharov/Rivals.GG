@@ -15,12 +15,15 @@
 
 		// Sets the active class for the items in the home subnavbar
 		$scope.isActive = function(location) {
-
+			
 			// Add active class for sublinks solo and flex
-			if (location === 'solo' || location === 'flex') return leagueSelected === location;
-
+			if (location === 'solo' || location === 'flex') {
+				return leagueSelected === location;
+			}
 			// Add active class for profile, league and champion
-			else return selected === location;		
+			else {
+				return selected === location;
+			}
 		}
 
 		// Sets the scope variables profile, league, champions

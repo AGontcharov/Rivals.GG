@@ -1,3 +1,7 @@
+/**
+ * App Module
+ * @namespace Modules
+ */
 (function() {
 	'use strict';
 

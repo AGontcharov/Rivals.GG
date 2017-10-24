@@ -1,3 +1,7 @@
+/**
+ * App.authentication Module
+ * @namespace Modules
+ */
 (function() {
     'use strict';
 
