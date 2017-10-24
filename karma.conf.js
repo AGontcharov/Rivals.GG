@@ -24,7 +24,8 @@ module.exports = function(config) {
       "test/**/login.controller.spec.js",
       "test/**/register.controller.spec.js",
       "test/**/navbar.controller.spec.js",
-      "test/**/summoner.controller.spec.js",     
+      "test/**/summoner.controller.spec.js",
+      "test/**/profile.controller.spec.js",
     ],
 
 
