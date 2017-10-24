@@ -166,7 +166,7 @@
 			$scope.accountSearch = false;
 
 			// Pretty big logic to keep private and not be able to test - any argument?
-			accountService.getByAccount()
+			accountService.getByUsername()
 			.then(function(response) {
 				$scope.accountSearch = true;
 				$scope.summonerAccount = true;

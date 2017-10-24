@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "start": "node server.js",
-    "jsdoc": "./node_modules/.bin/jsdoc . -r -c conf.json -docs"
+    "jsdoc": "./node_modules/.bin/jsdoc . -r -c conf.json -d docs"
   },
   "keywords": [],
   "author": "Alexander Gontcharov",
