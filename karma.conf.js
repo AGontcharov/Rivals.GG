@@ -22,7 +22,9 @@ module.exports = function(config) {
       "public/**/*.js",
       // "test/**/*.js"
       "test/**/login.controller.spec.js",
-      "test/**/register.controller.spec.js"
+      "test/**/register.controller.spec.js",
+      "test/**/navbar.controller.spec.js",
+      "test/**/summoner.controller.spec.js",     
     ],
 
 

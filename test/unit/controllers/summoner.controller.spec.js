@@ -1,51 +1,49 @@
 describe('Summoner Controller', function() {
 	beforeEach(module('myApp'));
 
-	var scope, controller, $q, userService, deferred;
+	var scope, controller, summonerService, deferred;
 
-	beforeEach(inject(function($rootScope, $controller, _$q_, _searchQuery_, _userService_) {
+	beforeEach(inject(function($rootScope, $controller, $q, _searchQuery_, _summonerService_) {
 		scope = $rootScope.$new();
-		$q = _$q_;
 		searchQuery = _searchQuery_;
-		userService = _userService_;
+		summonerService = _summonerService_;
 		deferred = $q.defer();
 
-		spyOn(userService, 'getBySummoner').and.returnValue(deferred.promise);
-		spyOn(searchQuery, 'create').and.returnValue({});
+		// Spies
+		spyOn(summonerService, 'getBySummoner').and.returnValue(deferred.promise);
+		spyOn(searchQuery, 'create');
 
-		controller = $controller('summonerCtrl', {
+		// Initialize the controller
+		controller = $controller('summoner', {
 			$scope: scope,
-			searchQuery: searchQuery,
-			userService: userService
 		});
 	}));
 
-	describe('SeachQuery.create', function() {
+	describe('Summoner', function() {
+
+		it('Missing should be set to false', function() {
+			expect(scope.missing).toBeFalsy();
+		});
 
 		it('Should call the searchQuery service', function() {
-			expect(scope.missing).toBeFalsy();
-			expect(searchQuery.create).toHaveBeenCalled();
 			expect(searchQuery.create.calls.count()).toBe(1);
 		});
-	});
-
-	describe('user.getBySummoner', function() {
 		
-		it('Should resolve the promise', function() {
-			deferred.resolve( {data: 'xInFam0us'} );
+		it('Should call the summoner service', function() {
+			deferred.resolve( {data: 'testing'} );
 			scope.$apply();
+			expect(summonerService.getBySummoner.calls.count()).toBe(1);
+		});
 
-			expect(userService.getBySummoner).toHaveBeenCalled();
-			expect(userService.getBySummoner.calls.count()).toBe(1);
-			expect(scope.records).toBe('xInFam0us');
+		it('Should resolve the promise', function() {
+			deferred.resolve( {data: 'testing'} );
+			scope.$apply();
+			expect(scope.records).toBe('testing');
 		});
 
 		it('Should reject the promise', function() {
 			deferred.reject( { success: false, message: 'reject promise'} );
 			scope.$apply();
-
-			expect(userService.getBySummoner).toHaveBeenCalled();
-			expect(userService.getBySummoner.calls.count()).toBe(1);
 			expect(scope.missing).toBeTruthy();
 		});
 	});

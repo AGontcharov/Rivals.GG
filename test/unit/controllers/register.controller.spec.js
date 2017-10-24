@@ -1,13 +1,12 @@
 describe('Register Controller', function() {
 	beforeEach(module('myApp'));
 
-	var scope, controller, userService, $location, $q, deferred;
+	var scope, controller, userService, $location, deferred;
 
-	beforeEach(inject(function($controller, $rootScope, _$location_, _userService_, _$q_) {
+	beforeEach(inject(function($controller, $rootScope, $q, _$location_, _userService_) {
 		scope = $rootScope.$new();
 		userService = _userService_;
 		$location = _$location_;
-		$q = _$q_;
 
 		// Create mock instance of defer
 		deferred = $q.defer();
@@ -15,7 +14,7 @@ describe('Register Controller', function() {
 		// Use a spy to return the deferred promise
 		spyOn(userService, 'create').and.returnValue(deferred.promise);
 
-		// Init the controller, passing the spy service instance
+		// Initialize the controller, passing the spy service instance
 		controller = $controller('register', {
 			$scope: scope,
 			userService: userService,
@@ -26,8 +25,7 @@ describe('Register Controller', function() {
 
 		beforeEach(function() {
 			scope.account = { username: 'test', password: 123, confirmPassword: 123, email: 'test@mail.com' };
-			scope.registerForm = {};
-			scope.registerForm.$setPristine = function() {};
+			scope.registerForm = { $setPristine : function() {} };
 		});
 
 		it('Should not call the user service on invalid form', function() {

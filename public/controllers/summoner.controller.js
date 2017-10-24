@@ -16,7 +16,6 @@
 			$scope.records = response.data;
 		})
 		.catch(function(response) {
-			console.log(response.message);
 			$scope.missing = true;
 		});
 	}

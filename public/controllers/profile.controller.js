@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('myApp')
-		.controller('profile', ['$scope', 'session', 'userService', 'authentication', profile]);
+		.controller('profile', ['$scope', '$location', 'session', 'userService', 'authentication', profile]);
 
-	function profile($scope, session, userService, authentication) {
+	function profile($scope, $location, session, userService, authentication) {
 
 		activate();
 
@@ -23,6 +23,7 @@
 			userService.deleteByUsername(session.user)
 			.then(function(response) {
 				authentication.logout();
+				$location.path('/login');
 			})
 			.catch(function(response) {
 				console.log(response.message);
