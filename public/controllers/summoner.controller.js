@@ -21,12 +21,11 @@
 		 * @memberOf angular_module.app.summoner
 		 */
 		function activate() {
-			if (!searchQuery.summoners) searchQuery.create($routeParams.region, $routeParams.name);
+			if (!searchQuery.summoners) searchQuery.create($routeParams.name);
 
 			// Get summoner(s)
-			summonerService.getBySummoner(searchQuery.region, searchQuery.requestURL)
+			summonerService.getBySummoner($routeParams.region, searchQuery.requestURL)
 			.then(function(response) {
-				console.log(response.data);
 				$scope.records = response.data;
 			})
 			.catch(function(response) {

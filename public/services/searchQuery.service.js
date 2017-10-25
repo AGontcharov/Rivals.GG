@@ -23,11 +23,8 @@
 		 * @param  {String} summoners - The summoner name(s)
 		 * @memberOf angular_module.app.services.searchQuery
 		 */
-		this.create = function(region, summoners) {
-			this.region = region;
-			this.summoners = filter(summoners).split('+');
-			this.route = 'summoner/' + region + '/' + filter(summoners);
-			this.requestURL = filter(summoners);
+		this.create = function(summoners) {
+			this.summoners = filter(summoners);
 		}
 
 		/**
@@ -36,10 +33,7 @@
 		 * @memberOf angular_module.app.services.searchQuery
 		 */
 		this.destroy = function() {
-			this.region = null;
 			this.summoners = null;
-			this.route = null;
-			this.requestURL = null;
 		}
 
 		/**

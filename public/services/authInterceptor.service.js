@@ -4,14 +4,14 @@
 
 	angular
 		.module('myApp')
-		.factory('authInterceptor', ['session', '$injector', '$q', authInterceptor]);
+		.factory('authInterceptor', ['session', '$location', '$injector', '$q', authInterceptor]);
 
 	/**
 	 * @class authInterceptor
 	 * @description HTTP interceptor between the server and the client
 	 * @memberOf angular_module.app.factories
 	 */
-	function authInterceptor(session, $injector, $q) {
+	function authInterceptor(session, $location, $injector, $q) {
 
 		return {
 
@@ -41,6 +41,7 @@
 
 				if (response.status === 401 || response.status === 403) {
 					$injector.get('authentication').logout();
+					$location.path('/login')
 				}
 				return $q.reject(response);
 			}

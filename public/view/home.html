@@ -20,7 +20,7 @@
         <div ng-show="profile" class="profile">
           <h2>{{username}}</h2>
 
-          <div ng-show="summonerSearch" class="account-result">
+          <div ng-show="accountSearch" class="account-result">
             <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
             <ul>
               <li><p>Summoner: {{result.summonerName}}</p></li>
@@ -92,7 +92,7 @@
             <option value="na1">NA</option>
             <option value="euw1">EUW</option>
           </select>
-          <a href ng-click="findAccount(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+          <a href ng-click="search(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
         </div>
         <button ng-show="!summonerAccount && accountSearch" type="button" ng-click="addAccount()">Add account</button>
       </div>

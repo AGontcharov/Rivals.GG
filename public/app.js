@@ -27,7 +27,7 @@
 			templateUrl: '/view/home.html',
 			controller: 'home'
 		})
-		.when('/profile', {
+		.when('/account', {
 			templateUrl: 'view/account.html',
 			controller: 'account'
 		})

@@ -28,19 +28,6 @@
 			$scope[location] = true;
 		}
 
-		// Finds summoner account based on region and name
-		$scope.findAccount = function(region, name) {
-			summonerService.getBySummoner(region, name)
-			.then(function(response) {
-				console.log(response.data);
-				$scope.result = response.data[0];
-				$scope.accountSearch = true;
-			})
-			.catch(function(response) {
-				console.log(response.message);
-			});
-		}
-
 		// Updates the user with their summoner account
 		// Split ranked solo and flex as private functions?
 		$scope.addAccount = function() {
@@ -119,18 +106,6 @@
 		function activate() {
 			$scope.username = session.user;
 			$scope.profile = true;
-
-			// Pretty big logic to keep private and not be able to test - any argument?
-			// accountService.getByUsername()
-			// .then(function(response) {
-			// 	$scope.accountSearch = true;
-			// 	$scope.summonerAccount = true;
-			// 	$scope.findAccount(response.data.region, response.data.account);
-
-			// })
-			// .catch(function(response) {
-			// 	console.log(response.message);
-			// });
 		}
 	}
 })();
