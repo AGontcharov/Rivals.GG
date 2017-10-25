@@ -20,9 +20,7 @@
         
         var service = {
             createAccount: createAccount,
-            getByUsername: getByUsername,
-            createSoloLeague: createSoloLeague,
-            createFlexLeague: createFlexLeague
+            getByUsername: getByUsername
         };
 
         return service;
@@ -51,32 +49,6 @@
             return $http.get(baseURL + '/users/accounts')
             .then(handleSuccess)
             .catch(function() { return handleError('Error getting summoner account by username'); });
-        }
-
-        /**
-         * @function createSoloLeague
-         * @description Performs a POST request to creates the solo league statistic for summoner
-         * @param  {Object} stats - The solo league statistics for summoner
-         * @return {Object} HTTP Promise
-         * @memberOf angular_module.app.factories.accountService
-         */
-        function createSoloLeague(stats) {
-            return $http.post(baseURL + '/users/accounts/solo', stats)
-            .then(handleSuccess)
-            .catch(function() { return handleError('Error creating summoner ranked solo stats'); });
-        }
-
-        /**
-         * @function createFlexLeague
-         * @description Performs a POST reqeust to creates the flex league statistic for summoner
-         * @param  {Object} stats - The flex league statistics for summoner
-         * @return {Object} HTTP Promise
-         * @memberOf angular_module.app.factories.accountService
-         */
-        function createFlexLeague(stats) {
-            return $http.post(baseURL + '/users/accounts/flex', stats)
-            .then(handleSuccess)
-            .catch(function() { return handleError('Error creating summoner ranked flex stats'); });
         }
 
         /**

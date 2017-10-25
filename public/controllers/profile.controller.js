@@ -38,6 +38,17 @@
             if (keyEvent.which === 13) $scope.search();
         }
 
+        $scope.addAccount = function() {
+            $scope.result.region = $scope.summoner.region;
+
+            accountService.createAccount($scope.result)
+            .then(function(response) {
+                $scope.summonerAccount = true;
+            })
+            .catch(function(response) {});
+        }
+
+        // Private function
         function activate() {
             $scope.rankedSolo = true;
 
@@ -45,6 +56,7 @@
             .then(function(response) {
                 $scope.summonerAccount = true;
                 $scope.search(response.data.region, response.data.account);
+                
             })
             .catch(function(response) {});
         }

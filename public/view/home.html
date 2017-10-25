@@ -85,6 +85,7 @@
         <!-- ./champions -->
 
         <!-- Add league of legends account -->
+        <button ng-show="!summonerAccount && accountSearch" type="button" ng-click="addAccount()">Add account</button>
         <div ng-show="!summonerAccount" class="no-summoner-account">
           <p>Find your summoner account!</p>
           <input type="text" id="summonerName" name="summonerName" ng-model="summoner.name" placeholder="Summoner name" ng-keydown="searchOnKey($event)" autofocus>
@@ -94,7 +95,6 @@
           </select>
           <a href ng-click="search(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
         </div>
-        <button ng-show="!summonerAccount && accountSearch" type="button" ng-click="addAccount()">Add account</button>
       </div>
       <!-- ./summary-border -->
     </div>

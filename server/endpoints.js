@@ -17,15 +17,17 @@ apiRouter.post('/users/login', users.authenticateUser);
 // Verify all request made to these endpoints
 apiRouter.use(jwtVerify);
 
-apiRouter.post('/users/accounts', account.createAccount);
-apiRouter.get('/users/accounts', account.getAccount);
+apiRouter.post('/users/accounts', 
+    account.createAccount, 
+    account.createAccountSolo, 
+    account.createAccountFlex, 
+    function(req, res, next) {
+        return res.status(201).send('Summoner account added');
+});
 
-// Must go here to prevent conflict
+apiRouter.get('/users/accounts', account.getAccount);
 apiRouter.get('/users/:username', users.getUser);
 apiRouter.delete('/users/:username', users.deleteUser);
-
-apiRouter.post('/users/accounts/solo', account.createAccountSolo);
-apiRouter.post('/users/accounts/flex', account.createAccountFlex);
 
 apiRouter.get('/search/:region/:summoners', require('./resources/summoner'));
 

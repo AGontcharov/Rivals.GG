@@ -32,14 +32,13 @@ module.exports = {
           console.log('No summoner account found for User');
 
           // Create Summoner account
-          var args = [req.body.summonerID, userID, req.body.name, req.body.profileIconID, req.body.region, req.body.level, req.body.revisionDate];
+          var args = [req.body.summonerID, userID, req.body.summonerName, req.body.profileIcon, req.body.region, req.body.summonerLevel, req.body.lastActivity];
           db.query("INSERT INTO Summoner VALUES (?, ?, ?, ?, ?, ?, ?)", args, function(err, rows, field) {
 
             if (err) throw err;
             console.log(rows);
 
-            // HTTP 201 Created
-            return res.status(201).send('Summoner account added');
+            next();
           });
         }
 
@@ -92,34 +91,27 @@ module.exports = {
    */
   createAccountSolo: function(req, res, next) {
     console.log(req.body);
-    console.log(res.locals.username);
 
-    // Inner join Summoner.SummonerID on Solo.SummonerID
-    var query = "SELECT * FROM Solo INNER JOIN Summoner ON Solo.SummonerID = Summoner.SummonerID WHERE Solo.SummonerID=?";
-    db.query(query, req.body.summonerID, function(err, rows, fields) {
-
-      if (err) throw err;
-      console.log(rows);
-
-      // No solo league stats found
-      if (!rows.length) {
-        console.log('No solo league stats found for summoner account');
-
-        // Create solo league stats
-        var args = [req.body.summonerID, req.body.icon, req.body.leagueName, req.body.tier, req.body.division, req.body.leaguePoints, req.body.wins, req.body.losses];
-        db.query("INSERT INTO Solo VALUES (?, ?, ?, ?, ?, ?, ?, ?)", args, function(err, rows, fields) {
-
-          if (err) throw err;
-          console.log(rows);
-
-          // HTTP 201 Created
-          return res.status(201).send('Ranked solo league stats added for summoner account');
-        });
-      }
-
-      // HTTP 409 Conflict
-      else return res.status(409).send('Ranked Solo league stats already exist for summoner');
-    });
+    if (req.body.soloActive) {
+      
+      // Create solo league stats
+      var args = [
+        req.body.summonerID, 
+        req.body.soloIcon, 
+        req.body.soloLeagueName, 
+        req.body.soloTier, 
+        req.body.soloDivision, 
+        req.body.soloLP, 
+        req.body.soloWins, 
+        req.body.soloLosses 
+      ];
+      
+      db.query("INSERT INTO Solo VALUES (?, ?, ?, ?, ?, ?, ?, ?)", args, function(err, rows, fields) {
+        if (err) throw err;
+        console.log(rows);
+      });
+    }
+    next();
   }, 
 
   /**
@@ -131,37 +123,27 @@ module.exports = {
    */
   createAccountFlex: function(req, res, next) {
     console.log(req.body);
-    console.log(res.locals.username);
 
-    // Inner join Summoner.SummonerID on flex.SummonerID
-    var query = "SELECT * FROM Flex INNER JOIN Summoner ON Flex.SummonerID = Summoner.SummonerID WHERE Flex.SummonerID=?";
-    db.query(query, req.body.summonerID, function(err, rows, fields) {
+    console.log('flexActive: ', req.body.flexActive);
+    if (req.body.flexActive) {
 
-      if (err) throw err;
-      console.log('1st: ', rows);
-      console.log('PROBLEM HERE?');
+      // Create flex league stats
+      var args = [
+        req.body.summonerID, 
+        req.body.flexIcon, 
+        req.body.flexLeagueName, 
+        req.body.flexTier, 
+        req.body.flexDivision, 
+        req.body.flexLP, 
+        req.body.flexWins, 
+        req.body.flexLosses 
+      ];
 
-
-      // No flex league stats found
-      if (!rows.length) {
-        console.log('No ranked Flex stats found');
-
-        // Create flex league stats
-        var args = [req.body.summonerID, req.body.icon, req.body.leagueName, req.body.tier, req.body.division, req.body.leaguePoints, req.body.wins, req.body.losses];
-        console.log(args);
-
-        db.query("INSERT INTO Flex VALUES (?, ?, ?, ?, ?, ?, ?, ?)", args, function(err, rows, fields) {
-
-          if (err) throw err;
-          console.log(rows);
-
-          // HTTP 201 Created
-          return res.status(201).send('Ranked Flex League stats added for Summoner');
-        });
-      }
-
-      // HTTP 409 Conflict
-      else return res.status(409).send('Ranked Flex stats already exist for summoner');
-    });
+      db.query("INSERT INTO Flex VALUES (?, ?, ?, ?, ?, ?, ?, ?)", args, function(err, rows, fields) {
+        if (err) throw err;
+        console.log(rows);
+      });
+    }
+    next();
   }
 }
