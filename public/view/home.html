@@ -8,38 +8,37 @@
       <!-- home sub navigation -->
       <div class="home-nav">
         <ul>
-          <li><a ng-class="{'home-nav-active': isActive('profile')}" href ng-click="show('profile')">Profile</a></li>
-          <li><a ng-class="{'home-nav-active': isActive('league')}" href ng-click="show('league')">League</a></li>
-          <li><a ng-class="{'home-nav-active': isActive('champions')}" href ng-click="show('champions')">Champions</a></li>
+          <li><a ng-class="{'home-nav-active': isActive('profile')}" href ng-click="switchTo('profile')">Profile</a></li>
+          <li><a ng-class="{'home-nav-active': isActive('league')}" href ng-click="switchTo('league')">League</a></li>
+          <li><a ng-class="{'home-nav-active': isActive('champions')}" href ng-click="switchTo('champions')">Champions</a></li>
         </ul>
       </div>
 
-      <div class= "summary-border">       
+      <div class="summary-border" ng-controller="profile">       
 
         <!-- profile -->
         <div ng-show="profile" class="profile">
           <h2>{{username}}</h2>
 
-          <div ng-show="accountSearch" class="account-result">
+          <div ng-show="summonerSearch" class="account-result">
             <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.15.1/img/profileicon/{{result.profileIcon}}.png" alt="Profile icon"><br>
             <ul>
               <li><p>Summoner: {{result.summonerName}}</p></li>
               <li><p>Last online: {{result.lastActivity | date:'yyyy-MMM-dd'}}</p></li>
               <li><p>Level: {{result.summonerLevel}}</p></li>
             </ul>
-            <button ng-show="summonerAccount" type="button" ng-click="go('/profile')">Edit account</button>
-            <button ng-show="!summonerAccount" type="button" ng-click="addAccount()">Add account</button>
           </div>
         </div>
+        <!-- ./profile -->
 
-        <!-- League -->
+        <!-- league -->
         <div ng-show="league" class="league">
           
           <div class="sub-nav-wrapper">
             <div class="sub-nav">
               <ul>
-                <li><a ng-class="{'sub-nav-active': isActive('solo')}" href ng-click="switchLeague('solo')">Ranked Solo</a></li>
-                <li><a ng-class="{'sub-nav-active': isActive('flex')}" href ng-click="switchLeague('flex')">Ranked Flex</a></li>
+                <li><a ng-class="{'sub-nav-active': isActive('rankedSolo')}" href ng-click="changeLeague('rankedSolo')">Ranked Solo</a></li>
+                <li><a ng-class="{'sub-nav-active': isActive('rankedFlex')}" href ng-click="changeLeague('rankedFlex')">Ranked Flex</a></li>
               </ul>
             </div>
           </div>
@@ -59,7 +58,6 @@
             </ul>
           </div>
 
-
           <!-- Ranked Flex -->
           <div ng-show="rankedFlex && accountSearch">
             <img ng-src="/assets/images/tier-icons/{{result.flexIcon | lowercase}}.png" alt="Ranked flex icon">
@@ -72,74 +70,34 @@
               <li><p>Losses: {{result.flexLosses}}</p></li>
             </ul>
           </div>
-          <button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
-
         </div>
+        <!-- ./league -->
 
-        <!-- Champions -->
+        <!-- champions -->
         <div ng-show="champions" class="champions">
-
           <div class="sub-nav-wrapper">
             <div class="sub-nav">
-              <ul>
-                <li><a ng-class="{'sub-nav-active': true}">Season 7</a></li>
-              </ul>
+              <ul> <li><a ng-class="{'sub-nav-active': true}">Season 7</a></li></ul>
             </div>
           </div>
-
           <h2>{{username}}</h2>
-
-          <!-- Table-->
-          <table>
-            <tr>
-              <th>Rank</th>
-              <th>Champion</th>
-              <th>Win Rate</th>
-            </tr>
-            <tr>
-              <th>This</th>
-              <th>is an</th>
-              <th>example</th>
-            </tr>
-            <tr>
-              <th>1</th>
-              <th>Yasuo</th>
-              <th>67%</th>
-            </tr>
-            <tr>
-              <th>2</th>
-              <th>Zed</th>
-              <th>61%</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>Jayce</th>
-              <th>59%</th>
-            </tr>
-          </table>
-
-          <button ng-show="!summonerAccount && accountSearch" type="button">Add account</button>
         </div>
+        <!-- ./champions -->
 
         <!-- Add league of legends account -->
         <div ng-show="!summonerAccount" class="no-summoner-account">
           <p>Find your summoner account!</p>
-          <input type="text" id="summonerName" name="summonerName" ng-model="summoner.name" placeholder="Summoner name" ng-keydown="search($event)" autofocus>
+          <input type="text" id="summonerName" name="summonerName" ng-model="summoner.name" placeholder="Summoner name" ng-keydown="searchOnKey($event)" autofocus>
           <select ng-model="summoner.region">
             <option value="na1">NA</option>
             <option value="euw1">EUW</option>
           </select>
           <a href ng-click="findAccount(summoner.region, summoner.name)"><i class="fa fa-search" aria-hidden="true"></i></a><br>
         </div>
-
+        <button ng-show="!summonerAccount && accountSearch" type="button" ng-click="addAccount()">Add account</button>
       </div>
       <!-- ./summary-border -->
     </div>
     <!-- ./summary -->
-
-    <!-- Newsfeed -->
-    <div class="col-xs-8 newsfeed">
-      <h1>Welcome {{username}}!</h1>
-    </div>
   </div>
 </div>

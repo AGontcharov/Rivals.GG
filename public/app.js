@@ -28,8 +28,8 @@
 			controller: 'home'
 		})
 		.when('/profile', {
-			templateUrl: 'view/profile.html',
-			controller: 'profile'
+			templateUrl: 'view/account.html',
+			controller: 'account'
 		})
 		.when('/summoner/:region/:name', { 
 			templateUrl: '/view/summoner.html',

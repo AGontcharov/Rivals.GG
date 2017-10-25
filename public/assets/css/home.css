@@ -110,23 +110,6 @@
 }
 
 
-/* Champions page */
-table {
-	width: 100%;
-}
-
-th {
-	padding: 8px;
-	text-align: center;
-	font-weight: normal;
-	color: #555555;	
-}
-
-tr:not(:last-child) {
-	border-bottom: 1px solid black;
-}
-
-
 /* No summoner account found */
 .no-summoner-account {
 	position: relative;

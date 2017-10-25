@@ -1,68 +1,44 @@
 (function() {
-	angular
-		.module('myApp')
-		.controller('profile', ['$scope', '$location', 'session', 'userService', 'authentication', profile]);
+    'use strict';
 
-	/**
-	 * @class profile
-	 * @description Controller that handles the user functionality
-	 * @memberOf angular_module.app.controllers
-	 */
-	function profile($scope, $location, session, userService, authentication) {
+    angular
+        .module('myApp')
+        .controller('profile', ['$scope', '$location', 'session', 'accountService', 'authentication', profile]);
 
-		activate();
+        function profile($scope, $location, session, accountService) {
 
-		/**
-		 * @function updateEmail
-		 * @description Updates the user's email
-		 * @memberOf angular_module.app.profile
-		 */
-		$scope.updateEmail = function() {
+            // Private variables
+            var selected = 'rankedSolo';
 
-		}
+            activate();
 
-		/**
-		 * @function changePass
-		 * @description Changes the user's password
-		 * @memberOf angular_module.app.profile
-		 */
-		$scope.changePass = function() {
+            $scope.isActive = function(location) {
+                return selected === location;
+            }
 
-		}
+            $scope.changeLeague = function(league) {
+                $scope.rankedSolo = false;
+                $scope.rankedFlex = false;
 
-		/**
-		 * @function deleteAccount
-		 * @description Deletes the user's account
-		 * @memberOf angular_module.app.profile
-		 */
-		$scope.deleteAccount = function() {
+                selected = league;
+                $scope[league] = true;
+            }
 
-			userService.deleteByUsername(session.user)
-			.then(function(response) {
-				authentication.logout();
-				$location.path('/login');
-			})
-			.catch(function(response) {
-				console.log(response.message);
-			});
-		}
+            $scope.search = function() {
+                
+            }
 
-		/**
-		 * @function activate
-		 * @private
-		 * @description Loads the user's profile
-		 * @memberOf angular_module.app.profile
-		 */
-		function activate() {
+            // Searches account on Enter key press inside the input
+            $scope.searchOnKey = function(keyEvent) {
+                if (keyEvent.which === 13) $scope.search();
+            }
 
-			// Get user information
-			userService.getByUsername(session.user)
-			.then(function(response) {
-				$scope.account = { email: response.data.email, username: session.user };
-			})
-			.catch(function(response) {
-				console.log(response.message);
-			});
-		}
-	}
+            function activate() {
+                accountService.getByUsername(session.user)
+                .then(function(response) {
+                    $scope.summonerAccount = true;
+                })
+                .catch(function(response) {});
+            }
+        }
 })();

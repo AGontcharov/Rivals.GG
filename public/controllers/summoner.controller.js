@@ -11,7 +11,6 @@
 	 * @memberOf angular_module.app.controllers
 	 */
 	function summoner($scope, $routeParams, searchQuery, summonerService) {
-		$scope.missing = false;
 
 		activate();
 

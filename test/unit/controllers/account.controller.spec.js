@@ -16,7 +16,7 @@ describe('Profile Controller', function() {
         spyOn(authentication, 'logout');
 
         // Initialize the controller
-        controller = $controller('profile', {
+        controller = $controller('account', {
             $scope: scope,
         });
     }));

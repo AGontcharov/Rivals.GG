@@ -2,7 +2,7 @@
 	<ul>
 		<li class="search-bar">
 			<input type="text" placeholder="Summoner1, summoner2, summoner3, ..." ng-model="searchQuery" ng-keydown="searchOnKey($event)">
-			<a href ng-click="Search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
+			<a href ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></a><br>
 		</li>
 		<li class="region-select">
 			<select ng-model="region">
@@ -13,6 +13,7 @@
 		<li class="nav-links"><a ng-class="{active: isActive('/home')}" href="/home">Home</a></li>
 		<li class="nav-links"><a ng-class="{active: isActive('/friends')}" href="#">Friends</a></li>
 		<li class="nav-links"><a ng-class="{active: isActive('/leaderboard')}" href="#">Leaderboard</a></li>
+		<li class="nav-links"><a ng-class="{active: isActive('/account')}" href="#">Account</a></li>
 		<li class="nav-links"><a ng-class="{active: isActive('/')}" href ng-click="logout()">Sign out</a></li>
 	</ul>
 </div>
